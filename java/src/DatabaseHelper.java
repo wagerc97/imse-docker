@@ -39,7 +39,7 @@ class DatabaseHelper {
     private static final String PATH = "..\\resources\\";
 
     // The name of the class loaded from the ojdbc14.jar driver file
-    //public final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver"; //TODO
+    //public final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
 
