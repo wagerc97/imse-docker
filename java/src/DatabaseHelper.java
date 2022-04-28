@@ -26,8 +26,6 @@ import java.util.Date;
 import java.sql.SQLException;
 
 
-
-
 // The DatabaseHelper class encapsulates the communication with our database
 class DatabaseHelper {
     //Source: https://www.vogella.com/tutorials/MySQLJava/article.html#:~:text=To%20connect%20to%20MySQL%20from,file%20which%20we%20require%20later.
