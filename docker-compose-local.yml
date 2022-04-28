@@ -40,7 +40,7 @@ services:
       context: ./java
       dockerfile: Dockerfile
     container_name: javadbapp
-    #restart: on-failure
+    restart: on-failure #turn off during development
     depends_on:
       - db
     volumes:
