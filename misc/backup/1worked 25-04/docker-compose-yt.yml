@@ -1,0 +1,30 @@
+# version of the compose file 
+version: '3.8'
+# all containers
+services:
+  mysql_dev:
+    # base image
+    image: mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: imse4eva
+      MYSQL_DATABASE: PharmaComp
+    ports:
+      - "3306:3306" # host:container
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/scripts/DROP_PharmaComp.sql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/scripts/CREATE_PharmaComp.sql
+
+  
+  custom_mysql_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # uses an image that was made previously made from the Dockerfile
+    #image: mysql
+    environment: 
+      #MYSQL_ROOT_HOST: root
+      MYSQL_ROOT_PASSWORD: imse4eva
+    ports: 
+      - "3316:3306" # host:container
+    #depends_on: [db]

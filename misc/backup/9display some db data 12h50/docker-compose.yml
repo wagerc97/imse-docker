@@ -1,0 +1,38 @@
+# version of the compose file 
+version: '3.8'
+# all containers
+services:
+  web: # Web App service
+    # image: php:8.1-apache #dont use this image directly 
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: php81
+    depends_on:
+      - db 
+    # mount local directory
+    volumes: 
+      #- ./public_html:/var/www/html
+      - ./php/html:/var/www/html/
+    # expose ports 
+    ports:
+      - "8000:80"  
+  
+  db: # db service
+    #image: custom_mysql
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    container_name: mysql8
+    # use native pw authentification
+    #command: --default-authentication-plugin=imse4eva
+    #restart when configurations/dependencies changes
+    restart: always
+    environment: # specify defaults
+      MYSQL_ROOT_PASSWORD: imse4eva
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass
+      MYSQL_DATABASE: PharmaComp
+    ports: 
+      - "3306:3306"
+

@@ -1,0 +1,22 @@
+# version of the compose file 
+version: '3.8'
+# all containers
+services:
+  mysqldev: # DB service
+    image: custom_mysql
+    #tty: true 
+    #stdin_open: true 
+    environment: 
+      MYSQL_ROOT_PASSWORD: imse4eva
+      MYSQL_DATABASE: PharmaComp
+    ports: 
+      - "3306:3306" #host:container
+  webapp: # Web App service
+    image: php:8.1-apache
+    container_name: php_imse
+    # mount local directory
+    volumes: 
+    - ./php:/var/www/html/
+    # expose ports 
+    ports:
+      - 8000:80

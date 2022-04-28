@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# starting point for this image is the (latest) mysql image 
+FROM mysql
+
+# Create the working directory (safer with -p flag)
+RUN mkdir -p /docker/src/app
+
+# Set a working directory 
+# all other command will take place here
+WORKDIR /docker/src/app
+
+# Automatically create a database
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_PASSWORD=imse4eva
+ENV MYSQL_DATABASE PharmaComp
+
+# Copy the scripts to docker-entrypoint-initdb.d/ which will be
+#  automatically exectuted during container startup
+#  Make a folder "scripts" which contains
+#  * the DROP and CREATE scripts 
+#  * optionally INSERT for debugging 
+#COPY /dockerprojects/imse/scripts /docker-entrypoint-initdb.d
+
+# Execute command after container startup
+#CMD [ "mysql", "/scripts/DROP_PharmaComp.sql" ]
+#CMD [ "mysql", "/scripts/CREATE_PharmaComp.sql" ]
+
+ADD scripts/DROP_PharmaComp.sql /docker-entrypoint-initdb.d/
+ADD scripts/CREATE_PharmaComp.sql /docker-entrypoint-initdb.d/
+
+RUN chown -R mysql:mysql /docker-entrypoint-initdb.d/
+
+CMD ["mysql", "DROP_PharmaComp.sql"] 
+CMD ["mysql", "CREATE_PharmaComp.sql"] 
+		 
+#		 "--character-set-server=utf8mb4", 
+#		 "--collation-server=utf8mb4_unicode_ci"]
