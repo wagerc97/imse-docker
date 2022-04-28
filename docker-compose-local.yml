@@ -44,8 +44,8 @@ services:
     depends_on:
       - db
     volumes:
-      - ./java/src:/var/java/
-    working_dir: /var/java/
+      - ./java/:/var/java/
+    #working_dir: /var/java/
     #stdin_open: true
     #tty: true
     ports:
