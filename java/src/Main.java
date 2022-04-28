@@ -14,7 +14,7 @@ public class Main { // main class is just a class called main
   public static void main(String[] args) { // THE main method where the program starts
     try {
       // load the the DatabaseHelper
-      DatabaseHelper dbHelper = new DatabaseHelper();
+      //DatabaseHelper dbHelper = new DatabaseHelper();
       TestConnection testConn = new TestConnection();
 
       /* CONNECTION in the main is established only via the DatabaseHelper class for security. */
@@ -24,9 +24,9 @@ public class Main { // main class is just a class called main
       Class.forName(TestConnection.JDBC_DRIVER);
 
       // Connection details
-      String database = dbHelper.getDatabase();
-      String user = dbHelper.getUser();
-      String pass = dbHelper.getPass();
+      //String database = dbHelper.getDatabase();
+      //String user = dbHelper.getUser();
+      //String pass = dbHelper.getPass();
 
       // Connection details for Test
       String testDatabase = testConn.getDatabase();
@@ -53,7 +53,7 @@ public class Main { // main class is just a class called main
       */
 
       // Clean up connections
-      dbHelper.close();
+      //dbHelper.close();
       testConn.close();
       stmt.close();
       con.close();

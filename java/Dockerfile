@@ -1,20 +1,27 @@
-#!/bin/sh
+FROM openjdk:8-jdk-alpine
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+
+
+
+
+
+
 
 #get the latest java image
 #FROM java:8
-FROM openjdk:8
-COPY . /var/java
-WORKDIR /var/java/src
+#FROM openjdk:8
+#COPY . /var/java
+#WORKDIR /var/java/src
 
-# compile the file
-RUN javac Main.java
-#RUN javac HelloWorld.java
+# installs driver to base dir :/
+#RUN curl -L -o /mysql-connector-java-5.1.34.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar
+#ENV CLASSPATH=/mysql-connector-java-5.1.34.jar:${CLASSPATH}
 
-#CMD ["java", "-classpath", "mysql-connector-java-5.1.6.jar:.","DockerConnectMySQL"]
-#CMD ["java", "-classpath", "Main"]
-#CMD ["ls"]
-
-#RUN java HelloWorld
-RUN java Main
-
-
+# compile  java code
+# run java code
+#ENTRYPOINT ["run.sh"]

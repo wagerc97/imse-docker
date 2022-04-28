@@ -40,13 +40,13 @@ services:
       context: ./java
       dockerfile: Dockerfile
     container_name: javadbapp
-    restart: on-failure #turn off during development
+    #restart: on-failure #turn off during development
     depends_on:
       - db
     volumes:
       - ./java/:/var/java/
     #working_dir: /var/java/
-    #stdin_open: true
-    #tty: true
+    stdin_open: true
+    tty: true
     ports:
       - "8080:8080"

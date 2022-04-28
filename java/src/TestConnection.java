@@ -15,10 +15,16 @@ import java.sql.Statement;
 public class TestConnection {
 
     // Database connection info
-    private static final String DB_CONNECTION_URL = "jdbc:mysql://mysql8:8000/PharmaComp";
     private static final String USER = "devuser";
     private static final String PASS = "devpass";
     private static final String PATH = "..\\resources\\";
+    private static final String DBNAME = "PharmaComp";
+
+    //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';
+    //private static final String DB_CONNECTION_URL = "jdbc:mysql://mysql8:8000/PharmaComp";
+    private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:8000/" + DBNAME;
+    //"jdbc:mysql://localhost/" + DBNAME + "?user=" + USER + "&password=" + PASS + "&useUnicode=true&characterEncoding=UTF-8"; // 10 years ago, i guess deprecated
+
 
     // The name of the class loaded from the ojdbc14.jar driver file
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
