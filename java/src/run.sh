@@ -1,3 +1,3 @@
 #!/bin/sh
-exec javac Main.java
-exec java -jar /Main.jar
+exec javac /var/src/Main.java
+exec java -jar /var/src/Main.jar
