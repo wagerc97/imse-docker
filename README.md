@@ -14,4 +14,14 @@ Create a Docker that hosts a database, php script for web application and a java
         * for LOCAL: [docker-compose-local.yml](docker-compose-local.yml)
         * for REMOTE: [docker-compose-remote.yml](docker-compose-remote.yml)
     * TestConnection class in java created 
-    
+---
+### Next steps after meeting 29.04.2022
+-	noSql design in MongoDB implementieren
+-	mongoDB docker container
+-	webinterface mit db verknüpfen
+-	daten generieren für nosql
+-	daten in nosql db importieren (java / python)
+     - auf knopfdruck <br>
+...
+-	report schreiben
+-	gui aufpolieren
