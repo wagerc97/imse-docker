@@ -1,7 +1,7 @@
 #FROM java:8
 FROM openjdk:8
 COPY . /var/java
-WORKDIR /var/java/src
+WORKDIR /var/java
 
 # installs driver to base dir :/
 #RUN curl -L -o /mysql-connector-java-5.1.34.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar
@@ -16,7 +16,7 @@ WORKDIR /var/java/src
 
 
 # run.sh
-ENTRYPOINT ["run.sh"]
+CMD ["./src/run.sh"]
 
 
 # maven
