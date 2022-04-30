@@ -5,8 +5,8 @@ Create a Docker that hosts a database, php script for web application and a java
 ### Status quo:
 * Docker starts up via base image -> custom image -> container 
 * For deployment follow commands in [DEPLOYMENT.txt](./DEPLOYMENT.md)
-  * to deploy with LOCAL files: [docker-compose-local.yml](docker-compose-local.yml)
-  * to deploy with REMOTE files: [docker-compose-remote.yml](docker-compose-remote.yml)
+  * to deploy with LOCAL files: [docker-compose-local.yml](/compose/docker-compose-local.yml)
+  * to deploy with REMOTE files: [docker-compose-remote.yml](/compose/docker-compose-remote.yml)
 * Tables created and populated with test data (for now #TODO)
 * DB and webapp connected, but db content not displayed properly, but some select-statements yield a result that is shown.
 * Java code is running on Docker, but no connection to db
