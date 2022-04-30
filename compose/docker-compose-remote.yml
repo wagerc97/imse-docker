@@ -6,7 +6,7 @@ services:
     #image: custom_mysql
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: mysqlDockerfile
+      dockerfile: ../mysql/Dockerfile
     container_name: mysql8
     # use native pw authentification
     #command: --default-authentication-plugin=imse4eva
@@ -24,7 +24,7 @@ services:
     # image: php:8.1-apache #dont use this image directly
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: phpDockerfile
+      dockerfile: ../php/Dockerfile
     container_name: php81
     depends_on:
       - db
@@ -40,7 +40,7 @@ services:
     #image: openjdk:8
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: javaDockerfile
+      dockerfile: ../java/Dockerfile
     container_name: javadbapp
     #restart: on-failure #turn off during development
     depends_on:
