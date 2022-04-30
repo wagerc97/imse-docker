@@ -1,6 +1,5 @@
 # version of the compose file 
 version: '3.8'
-# all containers
 services:
   db:
     build:
@@ -24,6 +23,7 @@ services:
       context: https://github.com/wagerc97/imse-docker.git#develop
       dockerfile: ../php/Dockerfile
     container_name: php81
+    restart: on-failure
     depends_on:
       - db
     volumes:
