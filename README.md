@@ -4,7 +4,7 @@ Create a Docker that hosts a database, php script for web application and a java
 
 ### Status quo:
 * Docker starts up via base image -> custom image -> container 
-* For deployment follow commands in [DEPLOYMENT.txt](./DEPLOYMENT.txt)
+* For deployment follow commands in [DEPLOYMENT.txt](./DEPLOYMENT.md)
   * to deploy with LOCAL files: [docker-compose-local.yml](docker-compose-local.yml)
   * to deploy with REMOTE files: [docker-compose-remote.yml](docker-compose-remote.yml)
 * Tables created and populated with test data (for now #TODO)
@@ -27,10 +27,3 @@ Create a Docker that hosts a database, php script for web application and a java
 ...
 - report schreiben
 - gui aufpolieren
----
-### Deployment on fresh system
-On Windows 10-Home
-- install Docker Desktop
-- enable WSL 2 Linux kernel required by Docker Desktop as Docker asks the user
-  (described here: https://docs.microsoft.com/de-de/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package) 
-- 
