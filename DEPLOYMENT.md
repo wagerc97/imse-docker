@@ -22,7 +22,7 @@ On Windows 10-Home OS
 - enable WSL 2 Linux kernel required by Docker Desktop as Docker asks the user (see [Manual](https://docs.microsoft.com/de-de/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package))
 - log into DockerHub through CLI of host pc with arbitrary account <br>
   ``docker login`` <br> and enter your credientials 
-- download [docker-compose-remote.yml](docker-compose-remote.yml) from [GitHub directory](https://github.com/wagerc97/imse-docker/tree/master/compose)
+- download [docker-compose-remote.yml](./compose/docker-compose-remote.yml) from [GitHub directory](https://github.com/wagerc97/imse-docker/tree/master/compose)
 - navigate CLI to yml file and compose container <br>
   ``docker-compose -f docker-compose-remote.yml up``
 - Resulting locally hosed [Webapplication](http://127.0.0.1:8000/)
