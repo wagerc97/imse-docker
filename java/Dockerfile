@@ -10,5 +10,5 @@ RUN curl -L -o /mysql-connector-java-5.1.34.jar https://repo1.maven.org/maven2/m
 ENV CLASSPATH=/mysql-connector-java-5.1.34.jar:${CLASSPATH}
 
 # run.sh
-#CMD ["./run.sh"]
-CMD ["ls"]
+CMD ["sh", "./run.sh"]
+#CMD ["ls"]
