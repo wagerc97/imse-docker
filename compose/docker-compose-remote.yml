@@ -31,7 +31,7 @@ services:
     # mount local directory
     volumes:
       #- ./public_html:/var/www/html
-      - ./php/html:/var/www/html/
+      - ../php/html:/var/www/html/
     # expose ports
     ports:
       - "8000:80"
@@ -46,7 +46,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./java/:/var/java/
+      - ../java/:/var/java/
     #working_dir: /var/java/
     stdin_open: true
     tty: true
