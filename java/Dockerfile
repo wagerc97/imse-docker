@@ -11,4 +11,4 @@ ENV CLASSPATH=/mysql-connector-java-5.1.34.jar:${CLASSPATH}
 
 # run.sh
 #CMD ["./run.sh"]
-ENTRYPOINT ["./run.sh"]
+CMD ["ls"]
