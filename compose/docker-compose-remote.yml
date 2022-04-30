@@ -3,7 +3,6 @@ version: '3.8'
 # all containers
 services:
   db:
-    #image: custom_mysql
     build:
       context: https://github.com/wagerc97/imse-docker.git#develop
       dockerfile: ../mysql/Dockerfile
@@ -21,22 +20,18 @@ services:
       - "3306:3306"
 
   web:
-    # image: php:8.1-apache #dont use this image directly
     build:
       context: https://github.com/wagerc97/imse-docker.git#develop
       dockerfile: ../php/Dockerfile
     container_name: php81
     depends_on:
       - db
-    # mount local directory
     volumes:
       - ../php/html:/var/www/html/
-    # expose ports
     ports:
       - "8000:80"
 
   java:
-    #image: openjdk:8
     build:
       context: https://github.com/wagerc97/imse-docker.git#develop
       dockerfile: ../java/Dockerfile
@@ -46,7 +41,6 @@ services:
       - db
     volumes:
       - ../java/:/var/java/
-    #working_dir: /var/java/
     stdin_open: true
     tty: true
     ports:
