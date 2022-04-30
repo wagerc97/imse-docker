@@ -6,7 +6,8 @@ services:
     #image: custom_mysql
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: mysqlDockerfile
+      #dockerfile: mysqlDockerfile
+      dockerfile: ../mysql/Dockerfile
     container_name: mysql8
     # use native pw authentification
     #command: --default-authentication-plugin=imse4eva
