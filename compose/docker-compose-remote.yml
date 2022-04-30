@@ -1,0 +1,54 @@
+# version of the compose file 
+version: '3.8'
+# all containers
+services:
+  db:
+    #image: custom_mysql
+    build:
+      context: https://github.com/wagerc97/imse-docker.git#master
+      dockerfile: mysqlDockerfile
+    container_name: mysql8
+    # use native pw authentification
+    #command: --default-authentication-plugin=imse4eva
+    #restart when configurations/dependencies changes
+    restart: always
+    environment: # specify defaults
+      MYSQL_ROOT_PASSWORD: imse4eva
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass
+      MYSQL_DATABASE: PharmaComp
+    ports:
+      - "3306:3306"
+
+  web:
+    # image: php:8.1-apache #dont use this image directly
+    build:
+      context: https://github.com/wagerc97/imse-docker.git#master
+      dockerfile: phpDockerfile
+    container_name: php81
+    depends_on:
+      - db
+    # mount local directory
+    volumes:
+      #- ./public_html:/var/www/html
+      - ./php/html:/var/www/html/
+    # expose ports
+    ports:
+      - "8000:80"
+
+  java:
+    #image: openjdk:8
+    build:
+      context: https://github.com/wagerc97/imse-docker.git#master
+      dockerfile: javaDockerfile
+    container_name: javadbapp
+    #restart: on-failure #turn off during development
+    depends_on:
+      - db
+    volumes:
+      - ./java/:/var/java/
+    #working_dir: /var/java/
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
