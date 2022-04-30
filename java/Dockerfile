@@ -1,7 +1,7 @@
 #FROM java:8
 FROM openjdk:8
 #COPY . /var/java
-COPY /java /var/java
+COPY . /var/java
 WORKDIR /var/java/src
 
 # installs driver to base dir :/

@@ -8,4 +8,4 @@ ENV MYSQL_PASSWORD=devpass
 ENV MYSQL_DATABASE PharmaComp
 
 #COPY ./scripts /docker-entrypoint-initdb.d
-COPY /mysql/scripts /docker-entrypoint-initdb.d
+COPY ./scripts /docker-entrypoint-initdb.d
