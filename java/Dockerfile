@@ -1,7 +1,5 @@
 #FROM java:8
 FROM openjdk:8
-#COPY . /var/java
-#COPY /java /var/java
 COPY ../java /var/java
 WORKDIR /var/java/src
 
@@ -11,4 +9,3 @@ ENV CLASSPATH=/mysql-connector-java-5.1.34.jar:${CLASSPATH}
 
 # run.sh
 CMD ["sh", "./run.sh"]
-#CMD ["ls"]
