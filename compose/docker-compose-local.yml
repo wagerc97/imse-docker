@@ -4,7 +4,7 @@ services:
   db:
     build:
       context: ../mysql
-      dockerfile: Dockerfile
+      dockerfile: ../mysql/sql/Dockerfile
     container_name: mysql8
     # use native pw authentification
     #command: --default-authentication-plugin=imse4eva
