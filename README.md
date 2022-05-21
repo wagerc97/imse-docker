@@ -1,6 +1,7 @@
-## /imse
+# IMSE - Information Management and Systems Engineering 
 ### Goal: 
-Create a Docker that hosts a database, php script for web application and a java program to populate the db.
+Create a Docker that hosts a database modelled after business domain, php script for web application and 
+a java/python program to populate the db.
 
 ### Status quo:
 * Docker starts up via base image -> custom image -> container 
