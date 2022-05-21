@@ -1,3 +1,10 @@
-https://github.com/wagerc97/docker-images/tree/main/OracleDatabase/SingleInstance/dockerfiles
+# base image
+FROM oraclelinux:8
 
-which version was my oracle db written in?
+# Automatically create a database
+ENV MYSQL_ROOT_PASSWORD=imse4eva
+ENV MYSQL_USER=devuser
+ENV MYSQL_PASSWORD=devpass
+ENV MYSQL_DATABASE PharmaComp
+
+COPY scripts /docker-entrypoint-initdb.d
