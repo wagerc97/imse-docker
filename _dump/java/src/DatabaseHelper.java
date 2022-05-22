@@ -17,13 +17,10 @@ import java.util.List;
 // CONNECTIVITY
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 // ERROR HANDLING
-import java.sql.SQLException;
 
 
 // The DatabaseHelper class encapsulates the communication with our database

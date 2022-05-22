@@ -3,9 +3,9 @@ version: '3.8'
 services:
   db:
     build:
-      context: ../../mysql/sql
+      context: ../../oraclesql/sql
       dockerfile: Dockerfile
-    container_name: mysql8
+    container_name: oraclesql8
     # use native pw authentification
     #command: --default-authentication-plugin=imse4eva
     #restart when configurations/dependencies changes
@@ -20,27 +20,27 @@ services:
 
   web:
     build:
-      context: ../../mysql/php
+      context: ../../oraclesql/php
       dockerfile: Dockerfile
     container_name: php81
     restart: on-failure
     depends_on:
       - db
     volumes:
-      - ./php/html:/var/www/html/
+      - ../../oraclesql/php/html:/var/www/html/
     ports:
       - "8000:80"
 
   #java:
   #  build:
-  #    context: ../../mysql/java
+  #    context: ../../oraclesql/java
   #    dockerfile: Dockerfile
   #  container_name: javadbapp
   #  #restart: on-failure #turn off during development
   #  depends_on:
   #    - db
   #  volumes:
-  #    - ./java/:/var/java/
+  #    - ../../oraclesql/java/:/var/java/
   #  stdin_open: true
   #  tty: true
   #  ports:

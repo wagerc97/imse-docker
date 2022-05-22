@@ -1,6 +1,6 @@
 #FROM java:8
 FROM openjdk:8
-COPY ../../mysql/java /var/java
+COPY ../java /var/java
 WORKDIR /var/java/src
 
 # installs driver to base directory in docker container
