@@ -9,20 +9,25 @@ services:
     # use native pw authentification
     #command: --default-authentication-plugin=imse4eva
     #restart when configurations/dependencies changes
-    restart: always
+    restart: on-failure
+    #stdin_open: true
+    #tty: true
     environment: # specify defaults
       MYSQL_ROOT_PASSWORD: imse4eva
       MYSQL_USER: devuser
       MYSQL_PASSWORD: devpass
       MYSQL_DATABASE: PharmaComp
     ports:
-      - "3306:3306"
+      - "1521:1521"
 
   web:
-    build:
-      context: ../../oraclesql/php
-      dockerfile: Dockerfile
-    container_name: php81
+    # My attempt to build from Dockerfile
+    #build:
+    #  context: ../../oraclesql/php
+    #  dockerfile: Dockerfile
+    # Existing image from Dockerhub (4.2K Downloads)
+    image: davidgaya/apache-php-oci:latest
+    container_name: php81-ora
     restart: on-failure
     depends_on:
       - db
@@ -31,11 +36,11 @@ services:
     ports:
       - "8000:80"
 
-  #java:
+  #populate:
   #  build:
   #    context: ../../oraclesql/java
   #    dockerfile: Dockerfile
-  #  container_name: javadbapp
+  #  container_name: javadbapp-ora
   #  #restart: on-failure #turn off during development
   #  depends_on:
   #    - db
