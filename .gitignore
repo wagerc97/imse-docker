@@ -3,6 +3,5 @@
 ./misc
 *.class
 ./out
-dump
-_dump
-/_dump/
+/.dump
+/._dump
