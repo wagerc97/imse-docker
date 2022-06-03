@@ -6,7 +6,7 @@ services:
       context: ../../oraclesql/sql
       dockerfile: Dockerfile
     container_name: oraclesql8
-    # use native pw authentification
+    # use native pw authentication
     #command: --default-authentication-plugin=imse4eva
     #restart when configurations/dependencies changes
     restart: always

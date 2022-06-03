@@ -16,12 +16,12 @@ services:
       MYSQL_PASSWORD: devpass
       MYSQL_DATABASE: PharmaComp
     ports:
-      - "3306:3306"
+      - "7777:7777"
 
   web:
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: ../../_dump/php/Dockerfile
+      dockerfile: ../../dump/php/Dockerfile
     container_name: php81
     restart: on-failure
     depends_on:
@@ -34,7 +34,7 @@ services:
   java:
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: ../../_dump/java/Dockerfile
+      dockerfile: ../../dump/java/Dockerfile
     container_name: javadbapp
     #restart: on-failure #turn off during development
     depends_on:

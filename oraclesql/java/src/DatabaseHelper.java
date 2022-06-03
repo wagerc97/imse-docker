@@ -35,16 +35,16 @@ class DatabaseHelper {
     private static final String PASS = "devpass";
     private static final String DBNAME = "PharmaComp";
 
-    //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';
-    //private static final String DB_CONNECTION_URL = "jdbc:mysql://mysql8:8000/PharmaComp";
-    private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:8000/" + DBNAME;
+    //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab'; // for almighty
+    //private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:8000/" + DBNAME; // for mysql
+    private static final String DB_CONNECTION_URL = "jdbc:oracle://localhost:7777/" + DBNAME; // for oraclesql
 
 
     private static final String PATH = "..\\resources\\";
 
     // The name of the class loaded from the ojdbc14.jar driver file
-    //public final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    public final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
+    //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
 
     // Getter Methods

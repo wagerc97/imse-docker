@@ -23,9 +23,9 @@ INSERT INTO Region (Region_Name) VALUES ('British Isles');
 INSERT INTO Region (Region_Name) VALUES ('Benelux states');
 INSERT INTO Region (Region_Name) VALUES ('Nordic region');
 -- test constraint of unique name
-    -- INSERT INTO Region (Region_Name) VALUES ('Nordic region');
+    INSERT INTO Region (Region_Name) VALUES ('Nordic region');
 -- test constraint of name not null
-    -- INSERT INTO Region (Region_Name) VALUES ('');
+    INSERT INTO Region (Region_Name) VALUES ('');
 
 
 -- COUNTRY
@@ -42,10 +42,10 @@ INSERT INTO Country VALUES ('Norway',           4);
 INSERT INTO Country VALUES ('Finland',          4);
 INSERT INTO Country VALUES ('Denmark',          4);
 -- test constraint of unique name
-    -- INSERT INTO Country VALUES ('Belgium',3);
+    INSERT INTO Country VALUES ('Belgium',3);
 -- test FK constraint
-    -- INSERT INTO Country VALUES ('testland',0);
-    -- INSERT INTO Country VALUES ('testland',99);
+    INSERT INTO Country VALUES ('testland',0);
+    INSERT INTO Country VALUES ('testland',99);
 
 
 -- CLIENT
@@ -58,7 +58,7 @@ INSERT INTO Client (Client_Name, Country_Name) VALUES ('Mediq',               'N
 INSERT INTO Client (Client_Name, Country_Name) VALUES ('Asda',                'United Kingdom');
 INSERT INTO Client (Client_Name, Country_Name) VALUES ('Tesco',               'United Kingdom');
 -- test constraint not null
-    -- INSERT INTO Client (Client_Name, Country_Name) VALUES ('Tesco','');
+    INSERT INTO Client (Client_Name, Country_Name) VALUES ('Tesco','');
 
 
 -- PRODUCT
@@ -70,7 +70,7 @@ INSERT INTO Product VALUES (9693, 'Stanwood', 19.79, 'Infectious Diseases / Vacc
 INSERT INTO Product VALUES (4769, 'Lory', 9.44, 'Other');
 INSERT INTO Product VALUES (1455, 'Berl', 28.82, 'Immunology');
 -- test constraint unique name
-    -- INSERT INTO Product VALUES (1455, 'Remicade', 28.82, 'Immunology');
+    INSERT INTO Product VALUES (1455, 'Remicade', 28.82, 'Immunology');
 
 
 -- CAMPAIGN
@@ -80,13 +80,13 @@ INSERT INTO Campaign VALUES (2874, 'Where we begin',  to_date('2013-04-01', 'YYY
 INSERT INTO Campaign VALUES (2874, 'Back again',  to_date('2015-07-01', 'YYYY-MM_DD'),  to_date('2015-12-31', 'YYYY-MM_DD'));
 INSERT INTO Campaign VALUES (9693, 'The Best',  to_date('2009-02-01', 'YYYY-MM_DD'),  to_date('2009-11-30', 'YYYY-MM_DD'));
 --test check constraint date range feasible
-    -- INSERT INTO Campaign VALUES (9693, 'FAKE Date', to_date('2019-02-01', 'YYYY-MM_DD'),  to_date('2007-11-30', 'YYYY-MM_DD'));
+    INSERT INTO Campaign VALUES (9693, 'FAKE Date', to_date('2019-02-01', 'YYYY-MM_DD'),  to_date('2007-11-30', 'YYYY-MM_DD'));
 --test check constraints with two campaigns that have the same name 
-    -- INSERT INTO Campaign VALUES (1892, 'The Bestfake',  to_date('2002-10-01', 'YYYY-MM_DD'),  to_date('2006-01-31', 'YYYY-MM_DD'));
-    -- INSERT INTO Campaign VALUES (9693, 'The Bestfake',  to_date('2009-02-01', 'YYYY-MM_DD'),  to_date('2009-11-30', 'YYYY-MM_DD'));
+    INSERT INTO Campaign VALUES (1892, 'The Bestfake',  to_date('2002-10-01', 'YYYY-MM_DD'),  to_date('2006-01-31', 'YYYY-MM_DD'));
+    INSERT INTO Campaign VALUES (9693, 'The Bestfake',  to_date('2009-02-01', 'YYYY-MM_DD'),  to_date('2009-11-30', 'YYYY-MM_DD'));
 --test check constraints with two campaigns that promote the same product 
-    -- INSERT INTO Campaign VALUES (2874, 'same product 1',  to_date('2013-04-01', 'YYYY-MM_DD'),  to_date('2013-05-31', 'YYYY-MM_DD'));
-    -- INSERT INTO Campaign VALUES (2874, 'same product 2',  to_date('2015-07-01', 'YYYY-MM_DD'),  to_date('2015-12-31', 'YYYY-MM_DD'));
+    INSERT INTO Campaign VALUES (2874, 'same product 1',  to_date('2013-04-01', 'YYYY-MM_DD'),  to_date('2013-05-31', 'YYYY-MM_DD'));
+    INSERT INTO Campaign VALUES (2874, 'same product 2',  to_date('2015-07-01', 'YYYY-MM_DD'),  to_date('2015-12-31', 'YYYY-MM_DD'));
 
 
 -- EMPLOYEE
@@ -114,11 +114,14 @@ INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader, Hire_dat
     ('Helen', 'Pairre', 'F', 1660, 2, to_date('2018-09-01', 'YYYY-MM_DD'));
 
 -- test constraint on gender
-    -- INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader, Hire_date) VALUES ('wrong', 'gender', 'Z', 1660, 2, to_date('2018-09-01', 'YYYY-MM_DD'));
+    INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader, Hire_date) VALUES
+    ('wrong', 'gender', 'Z', 1660, 2, to_date('2018-09-01', 'YYYY-MM_DD'));
 -- test constraint DEFAULT Salary
-    -- INSERT INTO Employee (Firstname, Lastname, Gender, team_leader, Hire_date) VALUES ('default', 'salary', 'M', 2, to_date('2015-01-01', 'YYYY-MM_DD'));
+    INSERT INTO Employee (Firstname, Lastname, Gender, team_leader, Hire_date) VALUES
+    ('default', 'salary', 'M', 2, to_date('2015-01-01', 'YYYY-MM_DD'));
 -- test recruitement data not null
-    -- INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader) VALUES ('no', 'req date', 'F', 1660, 2);
+    INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader) VALUES
+    ('no', 'req date', 'F', 1660, 2);
 
 
 -- MARKETING_EMPLOYEE
@@ -130,7 +133,7 @@ INSERT INTO Marketing_emp VALUES (6, 'Product_marketing');
 INSERT INTO Advertises VALUES (5, 1455); 
 INSERT INTO Advertises VALUES (6, 3746);
 -- test uniqueness of PK of advertises
-    -- INSERT INTO Advertises VALUES (6, 3746);
+    INSERT INTO Advertises VALUES (6, 3746);
 
 
 -- GENERAL_MANAGER
@@ -139,11 +142,11 @@ INSERT INTO General_Manager VALUES (204, 2);
 INSERT INTO General_Manager VALUES (207, 3);
 INSERT INTO General_Manager VALUES (208, 4);
 -- test if region has to exist
-    -- INSERT INTO General_Manager VALUES (208, 9);
+    INSERT INTO General_Manager VALUES (208, 9);
 -- test 1 to 1 relation 
-    -- INSERT INTO General_Manager VALUES (208, 4);
-    -- INSERT INTO General_Manager VALUES (207, 4);
-    -- INSERT INTO General_Manager VALUES (208, 5);
+    INSERT INTO General_Manager VALUES (208, 4);
+    INSERT INTO General_Manager VALUES (207, 4);
+    INSERT INTO General_Manager VALUES (208, 5);
 
 
 -- ORDERS
@@ -170,6 +173,6 @@ INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) VALUES (4769, 8
 INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) VALUES (2874, 6, to_date('2014-09-08', 'YYYY-MM_DD'), 6000);
 INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) VALUES (4769, 6, to_date('2018-12-07', 'YYYY-MM_DD'), 8000);
 -- test constraint of unique id
-    -- INSERT INTO Orders VALUES (10, 4769, 6, to_date('2018-12-07', 'YYYY-MM_DD'), 8000);
+    INSERT INTO Orders VALUES (10, 4769, 6, to_date('2018-12-07', 'YYYY-MM_DD'), 8000);
 -- test constraint of multiple order by one company in one day
-    -- INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) VALUES (4769, 6, to_date('2018-12-07', 'YYYY-MM_DD'), 8000);
+    INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) VALUES (4769, 6, to_date('2018-12-07', 'YYYY-MM_DD'), 8000);

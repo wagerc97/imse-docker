@@ -6,7 +6,7 @@ services:
       context: ../../mysql/sql
       dockerfile: Dockerfile
     container_name: mysql8
-    # use native pw authentification
+    # use native pw authentication
     #command: --default-authentication-plugin=imse4eva
     #restart when configurations/dependencies changes
     restart: always
@@ -16,7 +16,7 @@ services:
       MYSQL_PASSWORD: devpass
       MYSQL_DATABASE: PharmaComp
     ports:
-      - "3306:3306"
+      - "7777:7777"
 
   web:
     build:

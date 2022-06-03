@@ -367,22 +367,7 @@ $region_array = $database->selectFromCountpreg();
 				</tr>
 			</thead>
 			<tbody>
-				<!-- <?php //foreach ($region_array as $region) : ?> old foreach solution -->
-				<?php 
-				// 
-				
-				// numeric array Source: https://www.php.net/manual/de/mysqli-result.fetch-array.php
-				
-				// $row = $result->fetch_array(MYSQLI_NUM);
-				// printf("%s (%s)\n", $row[0], $row[1]);
-
-
-					//Loop through the $posts array IF it is an array.
-					if(is_array($region_array)){
-
-						foreach($region_array as $region){
-							//Do something.
-				?>
+				<?php foreach ($region_array as $region) : ?>
 					<tr>
 						<td><?php echo $region['ID_Region']; ?>  </td>
 						<td><?php echo $region['Region_Name']; ?>  </td>
@@ -390,11 +375,7 @@ $region_array = $database->selectFromCountpreg();
 						<td><?php echo $region['lastname']; ?>  </td>
 						<td><?php echo $region['ID_Employee']; ?>  </td>
 					</tr>
-						<?php }
-					} else {
-						echo('Error: $result is not an array');
-					}?>
-				<!-- <?php //endforeach; ?> -->
+				<?php endforeach; ?>
 			</tbody>
 		</table>
 		<?php echo('EVERYTHING BELOW THIS TABLE IS UNDER CONSTRUCTION. "hic sunt dracones..."'); ?>
