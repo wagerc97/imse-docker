@@ -22,7 +22,7 @@ services:
     build:
       context: ../../oraclesql/php
       dockerfile: Dockerfile
-    container_name: php81
+    container_name: php-oci
     restart: on-failure
     depends_on:
       - db

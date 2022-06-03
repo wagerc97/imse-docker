@@ -2,9 +2,9 @@
 FROM oraclelinux:8
 
 # Automatically create a database
-ENV MYSQL_ROOT_PASSWORD=imse4eva
-ENV MYSQL_USER=devuser
-ENV MYSQL_PASSWORD=devpass
-ENV MYSQL_DATABASE PharmaComp
+ENV ORACLE_ROOT_PASSWORD=imse4eva
+ENV ORACLE_USER=devuser
+ENV ORACLE_PASSWORD=devpass
+ENV ORACLE_DATABASE PharmaComp
 
 COPY scripts /docker-entrypoint-initdb.d
