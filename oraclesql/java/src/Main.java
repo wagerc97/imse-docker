@@ -1,8 +1,9 @@
-/**********************************************************************************
- *  Adapted version from DBS which used the adapted version from moodle.
- * This is the main function that executes the functions from the DatabaseHelper.
- * Some .csv files were made using https://extendsclass.com/csv-generator.html
-**********************************************************************************/
+/* This is the example java-sql Main from moodle form the wiki
+* https://moodle.univie.ac.at/mod/wiki/view.php?pageid=47109
+* This is the main function that executes the functions from the DatabaseHelper.
+*
+* Some .csv files were made using https://extendsclass.com/csv-generator.html
+* */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,31 +15,22 @@ public class Main { // main class is just a class called main
   public static void main(String[] args) { // THE main method where the program starts
     try {
       // load the the DatabaseHelper
-      //DatabaseHelper dbHelper = new DatabaseHelper();
-      TestConnection testConn = new TestConnection();
+      DatabaseHelper dbHelper = new DatabaseHelper();
 
       /* CONNECTION in the main is established only via the DatabaseHelper class for security. */
 
       // Loads the class "oracle.jdbc.driver.OracleDriver" into the memory
-      //Class.forName(DatabaseHelper.JDBC_DRIVER);
-      Class.forName(TestConnection.JDBC_DRIVER);
+      Class.forName(dbHelper.getClassname());
 
       // Connection details
-      //String database = dbHelper.getDatabase();
-      //String user = dbHelper.getUser();
-      //String pass = dbHelper.getPass();
-
-      // Connection details for Test
-      String testDatabase = testConn.getDatabase();
-      String testUser = testConn.getUser();
-      String testPass = testConn.getPass();
+      String database = dbHelper.getDatabase();
+      String user = dbHelper.getUser();
+      String pass = dbHelper.getPass();
 
       // Establish a connection to the database
-      //Connection con = DriverManager.getConnection(database, user, pass); //non test
-      Connection con = DriverManager.getConnection(testDatabase, testUser, testPass);
+      Connection con = DriverManager.getConnection(database, user, pass);
       Statement stmt = con.createStatement();
 
-      /*
       // Calls functions to fill all tables with test data
       dbHelper.insertDataRegion(stmt);           // max. 10 tuples
       dbHelper.insertDataCountry(stmt);          // max. 100 tuples
@@ -50,15 +42,13 @@ public class Main { // main class is just a class called main
       dbHelper.insertDataAdvertises(stmt);       // 100 tuples
       dbHelper.insertDataGeneral_Manager(stmt);  // 100 tuples
       dbHelper.insertDataOrders(stmt);           // 1000 tuples
-      */
 
       // Clean up connections
-      //dbHelper.close();
-      testConn.close();
+      dbHelper.close();
       stmt.close();
       con.close();
     } catch (Exception e) {
-      System.err.println(e.toString());
+      System.err.println(e);
     }
 
   } // main method
