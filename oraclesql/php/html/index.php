@@ -189,32 +189,32 @@ if (isset($_GET['up_client_country'])) {
 } 
 
 
-//// Fetch data from database for tables ////
+//Fetch data from database for tables
+$employee_array = $database->selectFromEmployeeWhere
+	($id_employee, $firstname, $lastname, $team_leader);
+	
+$region_array = $database->selectFromRegion();
 
+$country_array = $database->selectFromCountry();
+	
+$client_array = $database->selectFromClient
+	($id_client, $client_client_name, $client_country_name);	
+	
 $product_array = $database->selectFromProduct();
 
-//$employee_array = $database->selectFromEmployeeWhere ($id_employee, $firstname, $lastname, $team_leader);
+$campaign_array = $database->selectFromCampaign();
 
-$region_array = $database->selectFromCountpreg();
+$markemp_array = $database->selectFromMarkEmp($markemp_date);
 
-//$country_array = $database->selectFromCountry();
-	
-//$client_array = $database->selectFromClient ($id_client, $client_client_name, $client_country_name);	
+$order_array = $database->selectFromOrders();
 
-//$campaign_array = $database->selectFromCampaign();
+$ads_array = $database->selectFromAdvertises();
 
-//$markemp_array = $database->selectFromMarkEmp($markemp_date);
-
-//$order_array = $database->selectFromOrders();
-
-//$ads_array = $database->selectFromAdvertises();
-
-//$key_client_array = $database->selectFromKeyClient();
-
+$key_client_array = $database->selectFromKeyClient();
 
 ?>
 
-<!-------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------------->
 
 <!doctype html>
 <html lang="en">
@@ -225,7 +225,7 @@ $region_array = $database->selectFromCountpreg();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!--  name of the page --> 
-    <title>IMSE Project SS2022</title>
+    <title>DBS Project</title>
 	
 	<!-- from moodle wiki III -->
     <link rel="stylesheet" type="text/css" href="ExampleCss.css">
@@ -285,65 +285,22 @@ $region_array = $database->selectFromCountpreg();
 
 		<!-- header --> 
 		<h1>
-			Webapplication for Database
+			Webinterface for Database
 		</h1>
 		<h2>
-			Welcome to our IMSE Web Application of IMSErgo Ltd. - <br>
+			Official DBS Web Application of DBSan Ltd. 
 			Pharmacutical Company and Project Realisation
 		</h2>
 		<h3>
-			by Claas Fillies, A12047732 
-			and Clemens Wager, A01635477<br>
-			for 052400-1 VU Information Management and Systems Engineering (SS2022)<br>
+			by Clemens Wager, A01635477<br>
+			for 051031 VU Database Systems (2021S)<br>
 		</h3>
 	</div></div></div>
 	<br>
 
-	<!------------------------------------------------------------------------->
-	<!----------------------- Test to display all products ------------------------------------->
-	<!------------------------------------------------------------------------->
-
-	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
-	<div class="row"> 
-		<div class="col-lg-12"><div class="p-4 border bg-light">
-
-			<!-- DBS PROJECT -->
-			<!-- Display REGION table -->
-			<h3>Test to display up to 40 products</h3>
-			<h4>This is a list of 40 products that were imported using the Java application</h4>
-			<br>
-			
-		<table class="table table-sm table-hover table-striped table-bordered table-light ">
-			<thead class="thead-dark">
-				<tr>
-					<th>Product ID</th>
-					<th>Product name</th>
-					<th>Price in EUR</th>
-					<th>Indication</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($product_array as $product) : ?>
-					<tr>
-						<td><?php echo $product['ID_product']; ?>  </td>
-						<td><?php echo $product['Product_Name']; ?>  </td>
-						<td><?php echo $product['Price'].' €'; ?>  </td>
-						<td><?php echo $product['Indication']; ?>  </td>
-					</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-	</div></div></div>
-	<br>
-	<!-- </div>end row -->
-	 
-	 
-	 	 
-
-	<!------------------------------------------------------------------------->
-	<!----------------------- REGION & GM ------------------------------------->
-	<!------------------------------------------------------------------------->
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!------------------------------------------------- REGION & GM --------------------------------------------------------------->
+	<!----------------------------------------------------------------------------------------------------------------------------->
 
 	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
 	<div class="row"> 
@@ -369,21 +326,18 @@ $region_array = $database->selectFromCountpreg();
 			<tbody>
 				<?php foreach ($region_array as $region) : ?>
 					<tr>
-						<td><?php echo $region['ID_Region']; ?>  </td>
-						<td><?php echo $region['Region_Name']; ?>  </td>
-						<td><?php echo $region['Count_country'].'x'; ?>  </td>
-						<td><?php echo $region['lastname']; ?>  </td>
-						<td><?php echo $region['ID_Employee']; ?>  </td>
+						<td><?php echo $region['ID_REGION']; ?>  </td>
+						<td><?php echo $region['REGION_NAME']; ?>  </td>
+						<td><?php echo $region['COUNT_COUNTRY']; ?>  </td>
+						<td><?php echo $region['LASTNAME']; ?>  </td>
+						<td><?php echo $region['ID_EMPLOYEE']; ?>  </td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
 		</table>
-		<?php echo('EVERYTHING BELOW THIS TABLE IS UNDER CONSTRUCTION. "hic sunt dracones..."'); ?>
-
 	</div></div></div>
 	<br>
 	 <!-- </div>end row -->
-
 
 	<!----------------------------------------------------------------------------------------------------------------------------->
 	<!-------------------------------------------------- COUNTRIES ---------------------------------------------------------------->
@@ -1137,3 +1091,5 @@ $region_array = $database->selectFromCountpreg();
 
 </body>
 </html>
+
+
