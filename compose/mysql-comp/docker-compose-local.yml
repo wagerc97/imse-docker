@@ -16,7 +16,7 @@ services:
       MYSQL_PASSWORD: devpass
       MYSQL_DATABASE: PharmaComp
     ports:
-      - "7777:7777"
+      - "3306:3306"
 
   web:
     build:

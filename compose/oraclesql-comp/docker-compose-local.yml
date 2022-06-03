@@ -11,12 +11,12 @@ services:
     #restart when configurations/dependencies changes
     restart: always
     environment: # specify defaults
-      MYSQL_ROOT_PASSWORD: imse4eva
-      MYSQL_USER: devuser
-      MYSQL_PASSWORD: devpass
-      MYSQL_DATABASE: PharmaComp
+      ORACLE_ROOT_PASSWORD: imse4eva
+      ORACLE_USER: devuser
+      ORACLE_PASSWORD: devpass
+      ORACLE_DATABASE: PharmaComp
     ports:
-      - "3306:3306"
+      - "1521:1521"
 
   web:
     build:

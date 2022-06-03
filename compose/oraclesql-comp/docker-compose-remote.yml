@@ -6,7 +6,7 @@ services:
       context: https://github.com/wagerc97/imse-docker.git#master
       dockerfile: ../../mysql/sql/Dockerfile
     container_name: mysql8
-    # use native pw authentification
+    # use native pw authentication
     #command: --default-authentication-plugin=imse4eva
     #restart when configurations/dependencies changes
     restart: always
@@ -16,7 +16,7 @@ services:
       MYSQL_PASSWORD: devpass
       MYSQL_DATABASE: PharmaComp
     ports:
-      - "7777:7777"
+      - "1521:1521"
 
   web:
     build:
