@@ -1,4 +1,4 @@
-<!--------------------------------------------------
+<!------------------------------------------------------------------------------------------------------------
 	DatabaseHelper.php
 	PROJECT: Pharmacompany
 	AUTHOR: Clemens Wager, a01635477
@@ -8,32 +8,32 @@
 		- DBS connection 
 		- DBS manipulation (CRUD)
 
-----------------------------------------------------> 
+-------------------------------------------------------------------------------------------------------------> 
 
 <?php
 
 class DatabaseHelper
 {
-//---------------------------------------------------
-//------------------- CONNECTION --------------------
-//---------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
+//----------------------------------- CONNECTION -------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
 //CONNECT
 
     // Since the connection details are constant, define them as const
     // We can refer to constants like e.g. DatabaseHelper::username
 		
 		// to connect to oracle database + oracle username + oracle PW
-    const host = 'db';  //service name from docker-compose.yml
-	const db = 'PharmaComp';  // database name
-	const username 	= 'devuser'; // use a + your matriculation number  
+    const username 	= 'devuser'; // use a + your matriculation number
     const password 	= 'devpass'; // use your oracle db password
-	const session_mode = 'OCI_SYSDBA';
+    const db = 'PharmaComp';     // name of database
     //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';  //on almighty "lab" is sufficient
-	// Webaddress: http://wwwlab.cs.univie.ac.at/~wagerc97/index.php 
 
-    const con_string = null;  //on almighty "lab" is sufficient
-	// Webaddress: http://127.0.0.1:8000/index.php 
-
+    // [//]host[:port][/service name]
+    // host -> localhost ip
+    // port -> given in docker compose file
+    // service name -> container_name
+	// Webaddress: http://127.0.0.1:8000/index.php [for mysql]
+    const con_string = '127.0.0.1:1521/oraclesql8'
 
     // Since we need only one connection object, it can be stored in a member variable.
     // $conn is set in the constructor.
@@ -46,7 +46,7 @@ class DatabaseHelper
             // Create connection with the command oci_connect(String(username), String(password), String(connection_string))
             // The @ sign avoids the output of warnings (supresses warnings)
             // It could be helpful to use the function without the @ symbol during developing process
-            $this->conn = oci_connect(
+            $this->conn = @oci_connect(
                 DatabaseHelper::username,
                 DatabaseHelper::password,
                 DatabaseHelper::con_string
@@ -71,9 +71,9 @@ class DatabaseHelper
     }
 	
 
-//---------------------------------------------------
-//------------- INSERT Functions --------------------
-//---------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
+//----------------------------------- INSERT Functions ---------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
 
 	
 //INSERT	CLIENT
@@ -127,10 +127,9 @@ class DatabaseHelper
 	
 
 
-//---------------------------------------------------
-//--------------- SELECT Functions ------------------
-//---------------------------------------------------
-
+//--------------------------------------------------------------------------------------------------------
+//----------------------------------- SELECT Functions ---------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
 	
 	
 //SELECT... SEARCH
@@ -374,10 +373,9 @@ class DatabaseHelper
     } 
 
 
-//---------------------------------------------------
-//----------- DELETE Functions ----------------------
-//---------------------------------------------------
-
+//--------------------------------------------------------------------------------------------------------
+//----------------------------------- DELETE Functions ---------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
 
 //DELETE - using a Procedure         CLIENT
 
@@ -440,10 +438,9 @@ class DatabaseHelper
     }
 
 
-//---------------------------------------------------
-//--------------- UPDATE Functions ------------------
-//---------------------------------------------------
-
+//--------------------------------------------------------------------------------------------------------
+//----------------------------------- UPDATE Functions ---------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
 	
 //DELETE - using a Procedure         CLIENT
 

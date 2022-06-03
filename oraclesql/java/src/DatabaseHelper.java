@@ -17,13 +17,9 @@ import java.util.List;
 // CONNECTIVITY
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-// ERROR HANDLING
-import java.sql.SQLException;
+
 
 
 // The DatabaseHelper class encapsulates the communication with our database
@@ -37,18 +33,16 @@ class DatabaseHelper {
 
     //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab'; // for almighty
     //private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:8000/" + DBNAME; // for mysql
-    private static final String DB_CONNECTION_URL = "jdbc:oracle://localhost:7777/" + DBNAME; // for oraclesql
+    private static final String DB_CONNECTION_URL = "jdbc:oracle:thin:@localhost:1521/" + DBNAME; // for oraclesql
 
-
-    private static final String PATH = "..\\resources\\";
+    private static final String PATH = "..\\resources\\"; // windows
 
     // The name of the class loaded from the ojdbc14.jar driver file
     public final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-
 
     // Getter Methods
     public String getDatabase(){return DB_CONNECTION_URL;}
+    public String getClassname(){return JDBC_DRIVER;}
     public String getUser(){return USER;}
     public String getPass(){return PASS;}
     public String getPath(){return PATH;}
@@ -58,11 +52,10 @@ class DatabaseHelper {
     private static Connection con;
 
     //CREATE CONNECTION
-    //DatabaseHelper() {
-    void DatabaseHelperOld() {
+    DatabaseHelper() {
         try {
             //Loads the class into the memory
-            //Class.forName(JDBC_DRIVER);
+            Class.forName(JDBC_DRIVER); //TODO war im DBS original auskommentiert
 
             // establish connection to database
             con = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASS);
@@ -73,32 +66,13 @@ class DatabaseHelper {
         }
     }
 
-    DatabaseHelper() {
-        // https://mkyong.com/jdbc/how-to-connect-to-mysql-with-jdbc-driver-java/
-        // Example:
-        //conn = DriverManager.getConnection("jdbc:mysql://hostname:port/dbname","username", "password");
-        try (Connection conn = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASS)) {
-            if (conn != null) {
-                System.out.println("Connected to the database!");
-            } else {
-                System.out.println("Failed to make connection!");
-            }
-
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     // load the RandomHelper class
     RandomHelper rdHelper = new RandomHelper();
 
-
-
+    // clean up
     public void close()  {
         try {
-            stmt.close(); //clean up
+            stmt.close();
             con.close();
         } catch (Exception ignored) {}
     }
