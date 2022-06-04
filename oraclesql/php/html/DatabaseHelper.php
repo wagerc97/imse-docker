@@ -33,7 +33,7 @@ class DatabaseHelper
     // port -> given in docker compose file
     // service name -> container_name
 	// Webaddress: http://127.0.0.1:8000/index.php [for mysql]
-    const con_string = '127.0.0.1:1521/oraclesql8'
+    const con_string = '127.0.0.1:1521/oraclesql8';
 
     // Since we need only one connection object, it can be stored in a member variable.
     // $conn is set in the constructor.

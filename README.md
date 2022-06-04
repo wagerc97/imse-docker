@@ -17,6 +17,7 @@ a java/python program to populate the db.
     * already adapted docker-compose.yml
     * Java app runs befor db is setup
     
+* Fix Error: Parse error: syntax error, unexpected 'protected' (T_PROTECTED), expecting ',' or ';' in /var/www/html/DatabaseHelper.php on line 40
 ---
 ### Next steps after meeting 29.04.2022
 - noSql design in MongoDB implementieren
