@@ -5,8 +5,8 @@ services:
     build:
       context: ../../oraclesql/sql
       # CHANGE IF NEEDED
-      dockerfile: ../../oraclesql/sql/Dockerfile_modular
-    container_name: oraclesql-8+
+      dockerfile: ../../oraclesql/sql/Dockerfile
+    container_name: oraclesql8
     # use native pw authentication
     #command: --default-authentication-plugin=imse4eva
     restart: always
