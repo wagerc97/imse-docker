@@ -32,10 +32,14 @@ On Windows 10-Home OS
 ## Check system commands
 
 1. open terminal
-2. type ```docker ps``` to check which containers are running right now
-3. type `` docker exec -it mysql8 bash``<br>
-   you are now in the db-docker (mysql8 is the container name)
-4. login into the database with<br>``mysql -uroot -pimse4eva``
+2. type ``docker ps`` to check which containers are running right now
+3. type either  
+   `` docker exec -it mysql8 bash``  
+   `` docker exec -it oraclesql8 bash``  
+      you are now in the db-docker (...sql8 is the container name)
+4. login into the database with   
+   ``mysql -uroot -pimse4eva``  
+   ``sqlplus -uroot -pimse4eva``
 5. Some commands to look through the DBMS:
    If the tables are filled, the DB setup was successful!
    1. ``show databases``
