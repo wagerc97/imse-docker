@@ -34,7 +34,7 @@ services:
   #java:
   #  build:
   #    context: ../../mysql/java
-  #    dockerfile: Dockerfile
+  #    dockerfile: Dockerfile_modular
   #  container_name: javadbapp
   #  #restart: on-failure #turn off during development
   #  depends_on:

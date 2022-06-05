@@ -4,7 +4,7 @@ services:
   db:
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: ../mysql/sql/Dockerfile
+      dockerfile: ../mysql/sql/Dockerfile_modular
     container_name: mysql8
     # use native pw authentification
     #command: --default-authentication-plugin=imse4eva
@@ -21,7 +21,7 @@ services:
   web:
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: ../php/Dockerfile
+      dockerfile: ../php/Dockerfile_modular
     container_name: php81
     restart: on-failure
     depends_on:
@@ -34,7 +34,7 @@ services:
   java:
     build:
       context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: ../java/Dockerfile
+      dockerfile: ../java/Dockerfile_modular
     container_name: javadbapp
     #restart: on-failure #turn off during development
     depends_on:
