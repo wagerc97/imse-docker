@@ -63,7 +63,60 @@ OR
 5. Some commands to look through the DBMS:   
    If the tables are filled, the DB setup was successful!  
    1. To enter sqlplus CLI: ``sqlplus /NOLOG``
-   2. 
+
+---
+``[root@e4eb67d8fa54 lib]# ls``
+>glogin.sql         libclntsh.so.11.1  libclntsh.so.19.1      libipc1.so   libocci.so.19.1  liboramysql19.so  network         xstreams.jar
+libclntsh.so       libclntsh.so.12.1  libclntshcore.so       libmql1.so   libociei.so      libsqlplus.so     ojdbc8.jar
+libclntsh.so.10.1  libclntsh.so.18.1  libclntshcore.so.19.1  libnnz19.so  libocijdbc19.so  libsqlplusic.so   ottclasses.zip
+
+``[root@e4eb67d8fa54 lib]# pwd``
+>/lib/oracle/19.15/client64/lib
+
+
+***********************************************************************  
+
+>Fatal NI connect error 12545, connecting to:
+(DESCRIPTION=(ADDRESS=(PROTOCOL=beq)(PROGRAM=/u01/oracle/product/PharmaComp/bin/oracle)(ARGV0=oracleorcl)(ARGS='(DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))')(DETAC
+H=NO))(CONNECT_DATA=(CID=(PROGRAM=sqlplus)(HOST=e4eb67d8fa54)(USER=root))))
+
+>VERSION INFORMATION:
+TNS for Linux: Version 19.0.0.0.0 - Production
+Oracle Bequeath NT Protocol Adapter for Linux: Version 19.0.0.0.0 - Production
+TCP/IP NT Protocol Adapter for Linux: Version 19.0.0.0.0 - Production
+Version 19.15.0.0.0
+Time: 05-JUN-2022 19:10:48
+Tracing not turned on.
+Tns error struct:
+ns main err code: 12545
+
+>TNS-12545: Message 12545 not found; No message file for product=network, facility=TNS
+ns secondary err code: 12560
+nt main err code: 515
+
+>TNS-00515: Message 515 not found; No message file for product=network, facility=TNS
+nt secondary err code: 2
+nt OS err code: 0
+
+
+``[root@e4eb67d8fa54 trace]# pwd``  
+>/root/oradiag_root/diag/clients/user_root/host_4135610220_110/trace  
+
+
+``[root@e4eb67d8fa54 admin]# more README``
+>============================================================================
+This is the default directory for Oracle Network and Oracle Client
+configuration files. You can place files such as tnsnames.ora, sqlnet.ora
+and oraaccess.xml in this directory.
+NOTE:
+If you set an environment variable TNS_ADMIN to another directory containing
+configuration files, they will be used instead of the files in this default
+directory.
+============================================================================
+
+``[root@e4eb67d8fa54 admin]# pwd``
+>/usr/lib/oracle/19.15/client64/lib/network/admin
+
 
 
 

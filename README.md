@@ -12,12 +12,25 @@ a java/python program to populate the db.
 * DB and webapp connected, but db content not displayed properly, but some select-statements yield a result that is shown.
 * Java code is running on Docker, but no connection to db
 ---
-### TODOs:
+### TODO ad hoc:
+* Fix ``ERROR 12545 : Connect failed because target host or object doesn't exist while trying to connect sqlplus``
+  * Given in error log  
+    (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(Host=locahost)(Port=1521))(CONNECT_DATA=(SID=oraclesql8)(CID=(PROGRAM=sqlplus)(HOST=e4eb67d8fa54)(USER=root))))
+  * Ich kann mich zwar per sqlplus mit ??? auf dem docker verbinden, aber ich kann im ``SQL>`` nichts machen (Kein Login, etc.)
+  * Default $ORACLE_HOME is fine - dont set a new env variable 
+
+* Fix ``ORA-12541: TNS:no listener``  
+  * maybe will be resolve with tnsnames.ora...
+
+* Fix ``ORA-12162: TNS:net service name is incorrectly specified.``  
+  * Solution: manually create tnsnames.ora path /usr/lib/oracle/19.15/client64/lib/network/admin
+  * already wrote copy command in sql/Dockerfile
+
+### TODO general:
 * establish connection between java and mysql -> forget it -> soon we will work on MongoDB
     * already adapted docker-compose.yml
     * Java app runs befor db is setup
     
-* Fix Error: Parse error: syntax error, unexpected 'protected' (T_PROTECTED), expecting ',' or ';' in /var/www/html/DatabaseHelper.php on line 40
 ---
 ### Next steps after meeting 29.04.2022
 - noSql design in MongoDB implementieren

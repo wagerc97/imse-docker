@@ -21,6 +21,12 @@
 #
 # Oracle Instant Client 19 automatically configures the global library search
 # path to include Instant Client libraries.
+
+FROM oraclelinux:8
+
+ARG release=19
+ARG update=15
+
 #
 # OPTIONAL ORACLE CONFIGURATION FILES
 # -----------------------------------
@@ -37,7 +43,8 @@
 # do choose to include network configuration files in images, you can use a
 # Dockerfile_modular COPY, for example:
 #
-#   COPY tnsnames.ora sqlnet.ora /usr/lib/oracle/${release}.${update}/client64/lib/network/admin/
+#    COPY ora tnsnames.ora sqlnet.ora /usr/lib/oracle/${release}.${update}/client64/lib/network/admin/
+COPY ora /usr/lib/oracle/${release}.${update}/client64/lib/network/admin/
 #
 # There is no need to set the TNS_ADMIN environment variable when files are in
 # the container's default configuration file directory, as shown.
@@ -70,10 +77,7 @@
 # and can be pulled with:
 #   podman pull ghcr.io/oracle/oraclelinux8-instantclient:19
 
-FROM oraclelinux:8
 
-ARG release=19
-ARG update=15
 
 # What is DNF? - DNF is the next upcoming major version of YUM, a package manager for RPM-based Linux distributions.
 # INSTALL: - oracle instantclient (basic, develop, sqlplus)
