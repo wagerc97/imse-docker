@@ -9,4 +9,4 @@ ENV ORACLE_USER=devuser
 ENV ORACLE_PASSWORD=devpass
 ENV ORACLE_DATABASE PharmaComp
 
-COPY ../scripts /docker-entrypoint-initdb.d
+COPY scripts /docker-entrypoint-initdb.d

@@ -4,7 +4,7 @@
 # /usr/lib/oracle/19.15/client64/lib/network/admin
 #
 # For Oracle client installations, tnsnames.ora only needs the PV.WORLD entry.
-IMSEDB.WORLD =
+ORCL =
 (DESCRIPTION =
  (ADDRESS_LIST =
    (ADDRESS =
@@ -17,14 +17,16 @@ IMSEDB.WORLD =
    )
  )
  (CONNECT_DATA =
-   (SID=oraclesql8)
+   (SERVER = DEDICATED)
+   (SID=ImseDB)
    (CID=
      (PROGRAM=sqlplus)
-     (HOST=e4eb67d8fa54)
+     (HOST=127.0.0.1)
+     #(HOST=e4eb67d8fa54)
      (USER=root)
    )
-   (SERVICE_NAME = IMSEDB.WORLD)
-   (INSTANCE_NAME = IMSEDB)
+   (SERVICE_NAME = ORCL)
+   (INSTANCE_NAME = ORCL)
  )
 )
 #    (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(Host=locahost)(Port=1521))(CONNECT_DATA=(SID=oraclesql8)(CID=(PROGRAM=sqlplus)(HOST=e4eb67d8fa54)(USER=root))))

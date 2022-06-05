@@ -30,34 +30,40 @@ On Windows 10-Home OS
 
 ---
 ## Check system commands
-### MYSQL
+### Oracle SQL
 
 1. open terminal
 2. type ``docker ps`` to check which containers are running right now
 3. type either  
    `` docker exec -it oraclesql8 bash``  
       you are now in the db-docker (...sql8 is the container name)
-4. Navigate with sqlplus --> following: https://docs.oracle.com/cd/A97630_01/win.920/a95490/username.html   
-   1. To enter sqlplus CLI: ``sqlplus /NOLOG``  
-   2. login into the database with `` CONNECT / AS SYSDBA``  
+4. Check if listeners are up and running  
+  ``lsnrctl status``
+6. Navigate with sqlplus --> following: https://docs.oracle.com/cd/A97630_01/win.920/a95490/username.html   
+   1. To starts SQL*Plus without a database connection: ``sqlplus /NOLOG``  
+   2. login into the database with ``CONNECT / AS SYSDBA``  
+   >ORA-12162: TNS:net service name is incorrectly specified
    ERROR: ORA-12162: TNS:net service name is incorrectly specified
-   3. 
-Fix with: 
-> export ORACLE_HOME=/u01/oracle/product/PharmaComp  
->> nothing
-
-> export ORACLE_SID=orcl  
->> nothing
-
+   3. **SQL>** ``startup``  
+   > SP2-0640: Not connected
+   4. 
+#
+#
 > sqlplus /nolog  
->> ...
+>> enter SQL cli 
+
+> sqlplus devuser/devpass@IMSEDB 
+>> really nothing happens...no commands work anymore
 
 > **SQL>** connect sys as sysdba  
->> ...  
+>> Enter password: ...?
 
-OR  
-> **SQL>** connect / as sysdba
->>
+> **SQL>** SELECT TABLESPACE_NAME FROM USER_TABLESPACES;  
+> Oracle uses shemas and not databases like mysql.
+>> SP2-0640: Not connected  
+>> -> because "The Oracle Listener process was not successfully created.
+This error indicates that the TNSNAMES.ora file was not created during the installation process.
+"
 
 
 5. Some commands to look through the DBMS:   
@@ -119,6 +125,19 @@ directory.
 
 
 
+
+
+
+
+
+
+
+
+
+
+---
+---
+---
 
 ### MYSQL
 

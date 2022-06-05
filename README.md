@@ -26,6 +26,13 @@ a java/python program to populate the db.
   * Solution: manually create tnsnames.ora path /usr/lib/oracle/19.15/client64/lib/network/admin
   * already wrote copy command in sql/Dockerfile
 
+* Configure sqlnet.ora to use JDBC
+* IMPORTANT: Can I even create/host/access a DB via an Oracle instantclient???  
+  * https://stackoverflow.com/questions/43012593/how-to-add-a-local-database-by-oracle-instant-client-on-mac
+  * the sql scirpts were never executed according to the docker logs
+  * Fix? - Try to to upgrade my old oracle sql image -> [Stackoverflow](https://stackoverflow.com/questions/58857476/how-to-use-sqlplus-on-oracle-database-inside-a-docker-container)
+  * COPY and RUN 
+
 ### TODO general:
 * establish connection between java and mysql -> forget it -> soon we will work on MongoDB
     * already adapted docker-compose.yml
