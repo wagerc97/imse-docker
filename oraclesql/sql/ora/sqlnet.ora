@@ -7,3 +7,6 @@ names.directory_path = (LDAP, TNSNAMES, HOSTNAME)
 names.default_domain = WORLD
 trace_level_client = OFF
 sqlnet.expire_time = 30
+
+# workaround to fix non responding sqlplus
+DISABLE_OOB=ON

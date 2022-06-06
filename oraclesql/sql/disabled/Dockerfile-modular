@@ -22,6 +22,7 @@
 # Oracle Instant Client 19 automatically configures the global library search
 # path to include Instant Client libraries.
 
+# base image (not instantclient)
 FROM oraclelinux:8
 
 ARG release=19
@@ -34,17 +35,18 @@ ARG update=15
 # Optional Oracle Network and Oracle client configuration files can be put in the
 # default configuration file directory /usr/lib/oracle/<version>/client64/lib/network/admin.
 # Configuration files include tnsnames.ora, sqlnet.ora, oraaccess.xml and
-# cwallet.sso.  You can use a container volume to mount the directory containing
+# cwallet.sso.  #TODO yes, I need these
+# You can use a container volume to mount the directory containing
 # the files at runtime, for example:
 #
 #   podman run -v /my/host/wallet_dir:/usr/lib/oracle/19.15/client64/lib/network/admin:Z,ro . . .
 #
 # This avoids embedding private information such as wallets in images.  If you
 # do choose to include network configuration files in images, you can use a
-# Dockerfile_modular COPY, for example:
+# Dockerfile COPY, for example:
 #
 #    COPY ora tnsnames.ora sqlnet.ora /usr/lib/oracle/${release}.${update}/client64/lib/network/admin/
-COPY ora /usr/lib/oracle/${release}.${update}/client64/lib/network/admin/
+COPY ora/* /usr/lib/oracle/${release}.${update}/client64/lib/network/admin
 #
 # There is no need to set the TNS_ADMIN environment variable when files are in
 # the container's default configuration file directory, as shown.
@@ -86,7 +88,7 @@ RUN  dnf -y install oracle-release-el8 && \
      rm -rf /var/cache/dnf
 
 # Uncomment if the tools package is added
-# ENV PATH=$PATH:/usr/lib/oracle/${release}.${update}/client64/bin
+ENV PATH=$PATH:/usr/lib/oracle/${release}.${update}/client64/bin
 
 # Clemens -------------------------------------
 # Automatically create a database
@@ -100,6 +102,6 @@ COPY scripts /docker-entrypoint-initdb.d
 
 
 # Was passiert hier?
-# A: Irgendwas mit verbose...
-#CMD ["sqlplus", "-v"]
+# A: Irgendwas mit verbose. To confirm that sqlplus installed correctly.
+CMD ["sqlplus", "-v"]
 

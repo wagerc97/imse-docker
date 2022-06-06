@@ -2,15 +2,25 @@
 version: '3.8'
 services:
   db:
-    image: store/oracle/database-enterprise:12.2.0.1 # deprecated link fucking oracle macht kein docker image mehr
+    build:
+      context: ../../oraclesql/sql
+      dockerfile: ../../oraclesql/sql/Dockerfile-instant
     container_name: oraclesql8
+    # use native pw authentication
+    #command: --default-authentication-plugin=imse4eva
     restart: always
-    environment:
-      - env/env_vars.txt
-    stdin_open: true
-    tty: true
+    #environment:
+    #  ORACLE_ROOT_PASSWORD: imse4eva
+    #  ORACLE_USER: devuser
+    #  ORACLE_PASSWORD: devpass
+    #  ORACLE_DATABASE: PharmaComp
     ports:
       - "1521:1521"
+    # Workaround to keep the container running
+    #stdin_open: true
+    tty: true
+    # cheap workaround
+    command: tail -f /dev/null
 
   web:
     build:
