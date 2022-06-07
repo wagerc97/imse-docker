@@ -1,0 +1,6 @@
+DB_SID=ImseDB
+DB_PDB=ImsePDB1
+DB_DOMAIN=at.imse-project.com
+DB_BUNDLE=basic
+DB_NAME=PC.WORLD
+DB_UNIQUE_NAME=PharmaComp

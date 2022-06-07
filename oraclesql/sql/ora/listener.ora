@@ -1,0 +1,21 @@
+# Source:
+# https://community.oracle.com/tech/developers/discussion/2451025/sp2-0640-not-connected-create-database-link-error-gateway
+#
+# LISTENER.ora network configuration file in
+# /usr/lib/oracle/19.15/client64/lib/network/admin
+#
+# LISTENER.ora
+SID_LIST_LISTENER =
+(SID_LIST =
+  (SID_DESC =
+    (SID_NAME = dg4msql)
+    (PROGRAM = C:\product\11.2.0\tg_1\bin\dg4msql)
+  )
+)
+
+LISTENER =
+(DESCRIPTION_LIST =
+    (DESCRIPTION =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+  )
+)

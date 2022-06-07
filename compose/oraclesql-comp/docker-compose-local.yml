@@ -4,21 +4,23 @@ services:
   db:
     build:
       context: ../../oraclesql/sql
-      # CHANGE IF NEEDED
-      dockerfile: ../../oraclesql/sql/Dockerfile
+      dockerfile: ../../oraclesql/sql/Dockerfile-instant
     container_name: oraclesql8
     # use native pw authentication
     #command: --default-authentication-plugin=imse4eva
     restart: always
-    environment:
-      ORACLE_ROOT_PASSWORD: imse4eva
-      ORACLE_USER: devuser
-      ORACLE_PASSWORD: devpass
-      ORACLE_DATABASE: PharmaComp
-    stdin_open: true
-    tty: true
+    #environment:
+    #  ORACLE_ROOT_PASSWORD: imse4eva
+    #  ORACLE_USER: devuser
+    #  ORACLE_PASSWORD: devpass
+    #  ORACLE_DATABASE: PharmaComp
     ports:
       - "1521:1521"
+    # Workaround to keep the container running
+    #stdin_open: true
+    tty: true
+    # cheap workaround
+    command: tail -f /dev/null
 
   web:
     build:

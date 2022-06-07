@@ -1,0 +1,12 @@
+# Source: http://www.dba-oracle.com/t_create_sqlnet_ora.htm#:~:text=In%20fact%2C%20many%20Oracle%20networking,machines%20and%20the%20database%20server.
+#
+# sqlnet.ora system configuration file in
+# /usr/lib/oracle/19.15/client64/lib/network/admin
+#
+names.directory_path = (LDAP, TNSNAMES, HOSTNAME)
+names.default_domain = WORLD
+trace_level_client = OFF
+sqlnet.expire_time = 30
+
+# workaround to fix non responding sqlplus
+DISABLE_OOB=ON
