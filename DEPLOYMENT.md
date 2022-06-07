@@ -38,15 +38,16 @@ On Windows 10-Home OS
    `` docker exec -it oraclesql8 bash``  
       you are now in the db-docker (...sql8 is the container name)
 4. Check if listeners are up and running  
-  ``lsnrctl status``
+  ``lsnrctl status`` -> bash: lsnrctl: command not found
 6. Navigate with sqlplus --> following: https://docs.oracle.com/cd/A97630_01/win.920/a95490/username.html   
    1. To starts SQL*Plus without a database connection: ``sqlplus /NOLOG``  
-   2. login into the database with ``CONNECT / AS SYSDBA``  
-   >ORA-12162: TNS:net service name is incorrectly specified
-   ERROR: ORA-12162: TNS:net service name is incorrectly specified
-   3. **SQL>** ``startup``  
-   > SP2-0640: Not connected
-   4. 
+
+Tried to fix the ORA-12162 error: http://www.dba-oracle.com/t_ora_12162_tns_net_service_name.htm
+> ORACLE_HOME=/u01/oracle; export ORACLE_HOME  
+> ORACLE_SID=asdb; export ORACLE_SID
+
+Cannot connect though:
+sqlplus connect sys as sysdba -> 
 #
 #
 > sqlplus /nolog  

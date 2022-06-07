@@ -43,7 +43,9 @@ a java/python program to populate the db.
 # Schlachtplan
 - [Claas] noSql design von Claas in MongoDB implementieren --> fertige aber leere DB  
 - [Claas] DB befüllen mit Testdaten --> Gefühl für Daten bekommen und 
-- [Claas] mongoDB auf docker container setzen
+- [Claas] mongoDB auf docker container setzen  
+
+  
 - [Clemens] ORacle sql auf docker fertig bauen --> moodle und Prof helfen 
 - [Clemens] Daten import 
 - [Clemens] Main Use Cases implementieren

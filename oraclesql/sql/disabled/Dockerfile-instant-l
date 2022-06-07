@@ -1,0 +1,32 @@
+# base image
+#FROM oraclelinux:8
+FROM ghcr.io/oracle/oraclelinux8-instantclient:19
+
+# environment variables for image version
+ARG release=19
+ARG update=15
+
+
+# Define config (runtime) environment variables.
+ENV ORACLE_SID=cdb1                                                            \
+    ORACLE_PWD="pass"                                                          \
+    SYS_PASSWORD="sys"                                                         \
+    PDB_NAME="pdb1"                                                            \
+    PDB_PASSWORD="pdb"                                                         \
+    ORACLE_HOME=/usr/lib/oracle/${release}.${update}/client64                  \
+    TOOLPATH=${ORACLE_HOME}/bin                                                \
+    TNSADMIN=${ORACLE_HOME}/lib/network/admin
+
+
+# Separate ENV call to allow existing variables to be referenced.
+ENV PATH=${ORACLE_HOME}/bin:${PATH}
+
+# Copy missing ora files
+COPY ora/* /usr/lib/oracle/${release}.${update}/client64/lib/network/admin
+#COPY ora/* ${TNSADMIN}
+
+# Sql scripts to setup database
+COPY scripts /docker-entrypoint-initdb.d
+
+# Confirm sqlplus is working
+CMD ["sqlplus", "-v"]

@@ -2,6 +2,8 @@
 FROM oraclelinux:8
 
 # Source: https://github.com/oraclebase/dockerfiles/blob/master/database/ol8_19/Dockerfile (06.06.2022)
+#   braucht 3+ GB für Setup
+#
 # ------------------------------------------------------------------------------
 # Define fixed (build time) environment variables.
 ENV ORACLE_BASE=/u01/app/oracle                                                \
