@@ -15,17 +15,31 @@ a java/python program to populate the db.
 ### TODOs:
 * establish connection between java and mysql -> forget it -> soon we will work on MongoDB
     * already adapted docker-compose.yml
-    * Java app runs befor db is setup
+    * Java app runs before db is setup
     
-* Fix Error: Parse error: syntax error, unexpected 'protected' (T_PROTECTED), expecting ',' or ';' in /var/www/html/DatabaseHelper.php on line 40
 ---
-### Next steps after meeting 29.04.2022
-- noSql design in MongoDB implementieren
-- mongoDB docker container
+### Next steps after meeting 07.06.2022
+# Schlachtplan
+- [Claas] noSql design von Claas in MongoDB implementieren --> fertige aber leere DB  
+- [Claas] DB befüllen mit Testdaten --> Gefühl für Daten bekommen und 
+- [Claas] mongoDB auf docker container setzen
+- [Clemens] ORacle sql auf docker fertig bauen --> moodle und Prof helfen 
+- [Clemens] Daten import 
+- [Clemens] Main Use Cases implementieren
+
+---
 - webinterface mit db verknüpfen
-- daten generieren für nosql
+- daten von SQL auf NoSQL migrieren
 - daten in nosql db importieren (java / python)
      - auf knopfdruck <br>
 ...
 - report schreiben
 - gui aufpolieren
+
+
+
+
+
+
+
+
