@@ -164,7 +164,7 @@ class DatabaseHelper
         // Define the sql stmt string
                 // This SQL statement uses views that are stored in the CREATE file of the DB
                 //$sql= "SELECT * FROM ord_rev ORDER BY Order_Date DESC LIMIT 5"; 
-                $sql = "SELECT ID_employee, Firstname, Lastname, ID_region, Region_name
+                $sql = "SELECT e.ID_employee, e.Firstname, e.Lastname, g.ID_region, r.Region_name
                         FROM Employee e
                         INNER JOIN General_Manager g
                             ON e.ID_employee = g.ID_employee
