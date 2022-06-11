@@ -103,10 +103,11 @@ class DatabaseHelper
     //public function addProduct($id_product, $product_name, $price, $indication)
     public function addProduct($product_name, $price, $indication)
 	{
-        $sql = "INSERT INTO Product (ID_product, Product_Name, Price, Indication) 
-				-- VALUES ('{$id_product}', '{$product_name}', '{$price}', '{$indication}')";
+        //$sql = "INSERT INTO Product (ID_product, Product_Name, Price, Indication) 
+        $sql = "INSERT INTO Product (Product_Name, Price, Indication) 
 				VALUES ('{$product_name}', '{$price}', '{$indication}')";
-		
+                // VALUES ('{$id_product}', '{$product_name}', '{$price}', '{$indication}')";
+                
         //$stmt = @oci_parse($this->conn, $sql);
 		$stmt = $this->conn->prepare($sql); 
 
