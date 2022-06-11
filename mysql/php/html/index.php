@@ -403,11 +403,13 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 			<!-- opens confirmation page to let user know the INSERT was successul --> 
 			<form method="post" action="addProduct.php"> 
 				<!-- id textbox -->
+				<!-- id is auto-incremented
 				<div>
 					<label for="id_product">Product ID:</label>
 					<input id="id_product" name="id_product" type="number" placeholder='12345' min="1" max="99999">
 				</div>
 				<br>
+				-->
 				<!-- product_name textbox -->
 				<div>
 					<label for="product_name">Product name:</label>

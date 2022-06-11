@@ -72,11 +72,26 @@ class DatabaseHelper
         //$success = @oci_execute($stmt) && @oci_commit($this->conn);
         $success = @mysqli_stmt_execute($stmt) && @mysqli_commit($this->conn);
 
-        //@oci_free_stmt($stmt);
-        //@mysqli_free_result($stmt);
-
         return $success;
     }
+
+
+
+//SELECT... DISPLAY  ==> USED TO TEST ON MYSQL <== 
+	// selects the whole CLIENT table
+    public function selectFromClient()//$sel_id_product, $sel_product_name, $sel_price, $sel_indication)
+    {
+        // Define the sql stmt string
+        // show the last / youngest 10 entries -> to confirm that main use case "Register Product" works. 
+		$sql= "SELECT * FROM Client ORDER BY ID_client DESC LIMIT 10;"; 
+		
+		$result = mysqli_query($this->conn, $sql);
+
+        return $result;
+    } 
+	
+
+
 
 //TODO
 //---------------------------------------------------
@@ -85,19 +100,18 @@ class DatabaseHelper
 //------------- INSERT PRODUCT ----------------------
 //---------------------------------------------------
 	// adds a new row to the PRODUCT table (ID_product(4), Name_product, Price, Indication)
-    public function addProduct($id_product, $product_name, $price, $indication)
+    //public function addProduct($id_product, $product_name, $price, $indication)
+    public function addProduct($product_name, $price, $indication)
 	{
         $sql = "INSERT INTO Product (ID_product, Product_Name, Price, Indication) 
-				VALUES ('{$id_product}', '{$product_name}', '{$price}', '{$indication}')";
+				-- VALUES ('{$id_product}', '{$product_name}', '{$price}', '{$indication}')";
+				VALUES ('{$product_name}', '{$price}', '{$indication}')";
 		
         //$stmt = @oci_parse($this->conn, $sql);
 		$stmt = $this->conn->prepare($sql); 
 
         //$success = @oci_execute($stmt) && @oci_commit($this->conn);
         $success = @mysqli_stmt_execute($stmt) && @mysqli_commit($this->conn);
-
-		//@oci_free_stmt($stmt);
-        //@mysqli_free_result($stmt);
 		
 		return $success;
     }
@@ -113,55 +127,12 @@ class DatabaseHelper
         // show the last / youngest 10 entries -> to confirm that main use case "Register Product" works. 
 		$sql= "SELECT * FROM Product LIMIT 10"; 
 		
-		
-        // oci_parse prepares the Oracle stmt for execution
-        //$stmt = @oci_parse($this->conn, $sql); // oracle sql
-		//$stmt = $this->conn->prepare($sql); // mysqli
-
-        // Executes the stmt
-        //@oci_execute($stmt); // oracle sql
-		
-        //@oci_fetch_all($stmt, $result, 0, 0, OCI_FETCHstmt_BY_ROW); // oracle sql
-
-        //clean up;
-        //@oci_free_stmt($stmt); // oracle sql
-		
-		// query db --> newly added for mysqli 
 		$result = mysqli_query($this->conn, $sql);
-
 
         return $result;
     } 
 	
 
-//SELECT... DISPLAY  ==> USED TO TEST ON MYSQL <== 
-	// selects the whole CLIENT table
-    public function selectFromClient()//$sel_id_product, $sel_product_name, $sel_price, $sel_indication)
-    {
-        // Define the sql stmt string
-        // show the last / youngest 10 entries -> to confirm that main use case "Register Product" works. 
-		$sql= "SELECT * FROM Client LIMIT 10"; 
-		
-		
-        // oci_parse prepares the Oracle stmt for execution
-        //$stmt = @oci_parse($this->conn, $sql); // oracle sql
-		//$stmt = $this->conn->prepare($sql); // mysqli
-
-        // Executes the stmt
-        //@oci_execute($stmt); // oracle sql
-		
-        //@oci_fetch_all($stmt, $result, 0, 0, OCI_FETCHstmt_BY_ROW); // oracle sql
-
-        //clean up;
-        //@oci_free_stmt($stmt); // oracle sql
-		
-		// query db --> newly added for mysqli 
-		$result = mysqli_query($this->conn, $sql);
-
-
-        return $result;
-    } 
-	
 
 
 
