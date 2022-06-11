@@ -236,15 +236,13 @@ class DatabaseHelper
         return $result;
     } 
 	
-//SELECT... DISPLAY
+//SELECT... DISPLAY  ==> USED TO TEST ON MYSQL <== 
 	// selects the whole PRODUCT table
     public function selectFromProduct()//$sel_id_product, $sel_product_name, $sel_price, $sel_indication)
     {
         // Define the sql stmt string
-        // just select all colums
-		$sql= "SELECT * FROM Product 
-			   ORDER BY PRODUCT_NAME
-			   LIMIT 40"; // TEST for DEBUGGING remove 'LIMIT 40' +++
+        // show the last / youngest 10 entries -> to confirm that main use case "Register Product" works. 
+		$sql= "SELECT * FROM Product LIMIT 10"; 
 		
 		
         // oci_parse prepares the Oracle stmt for execution

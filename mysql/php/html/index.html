@@ -1,4 +1,4 @@
-<?php
+<?php 
 /************************************************************************
 	index.php
 	PROJECT: Pharmacompany
@@ -9,6 +9,7 @@
 		- Contains GUI 
 		- navigation
 *************************************************************************/
+
 
 // Include DatabaseHelper.php file
 require_once('DatabaseHelper.php');
@@ -191,7 +192,12 @@ if (isset($_GET['up_client_country'])) {
 
 //// Fetch data from database for tables ////
 
-$product_array = $database->selectFromProduct();
+$product_array = $database->selectFromProduct(); // confirm that main use cas "Register Product" works
+
+$client_array = $database->selectFromClient ();	// confir that main use cas "Register Client" works
+
+
+
 
 //$employee_array = $database->selectFromEmployeeWhere ($id_employee, $firstname, $lastname, $team_leader);
 
@@ -199,7 +205,7 @@ $region_array = $database->selectFromCountpreg();
 
 //$country_array = $database->selectFromCountry();
 	
-//$client_array = $database->selectFromClient ($id_client, $client_client_name, $client_country_name);	
+//$client_array_select = $database->selectFromClient ($id_client, $client_client_name, $client_country_name);	// former "client_array"
 
 //$campaign_array = $database->selectFromCampaign();
 
@@ -275,8 +281,7 @@ $region_array = $database->selectFromCountpreg();
 </head>
 <body>
 	
-
-
+<!-- Top text block -->
 <div class="container"> <!-- Centering-->
 
 	<br>
@@ -299,152 +304,26 @@ $region_array = $database->selectFromCountpreg();
 	</div></div></div>
 	<br>
 
-	<!------------------------------------------------------------------------->
-	<!----------------------- Test to display all products -------------------->
-	<!------------------------------------------------------------------------->
 
-	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
-	<div class="row"> 
-		<div class="col-lg-12"><div class="p-4 border bg-light">
+	
+														<!------------------------------------------------------------------------->
+														<!------------------------------------------------------------------------->
 
-			<!-- DBS PROJECT -->
-			<!-- Display REGION table -->
-			<h3>Test to display up to 40 products</h3>
-			<h4>This is a list of 40 products that were imported using the Java application</h4>
-			<br>
-			
-		<table class="table table-sm table-hover table-striped table-bordered table-light ">
-			<thead class="thead-dark">
-				<tr>
-					<th>Product ID</th>
-					<th>Product name</th>
-					<th>Price in EUR</th>
-					<th>Indication</th>
+														<!----------------------- Test to display all products -------------------->
 
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($product_array as $product) : ?>
-					<tr>
-						<td><?php echo $product['ID_product']; ?>  </td>
-						<td><?php echo $product['Product_Name']; ?>  </td>
-						<td><?php echo $product['Price'].' €'; ?>  </td>
-						<td><?php echo $product['Indication']; ?>  </td>
-					</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-	</div></div></div>
-	<br>
-	<!-- </div>end row -->
-	 
-	 
-	 	 
-
-	<!------------------------------------------------------------------------->
-	<!----------------------- REGION & GM ------------------------------------->
-	<!------------------------------------------------------------------------->
-
-	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
-	<div class="row"> 
-		<div class="col-lg-12"><div class="p-4 border bg-light">
-
-			<!-- DBS PROJECT -->
-			<!-- Display REGION table -->
-			<h3>All Regions and their assigned GM:</h3>
-			<h4>This is a list of all Regions where DBSan Ltd. operates with their assigned General Manager.</h4>
-			<br>
-			
-		<table class="table table-sm table-hover table-striped table-bordered table-light ">
-			<thead class="thead-dark">
-				<tr>
-					<th>Region ID</th>
-					<th>Region name</th>
-					<th>Related countries</th>
-					<th>Assigned GM</th>
-					<th>ID of GM</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<!-- <?php //foreach ($region_array as $region) : ?> old foreach solution -->
-				<?php 
-				// 
-				
-				// numeric array Source: https://www.php.net/manual/de/mysqli-result.fetch-array.php
-				
-				// $row = $result->fetch_array(MYSQLI_NUM);
-				// printf("%s (%s)\n", $row[0], $row[1]);
-
-
-					//Loop through the $posts array IF it is an array.
-					if(is_array($region_array)){
-
-						foreach($region_array as $region){
-							//Do something.
-				?>
-					<tr>
-						<td><?php echo $region['ID_Region']; ?>  </td>
-						<td><?php echo $region['Region_Name']; ?>  </td>
-						<td><?php echo $region['Count_country'].'x'; ?>  </td>
-						<td><?php echo $region['lastname']; ?>  </td>
-						<td><?php echo $region['ID_Employee']; ?>  </td>
-					</tr>
-						<?php }
-					} else {
-						echo('Error: $result is not an array');
-					}?>
-				<!-- <?php //endforeach; ?> -->
-			</tbody>
-		</table>
-		<?php echo('EVERYTHING BELOW THIS TABLE IS UNDER CONSTRUCTION. "hic sunt dracones..."'); ?>
-
-	</div></div></div>
-	<br>
-	 <!-- </div>end row -->
-
-
-	<!----------------------------------------------------------------------------------------------------------------------------->
-	<!-------------------------------------------------- COUNTRIES ---------------------------------------------------------------->
-	<!----------------------------------------------------------------------------------------------------------------------------->
-
-
-	<!-- DBS PROJECT -->
-	<!-- Display Country table with view -->
-	<div class="row"> 
-		<div class="col-lg-12"><div class="p-4 border bg-light">
-			<h3>All Countries:</h3>
-			<h4>These are the Countries where our Clients are located.</h4>
-		<table class="table table-sm table-hover table-striped table-bordered table-light ">
-			<thead class="thead-dark">
-			<tr>
-				<th>Number of Clients</th>
-				<th>Country</th>
-			</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($country_array as $country) : ?>
-					<tr>
-						<td><?php echo $country['COUNT_CLIENT']; ?>  </td>
-						<td><?php echo $country['COUNTRY_NAME']; ?>  </td>
-					</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-	</div></div></div>
-	<br>
+														<!------------------------------------------------------------------------->
+														<!------------------------------------------------------------------------->
 
 
 
 	<!----------------------------------------------------------------------------------------------------------------------------->
-	<!--------------------------------------------------- CLIENT ------------------------------------------------------------------>
+	<!---------------------------------- MAIN USE CASE: ADD CLIENT ---------------------------------------------------------------->
 	<!----------------------------------------------------------------------------------------------------------------------------->
-
 
 
 	<!-- DBS PROJECT -->
 	<!-- Insert new CLIENT -->
- 	<div class="row"> 
+	<div class="row"> 
 		<div class="col-lg-6"><div class="p-4 border bg-light">
 				<h3>Add Client</h3>
 				<h4>Please fill in the Client information:</h4>
@@ -472,7 +351,155 @@ $region_array = $database->selectFromCountpreg();
 				</div>
 			</form>
 		</div></div>
-		
+	</div> <!-- end of row -->
+
+
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!----------------------------------------------- DISPLAY PRODUCTS ------------------------------------------------------------>
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+	<!-- TEST DISPLAY LAST 10 CLIENTS -->
+	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+
+			<h3>Display newest 10 clients</h3>
+			<h4>This is a list of the newest 10 clients that were registered</h4>
+			<br>
+			
+		<table class="table table-sm table-hover table-striped table-bordered table-light ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Client ID</th>
+					<th>Client name</th>
+					<th>Country name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($client_array as $client) : ?>
+					<tr>
+						<td><?php echo $client['ID_client']; ?>  </td>
+						<td><?php echo $client['Client_name']; ?>  </td>
+						<td><?php echo $client['Country_name'].' €'; ?>  </td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div></div></div>
+	<br>
+	 
+
+	
+
+
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!----------------------------------------- MAIN USE CASE: ADD PRODUCT -------------------------------------------------------->
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+	<!-- DBS PROJECT -->
+	<!-- Insert new PRODUCT -->
+	<div class="row"> 
+		<div class="col-lg-6"><div class="p-4 border bg-light">
+			<h3>Add Product: </h3>
+			<h4>Please fill in the Product information:</h4>
+			<!-- opens confirmation page to let user know the INSERT was successul --> 
+			<form method="post" action="addProduct.php"> 
+				<!-- id textbox -->
+				<div>
+					<label for="id_product">Product ID:</label>
+					<input id="id_product" name="id_product" type="number" placeholder='12345' min="1" max="99999">
+				</div>
+				<br>
+				<!-- product_name textbox -->
+				<div>
+					<label for="product_name">Product name:</label>
+					<input id="product_name" name="product_name" type="text" placeholder='Enter a name' maxlength="50">
+				</div>
+				<br>
+				<!-- price textbox -->
+				<div>
+					<label for="price">Price (use comma):</label>
+					<input id="price" name="price" type="float" placeholder='123456.78' min="1">
+				</div>
+				<br>
+				<!-- indication textbox -->
+				<div>
+					<label for="indication">Indication:</label>
+					<input id="indication" name="indication" type="text" placeholder='Indication name' maxlength="40">
+				</div>
+				<br>
+
+				<!-- Submit button sends request when clicked -->
+				<div>
+					<button type="submit">
+						Add Product
+					</button>
+				</div>
+			</form>
+	</div></div></div>
+
+
+
+
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!----------------------------------------------- DISPLAY PRODUCTS ------------------------------------------------------------>
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+	<!-- TEST DISPLAY LAST 10 PRODUCTS -->
+	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+
+			<h3>Display newest 10 products</h3>
+			<h4>This is a list of the last 10 products that were registered</h4>
+			<br>
+			
+		<table class="table table-sm table-hover table-striped table-bordered table-light ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Product ID</th>
+					<th>Product name</th>
+					<th>Price in EUR</th>
+					<th>Indication</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($product_array as $product) : ?>
+					<tr>
+						<td><?php echo $product['ID_product']; ?>  </td>
+						<td><?php echo $product['Product_Name']; ?>  </td>
+						<td><?php echo $product['Price'].' €'; ?>  </td>
+						<td><?php echo $product['Indication']; ?>  </td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div></div></div>
+	<br>
+	 
+
+
+
+	 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 		<!-- Delete CLIENT -->
 		<div class="col-lg-6"><div class="p-4 border bg-light">
 			<h3>Delete Client</h3>
@@ -495,8 +522,49 @@ $region_array = $database->selectFromCountpreg();
 			<br>
 		</div></div>
 		<br>
-	</div> <!-- end of row -->
+
+
+
+
+
+
+
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!-------------------------------------------------- COUNTRIES ---------------------------------------------------------------->
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+	<!-- DBS PROJECT -->
+	<!-- Display Country table with view -->
+
+<!-- 
+
+
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<h3>All Countries:</h3>
+			<h4>These are the Countries where our Clients are located.</h4>
+		<table class="table table-sm table-hover table-striped table-bordered table-light ">
+			<thead class="thead-dark">
+			<tr>
+				<th>Number of Clients</th>
+				<th>Country</th>
+			</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($country_array as $country) : ?>
+					<tr>
+						<td><?php echo $country['COUNT_CLIENT']; ?>  </td>
+						<td><?php echo $country['COUNTRY_NAME']; ?>  </td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div></div></div>
 	<br>
+
+-->
+
 
 	<!-- DBS PROJECT -->
 	<!-- Update form CLIENT -->
@@ -858,6 +926,10 @@ $region_array = $database->selectFromCountpreg();
 
 	<!-- DBS PROJECT -->
 	<!-- Search result -->
+
+<!-- 
+
+
 	<div class="row"> 
 	<div class="col-lg-12"><div class="p-4 border bg-light">
 		<h2>Employee Search Result</h2>
@@ -893,59 +965,15 @@ $region_array = $database->selectFromCountpreg();
 	<br>
 
 
+-->
 
-	<!----------------------------------------------------------------------------------------------------------------------------->
-	<!--------------------------------------------------- PRODUCT ----------------------------------------------------------------->
-	<!----------------------------------------------------------------------------------------------------------------------------->
-
-
-
-	<!-- DBS PROJECT -->
-	<!-- Insert new PRODUCT -->
-	<div class="row"> 
-		<div class="col-lg-6"><div class="p-4 border bg-light">
-			<h3>Add Product: </h3>
-			<h4>Please fill in the Product information:</h4>
-			<!-- opens confirmation page to let user know the INSERT was successul --> 
-			<form method="post" action="addProduct.php"> 
-				<!-- id textbox -->
-				<div>
-					<label for="id_product">Product ID:</label>
-					<input id="id_product" name="id_product" type="number" placeholder='12345' min="1" max="99999">
-				</div>
-				<br>
-				<!-- product_name textbox -->
-				<div>
-					<label for="product_name">Product name:</label>
-					<input id="product_name" name="product_name" type="text" placeholder='Enter a name' maxlength="50">
-				</div>
-				<br>
-				<!-- price textbox -->
-				<div>
-					<label for="price">Price (use comma):</label>
-					<input id="price" name="price" type="float" placeholder='123456.78' min="1">
-				</div>
-				<br>
-				<!-- indication textbox -->
-				<div>
-					<label for="indication">Indication:</label>
-					<input id="indication" name="indication" type="text" placeholder='Indication name' maxlength="40">
-				</div>
-				<br>
-
-				<!-- Submit button sends request when clicked -->
-				<div>
-					<button type="submit">
-						Add Product
-					</button>
-				</div>
-			</form>
-	</div></div></div>
 
 
 
 	<!-- DBS PROJECT -->
 	<!-- Search result -->
+
+<!-- 	
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h2>Complete Product List</h2>
@@ -974,6 +1002,8 @@ $region_array = $database->selectFromCountpreg();
 	<br>
 
 
+-->	
+
 
 	<!----------------------------------------------------------------------------------------------------------------------------->
 	<!-------------------------------------------------- CAMPAIGN ----------------------------------------------------------------->
@@ -982,6 +1012,8 @@ $region_array = $database->selectFromCountpreg();
 
 	<!-- DBS PROJECT -->
 	<!-- Search result -->
+
+<!-- 	
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h2>Long Campaigns</h2>
@@ -1009,7 +1041,9 @@ $region_array = $database->selectFromCountpreg();
 	</div></div></div>
 	<br>
 	
-	
+-->
+
+
 	<!----------------------------------------------------------------------------------------------------------------------------->
 	<!-------------------------------------------- MARKETING EMPLOYYEES ----------------------------------------------------------->
 	<!----------------------------------------------------------------------------------------------------------------------------->
@@ -1041,6 +1075,10 @@ $region_array = $database->selectFromCountpreg();
 
 	<!-- DBS PROJECT -->
 	<!-- Search result -->
+
+<!-- 
+
+
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h3>Marketing Employees Search Result</h3>
 			<h4>List of all Employees in the marketing sector.</h4>
@@ -1068,6 +1106,7 @@ $region_array = $database->selectFromCountpreg();
 	<br>
 
 
+-->
 
 	<!----------------------------------------------------------------------------------------------------------------------------->
 	<!-------------------------------------------------- ADVERTISES --------------------------------------------------------------->
@@ -1076,6 +1115,10 @@ $region_array = $database->selectFromCountpreg();
 
 	<!-- DBS PROJECT -->
 	<!-- Search Advertises-->
+
+<!-- 
+	
+	
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h3>Which marketing employee advertises which product?</h3>
@@ -1104,6 +1147,7 @@ $region_array = $database->selectFromCountpreg();
 	<br>
 
 
+-->
 
 	<!----------------------------------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------- ORDERS ----------------------------------------------------------------->
@@ -1111,6 +1155,12 @@ $region_array = $database->selectFromCountpreg();
 
 	<!-- DBS PROJECT -->
 	<!-- Search result ORDERS-->
+
+
+<!--
+	
+	
+
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h3>List of the most recent Orders:</h3>
@@ -1143,6 +1193,95 @@ $region_array = $database->selectFromCountpreg();
 						<h5>... only the top results are visible!</h5>
 	</div></div></div>
 	<br>
+
+
+-->
+
+
+
+ 
+
+	<!------------------------------------------------------------------------->
+	<!----------------------- REGION & GM ------------------------------------->
+	<!------------------------------------------------------------------------->
+	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+
+			<!-- DBS PROJECT -->
+			<!-- Display REGION table -->
+			<h3>All Regions and their assigned GM:</h3>
+			<h4>This is a list of all Regions where DBSan Ltd. operates with their assigned General Manager.</h4>
+			<br>
+			
+		<table class="table table-sm table-hover table-striped table-bordered table-light ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Region ID</th>
+					<th>Region name</th>
+					<th>Related countries</th>
+					<th>Assigned GM</th>
+					<th>ID of GM</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<!-- <?php //foreach ($region_array as $region) : ?> old foreach solution -->
+				<?php 
+				// 
+				
+				// numeric array Source: https://www.php.net/manual/de/mysqli-result.fetch-array.php
+				
+				// $row = $result->fetch_array(MYSQLI_NUM);
+				// printf("%s (%s)\n", $row[0], $row[1]);
+
+
+					//Loop through the $posts array IF it is an array.
+					if(is_array($region_array))
+					{ //if
+
+						foreach($region_array as $region)
+						{ //foreach
+							//Do something in html
+				?>
+					<tr>
+						<td><?php echo $region['ID_Region']; ?>  </td>
+						<td><?php echo $region['Region_Name']; ?>  </td>
+						<td><?php echo $region['Count_country'].'x'; ?>  </td>
+						<td><?php echo $region['lastname']; ?>  </td>
+						<td><?php echo $region['ID_Employee']; ?>  </td>
+					</tr>
+						<?php 
+
+					  } // end of foreach
+					} // end of if
+					else {
+						echo('Error: $result is not an array');
+					}?>
+			</tbody>
+		</table>
+		<?php echo('EVERYTHING BELOW THIS TABLE IS UNDER CONSTRUCTION. "hic sunt dracones..."'); ?>
+
+	</div></div></div>
+	<br>
+	 <!-- </div>end row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </div> <!-- end of container -->
