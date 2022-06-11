@@ -535,8 +535,7 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 				<!-- Region name textbox -->
 				<div>
 					<label for="regionname">Country of Client:</label> 
-					<input id="regionname" name="regionname" type="text" placeholder='Enter a region'
-						value='<?php echo $regionname; ?>' maxlength="50">
+					<input id="regionname" name="regionname" type="text" placeholder='Enter a region' maxlength="50">
 				</div>
 				<br>
 
@@ -553,7 +552,7 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 
 
 
-
+<!--	<br /><b>Warning</b>:  Undefined variable $regionname in <b>/var/www/html/index.php</b> on line <b>539</b><br /> --> 
 
 
 
