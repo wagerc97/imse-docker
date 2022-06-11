@@ -125,12 +125,6 @@ if (isset($_GET['id_region'])) {
 } 
 
 
-// for GM search in REGION
-$regionname = '';
-if (isset($_GET['regionname'])) {
-    $regionname = $_GET['regionname'];
-} 
-
 // columns of CLIENT
 $client_client_name = '';
 if (isset($_GET['client_client_name'])) {
@@ -334,6 +328,7 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 	<div class="row"> 
 		<div class="col-lg-6"><div class="p-4 border bg-light">
 				<h3>Add Client</h3>
+				<h4>[MAIN USE CASE 1]</h4>
 				<h4>Please fill in the Client information:</h4>
 				
 			<!-- opens confirmation page to let user know the INSERT was successful --> 
@@ -373,6 +368,7 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 
 			<h3>Display newest 10 clients</h3>
+			<h4>[MAIN USE CASE 1]</h4>
 			<h4>This is a list of the newest 10 clients that were registered</h4>
 			<br>
 			
@@ -407,7 +403,7 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 	<div class="row"> 
 		<div class="col-lg-6"><div class="p-4 border bg-light">
 			<h3>Add Product: </h3>
-			<h4>[MAIN USE CASE 1]</h4>
+			<h4>[MAIN USE CASE 2]</h4>
 			<h4>Please fill in the Product information:</h4>
 			<!-- opens confirmation page to let user know the INSERT was successul --> 
 			<form method="post" action="addProduct.php"> 
@@ -535,7 +531,7 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 			<h3>Find out who the GM of a given region is!</h3>
 			<h4>[SMALL USE CASE 2]</h4>
 <!-- opens confirmation page to let user know the INSERT was successul --> 
-			<form method="get"> 
+				<form method="post" action="findGmOfRegion.php">
 				<!-- Region name textbox -->
 				<div>
 					<label for="regionname">Country of Client:</label> 
@@ -544,7 +540,7 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 				</div>
 				<br>
 
-				<!-- Submit button sends request when clicked -->
+				<!-- Submit button sends request and leads to a result page -->
 				<div>
 				<button id='submit' type='submit'>
 						Find Person
@@ -553,7 +549,30 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 			</form>
 	</div></div></div>
 
-	<!--------------------------------------------- DISPLAY THE GM -------------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<hr><hr><hr><hr><hr><hr><hr>
+
+
 
 	<!-- Search result -->
 	<div class="row"> 
@@ -589,30 +608,6 @@ $gm_array = $database->selectTheGM($regionname); // return the GM
 
 
 
-	 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<hr><hr><hr><hr><hr><hr><hr>
 
 	
 		<!-- Delete CLIENT -->
