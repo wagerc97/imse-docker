@@ -132,8 +132,6 @@ class DatabaseHelper
 	
 
 
-
-//TODO
 //---------------------------------------------------
 //------------- SMALL USE CASE 1 --------------------
 //---------------------------------------------------
@@ -155,6 +153,30 @@ class DatabaseHelper
 
 
 
+//---------------------------------------------------
+//------------- SMALL USE CASE 2 --------------------
+//---------------------------------------------------
+//-------- Who is the GM of my region? --------------
+//---------------------------------------------------
+    // select last 5 rows of ORDERS table
+    public function selectTheGM($regionname)
+    {
+        // Define the sql stmt string
+                // This SQL statement uses views that are stored in the CREATE file of the DB
+                //$sql= "SELECT * FROM ord_rev ORDER BY Order_Date DESC LIMIT 5"; 
+                $sql = "SELECT ID_employee, Firstname, Lastname, ID_region, Region_name
+                        FROM Employee e
+                        INNER JOIN General_Manager g
+                            ON e.ID_employee = g.ID_employee
+                        INNER JOIN Region r
+                            ON g.ID_region = r.ID_region
+                        
+                        WHERE r.Region_Name LIKE '%{$regionname}%'";
+
+        $result = mysqli_query($this->conn, $sql);
+
+        return $result;
+    } 
 
 
 

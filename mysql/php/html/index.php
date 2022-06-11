@@ -125,6 +125,12 @@ if (isset($_GET['id_region'])) {
 } 
 
 
+// for GM search in REGION
+$regionname = '';
+if (isset($_GET['regionname'])) {
+    $regionname = $_GET['regionname'];
+} 
+
 // columns of CLIENT
 $client_client_name = '';
 if (isset($_GET['client_client_name'])) {
@@ -196,6 +202,8 @@ $client_array = $database->selectFromClient ();	// confir that main use cas "Reg
 $product_array = $database->selectFromProduct(); // confirm that main use cas "Register Product" works
 
 $order_array = $database->selectFromOrders(); // list of the last 5 orders
+
+$gm_array = $database->selectTheGM($regionname); // return the GM
 
 
 
@@ -399,6 +407,7 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 	<div class="row"> 
 		<div class="col-lg-6"><div class="p-4 border bg-light">
 			<h3>Add Product: </h3>
+			<h4>[MAIN USE CASE 1]</h4>
 			<h4>Please fill in the Product information:</h4>
 			<!-- opens confirmation page to let user know the INSERT was successul --> 
 			<form method="post" action="addProduct.php"> 
@@ -449,6 +458,7 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 
 			<h3>Display newest 10 products</h3>
+			<h4>[MAIN USE CASE 2]</h4>
 			<h4>This is a list of the last 10 products that were registered</h4>
 			<br>
 			
@@ -485,7 +495,8 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 	<!-- MOST RECENT ORDERS -->
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
-			<h3>List of the most recent Orders:</h3>
+			<h3>List of the most recent Orders</h3>
+			<h4>[SMALL USE CASE 1]</h4>
 				<table class="table table-sm table-hover table-striped table-bordered">
 					<thead class="thead-dark">
 						<tr>
@@ -512,6 +523,80 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 	<br>
 
 	 	
+
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!--------------------------------- Small use case 2: Who is GM of my region?  ------------------------------------------------>
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+	<!-- MOST RECENT ORDERS -->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<h3>Find out who the GM of a given region is!</h3>
+			<h4>[SMALL USE CASE 2]</h4>
+<!-- opens confirmation page to let user know the INSERT was successul --> 
+			<form method="get"> 
+				<!-- Region name textbox -->
+				<div>
+					<label for="regionname">Country of Client:</label> 
+					<input id="regionname" name="regionname" type="text" placeholder='Enter a region'
+						value='<?php echo $regionname; ?>' maxlength="50">
+				</div>
+				<br>
+
+				<!-- Submit button sends request when clicked -->
+				<div>
+				<button id='submit' type='submit'>
+						Find Person
+					</button>
+				</div>
+			</form>
+	</div></div></div>
+
+	<!--------------------------------------------- DISPLAY THE GM -------------------------------------------->
+
+	<!-- Search result -->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<h2>GM Search Result:</h2>
+			<!-- <h3>Displays the tuples of the Client table that were selected during Client Search</h3> -->
+			<h3>Displays the name of the GM which was selected during GM Search</h3>
+				<table class="table table-sm table-hover table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th>Employee ID</th>
+							<th>Firstname</th>
+							<th>Lastname</th>
+							<th>Region ID</th>
+							<th>Region name</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($gm_array as $gm) : ?>
+							<tr>
+								<td><?php echo $gm['ID_employee']; ?>  </td>
+								<td><?php echo $gm['Firstname']; ?>  </td>
+								<td><?php echo $gm['Lastname']; ?>  </td>
+								<td><?php echo $gm['ID_region']; ?>  </td>
+								<td><?php echo $gm['Region_Name']; ?>  </td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			<h5>... only the top results are visible!</h5>
+
+	</div></div></div>
+
+
+
+	 	
+
+
+
+
+
+
+
 
 
 

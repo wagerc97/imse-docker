@@ -133,7 +133,7 @@ INSERT INTO Advertises VALUES (6, 3746);
 --    INSERT INTO Advertises VALUES (6, 3746);
 
 
--- GENERAL_MANAGER
+-- GENERAL_MANAGER   (ID_employee, ID_region)
 INSERT INTO General_Manager VALUES (3, 1);
 INSERT INTO General_Manager VALUES (4, 2);
 INSERT INTO General_Manager VALUES (7, 3);
