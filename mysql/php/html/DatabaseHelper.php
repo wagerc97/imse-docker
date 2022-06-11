@@ -73,7 +73,7 @@ class DatabaseHelper
         $success = @mysqli_stmt_execute($stmt) && @mysqli_commit($this->conn);
 
         //@oci_free_stmt($stmt);
-        @mysql_free_result($stmt);
+        @mysqli_free_result($stmt);
 
         return $success;
     }
@@ -97,7 +97,7 @@ class DatabaseHelper
         $success = @mysqli_stmt_execute($stmt) && @mysqli_commit($this->conn);
 
 		//@oci_free_stmt($stmt);
-        @mysql_free_result($stmt);
+        @mysqli_free_result($stmt);
 		
 		return $success;
     }
