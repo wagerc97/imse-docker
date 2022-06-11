@@ -61,10 +61,10 @@
 
 	<br>
 	<div class="row "> 
-		<div class="col-lg-12"><div class="p-4 border-dark bg-success">
+		<div class="col-lg-12"><div class="p-4 border-dark bg-light">
 
 		<!-- header --> 
-		<h1> Result page: Who is GM of my region? </h1>
+		<h1> Result page: Who is GM of region: <?php'{$regionname}'?> </h1>
 
         <?php  /** Find the GM of given region **/
 
@@ -113,7 +113,7 @@
                 </tbody>
             </table>
         <?php 
-        
+
             }
             else { // result array empty 
                 echo "Error can't find any results for region '{$regionname}'!";

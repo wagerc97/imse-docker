@@ -197,9 +197,6 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 
 $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
-$gm_array = $database->selectTheGM($regionname); // return the GM
-
-
 
 
 //$employee_array = $database->selectFromEmployeeWhere ($id_employee, $firstname, $lastname, $team_leader);
