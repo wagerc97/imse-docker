@@ -1,7 +1,7 @@
 <!--------------------------------------------------
-	DatabaseHelper.php
-from YouTube
-----------------------------------------------------> 
+DatabaseHelper.php
+Disclaimer: Adapted version from DBS Project 2021
+---------------------------------------------------->
 
 <?php
 
@@ -11,9 +11,6 @@ from YouTube
 //---------------------------------------------------
 //------------------- CONNECTION --------------------
 //---------------------------------------------------
-//CONNECT
-
-
 class DatabaseHelper
 {
 	// Since the connection details are constant, define them as const
@@ -36,11 +33,7 @@ class DatabaseHelper
 			DatabaseHelper::user, 
 			DatabaseHelper::password, 
 			DatabaseHelper::db);		
-		
-			//$conn = null;
-			//$conn = new mysqli($host, $user, $password, $db);
 
-			//if ($conn->connect_error) {
 			// Check if the connection failed 
 			if ($this->conn->connect_error) {
 				die('Connect Error: ' . $conn->connect_error);
@@ -49,7 +42,6 @@ class DatabaseHelper
             die("DB error: {$e->getMessage()}");
         }
 	}
-	
     // Used to clean up
     public function __destruct()
     {
@@ -66,7 +58,7 @@ class DatabaseHelper
 //------------- INSERT Functions --------------------
 //---------------------------------------------------
 
-	
+//TODO
 //INSERT	CLIENT
 	// adds a new row to the CLIENT table 
     public function addClient($client_client_name, $client_country_name)
@@ -74,13 +66,19 @@ class DatabaseHelper
         $sql = "INSERT INTO Client (client_name, country_name) 
 				VALUES ('{$client_client_name}', '{$client_country_name}')";
 		
-        $stmt = @oci_parse($this->conn, $sql);
-        $success = @oci_execute($stmt) && @oci_commit($this->conn);
-        @oci_free_stmt($stmt);
+        //$stmt = @oci_parse($this->conn, $sql);
+        $stmt = $conn->prepare($sql);
+
+        //$success = @oci_execute($stmt) && @oci_commit($this->conn);
+        $success = @mysqli_stmt_execute($stmt) && @mysqli_commit($this->conn);
+
+        //@oci_free_stmt($stmt);
+        @mysql_free_result($stmt);
+
         return $success;
     }
-	
 
+//TODO
 //INSERT	PRODUCT
 	// adds a new row to the PRODUCT table (ID_product(4), Name_product, Price, Indication)
     public function addProduct($id_product, $product_name, $price, $indication)
@@ -100,7 +98,7 @@ class DatabaseHelper
 		return $success;
     }
 	
-	
+/*
 //INSERT	EMPLOYEE
 	// adds a new row to the EMPLOYEE table
     public function addEmployee
@@ -121,7 +119,7 @@ class DatabaseHelper
         @oci_free_stmt($stmt);
         return $success;
     }
-	
+*/
 
 
 //---------------------------------------------------

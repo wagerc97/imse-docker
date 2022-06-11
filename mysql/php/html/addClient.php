@@ -29,7 +29,7 @@ if ($success){
     echo "Client '{$client_client_name}' successfully added!'";
 }
 else{
-    echo "Error can't insert Client '{$client_client_name}'!";
+    echo "Error can't insert client '{$client_client_name}'!";
 }
 ?>
 

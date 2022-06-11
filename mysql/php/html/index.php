@@ -19,7 +19,7 @@ $database = new DatabaseHelper();
 // VARIABLE DECLARATION
 // columns of EMPLOYEE
 $id_employee = ''; // initialization
-if (isset($_GET['id_employee'])) {   // assign vriable GET Method if there exists one 
+if (isset($_GET['id_employee'])) {   // assign variable GET Method if there exists one
     $id_employee = $_GET['id_employee'];
 }
 
@@ -300,7 +300,7 @@ $region_array = $database->selectFromCountpreg();
 	<br>
 
 	<!------------------------------------------------------------------------->
-	<!----------------------- Test to display all products ------------------------------------->
+	<!----------------------- Test to display all products -------------------->
 	<!------------------------------------------------------------------------->
 
 	<!-- Row    sizes: -sm|-md|-lg|-xl|-xxl-->
@@ -698,7 +698,7 @@ $region_array = $database->selectFromCountpreg();
 					value='<?php echo $add_hire_date; ?>'>
 				</div>
 				<br>
-				
+
 				<!-- Submit button sends request when clicked -->
 				<div>
 					<button type="submit">

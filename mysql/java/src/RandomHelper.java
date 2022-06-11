@@ -15,7 +15,7 @@ class RandomHelper {
     private ArrayList<String> firstNames;
     private ArrayList<String> lastNames;
     private ArrayList<String> courses;
-    private static final String firstNameFile = "./resources/names.csv"; //todo check directory
+    private static final String firstNameFile = "./resources/names.csv";
     private static final String lastNameFile = "./resources/surnames.csv";
     private static final String coursesFile = "./resources/courses.csv";
 
