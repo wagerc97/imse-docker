@@ -64,7 +64,7 @@
 		<div class="col-lg-12"><div class="p-4 border-dark bg-light">
 
 		<!-- header --> 
-		<h1> Result page: Who is GM of region: <?php'{$regionname}'?> </h1>
+		<h1> Result page: Who is GM of my region? </h1>
 
         <?php  /** Find the GM of given region **/
 

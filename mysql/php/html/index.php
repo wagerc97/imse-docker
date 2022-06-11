@@ -531,8 +531,8 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 				<form method="post" action="findGmOfRegion.php">
 				<!-- Region name textbox -->
 				<div>
-					<label for="regionname">Country of Client:</label> 
-					<input id="regionname" name="regionname" type="text" placeholder='Enter a region' maxlength="50">
+					<label for="regionname">Enter a region:</label> 
+					<input id="regionname" name="regionname" type="text" placeholder='Region name' maxlength="50">
 				</div>
 				<br>
 
