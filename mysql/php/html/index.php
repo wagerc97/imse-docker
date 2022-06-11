@@ -201,7 +201,7 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 
 //$employee_array = $database->selectFromEmployeeWhere ($id_employee, $firstname, $lastname, $team_leader);
 
-$region_array = $database->selectFromCountpreg();
+// $region_array = $database->selectFromCountpreg();
 
 //$country_array = $database->selectFromCountry();
 	
