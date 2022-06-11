@@ -380,17 +380,14 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 				<?php foreach ($client_array as $client) : ?>
 					<tr>
 						<td><?php echo $client['ID_client']; ?>  </td>
-						<td><?php echo $client['Client_name']; ?>  </td>
-						<td><?php echo $client['Country_name'].' €'; ?>  </td>
+						<td><?php echo $client['Client_Name']; ?>  </td>
+						<td><?php echo $client['Country_Name'].' €'; ?>  </td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
 		</table>
 	</div></div></div>
 	<br>
-	 
-
-	
 
 
 	<!----------------------------------------------------------------------------------------------------------------------------->
