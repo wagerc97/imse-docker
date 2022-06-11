@@ -59,7 +59,11 @@ class DatabaseHelper
 //---------------------------------------------------
 
 //TODO
-//INSERT	CLIENT
+//---------------------------------------------------
+//------------- MAIN USE CASE 1 ---------------------
+//---------------------------------------------------
+//------------- INSERT CLIENT -----------------------
+//---------------------------------------------------
 	// adds a new row to the CLIENT table 
     public function addClient($client_client_name, $client_country_name)
 	{
@@ -79,7 +83,11 @@ class DatabaseHelper
     }
 
 //TODO
-//INSERT	PRODUCT
+//---------------------------------------------------
+//------------- MAIN USE CASE 2 ---------------------
+//---------------------------------------------------
+//------------- INSERT PRODUCT ----------------------
+//---------------------------------------------------
 	// adds a new row to the PRODUCT table (ID_product(4), Name_product, Price, Indication)
     public function addProduct($id_product, $product_name, $price, $indication)
 	{
@@ -98,6 +106,28 @@ class DatabaseHelper
 		return $success;
     }
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 /*
 //INSERT	EMPLOYEE
 	// adds a new row to the EMPLOYEE table
