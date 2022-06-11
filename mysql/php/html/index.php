@@ -323,7 +323,7 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 	<!-- DBS PROJECT -->
 	<!-- Insert new CLIENT -->
 	<div class="row"> 
-		<div class="col-lg-6"><div class="p-4 border bg-light">
+		<div class="col-lg-12"><div class="p-4 border bg-light">
 				<h3>Add Client</h3>
 				<h4>[MAIN USE CASE 1]</h4>
 				<h4>Please fill in the Client information:</h4>
@@ -398,7 +398,7 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 	<!-- DBS PROJECT -->
 	<!-- Insert new PRODUCT -->
 	<div class="row"> 
-		<div class="col-lg-6"><div class="p-4 border bg-light">
+		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h3>Add Product: </h3>
 			<h4>[MAIN USE CASE 2]</h4>
 			<h4>Please fill in the Product information:</h4>

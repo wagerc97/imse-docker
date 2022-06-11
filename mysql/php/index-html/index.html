@@ -191,10 +191,11 @@ if (isset($_GET['up_client_country'])) {
 
 
 //// Fetch data from database for tables ////
-
 $client_array = $database->selectFromClient ();	// confir that main use cas "Register Client" works
 
 $product_array = $database->selectFromProduct(); // confirm that main use cas "Register Product" works
+
+$order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 
 
@@ -210,7 +211,6 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 
 //$markemp_array = $database->selectFromMarkEmp($markemp_date);
 
-//$order_array = $database->selectFromOrders();
 
 //$ads_array = $database->selectFromAdvertises();
 
@@ -323,8 +323,9 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 	<!-- DBS PROJECT -->
 	<!-- Insert new CLIENT -->
 	<div class="row"> 
-		<div class="col-lg-6"><div class="p-4 border bg-light">
+		<div class="col-lg-12"><div class="p-4 border bg-light">
 				<h3>Add Client</h3>
+				<h4>[MAIN USE CASE 1]</h4>
 				<h4>Please fill in the Client information:</h4>
 				
 			<!-- opens confirmation page to let user know the INSERT was successful --> 
@@ -364,6 +365,7 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 
 			<h3>Display newest 10 clients</h3>
+			<h4>[MAIN USE CASE 1]</h4>
 			<h4>This is a list of the newest 10 clients that were registered</h4>
 			<br>
 			
@@ -387,9 +389,6 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 		</table>
 	</div></div></div>
 	<br>
-	 
-
-	
 
 
 	<!----------------------------------------------------------------------------------------------------------------------------->
@@ -399,17 +398,20 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 	<!-- DBS PROJECT -->
 	<!-- Insert new PRODUCT -->
 	<div class="row"> 
-		<div class="col-lg-6"><div class="p-4 border bg-light">
+		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h3>Add Product: </h3>
+			<h4>[MAIN USE CASE 2]</h4>
 			<h4>Please fill in the Product information:</h4>
 			<!-- opens confirmation page to let user know the INSERT was successul --> 
 			<form method="post" action="addProduct.php"> 
 				<!-- id textbox -->
+				<!-- id is auto-incremented
 				<div>
 					<label for="id_product">Product ID:</label>
 					<input id="id_product" name="id_product" type="number" placeholder='12345' min="1" max="99999">
 				</div>
 				<br>
+				-->
 				<!-- product_name textbox -->
 				<div>
 					<label for="product_name">Product name:</label>
@@ -449,6 +451,7 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 
 			<h3>Display newest 10 products</h3>
+			<h4>[MAIN USE CASE 2]</h4>
 			<h4>This is a list of the last 10 products that were registered</h4>
 			<br>
 			
@@ -477,9 +480,70 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 	 
 
 
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!--------------------------------- Small use case 1: the 5 most recent orders ------------------------------------------------>
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+	<!-- MOST RECENT ORDERS -->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<h3>List of the most recent Orders</h3>
+			<h4>[SMALL USE CASE 1]</h4>
+				<table class="table table-sm table-hover table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th>Order ID</th>
+							<th>Product ID</th>
+							<th>Client ID</th>
+							<th>Date</th>
+							<th>Quantity</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($order_array as $order) : ?>
+						<tr>
+							<td><?php echo $order['ID_Orders']; ?>  </td>
+							<td><?php echo $order['ID_Product']; ?>  </td>
+							<td><?php echo $order['ID_Client']; ?>  </td>
+							<td><?php echo $order['Order_Date']; ?>  </td>
+							<td><?php echo $order['Quantity']; ?>  </td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+	</div></div></div>
+	<br>
 
 	 	
 
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!--------------------------------- Small use case 2: Who is GM of my region?  ------------------------------------------------>
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+	<!-- MOST RECENT ORDERS -->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<h3>Find out who the GM of a given region is!</h3>
+			<h4>[SMALL USE CASE 2]</h4>
+<!-- opens confirmation page to let user know the INSERT was successul --> 
+				<form method="post" action="findGmOfRegion.php">
+				<!-- Region name textbox -->
+				<div>
+					<label for="regionname">Enter a region:</label> 
+					<input id="regionname" name="regionname" type="text" placeholder='Region name' maxlength="50">
+				</div>
+				<br>
+
+				<!-- Submit button sends request and leads to a result page -->
+				<div>
+				<button id='submit' type='submit'>
+						Find Person
+					</button>
+				</div>
+			</form>
+	</div></div></div>
 
 
 
@@ -496,6 +560,17 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 
 
 
+
+
+
+
+
+
+
+
+
+
+	<hr><hr><hr><hr><hr><hr><hr>
 	
 		<!-- Delete CLIENT -->
 		<div class="col-lg-6"><div class="p-4 border bg-light">
