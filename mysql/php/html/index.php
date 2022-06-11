@@ -191,10 +191,10 @@ if (isset($_GET['up_client_country'])) {
 
 
 //// Fetch data from database for tables ////
+$client_array = $database->selectFromClient ();	// confir that main use cas "Register Client" works
 
 $product_array = $database->selectFromProduct(); // confirm that main use cas "Register Product" works
 
-$client_array = $database->selectFromClient ();	// confir that main use cas "Register Client" works
 
 
 

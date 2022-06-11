@@ -104,7 +104,64 @@ class DatabaseHelper
 	
 
 
+	
+//SELECT... DISPLAY  ==> USED TO TEST ON MYSQL <== 
+	// selects the whole PRODUCT table
+    public function selectFromProduct()//$sel_id_product, $sel_product_name, $sel_price, $sel_indication)
+    {
+        // Define the sql stmt string
+        // show the last / youngest 10 entries -> to confirm that main use case "Register Product" works. 
+		$sql= "SELECT * FROM Product LIMIT 10"; 
+		
+		
+        // oci_parse prepares the Oracle stmt for execution
+        //$stmt = @oci_parse($this->conn, $sql); // oracle sql
+		//$stmt = $this->conn->prepare($sql); // mysqli
 
+        // Executes the stmt
+        //@oci_execute($stmt); // oracle sql
+		
+        //@oci_fetch_all($stmt, $result, 0, 0, OCI_FETCHstmt_BY_ROW); // oracle sql
+
+        //clean up;
+        //@oci_free_stmt($stmt); // oracle sql
+		
+		// query db --> newly added for mysqli 
+		$result = mysqli_query($this->conn, $sql);
+
+
+        return $result;
+    } 
+	
+    
+//SELECT... DISPLAY  ==> USED TO TEST ON MYSQL <== 
+	// selects the whole CLIENT table
+    public function selectFromClient()//$sel_id_product, $sel_product_name, $sel_price, $sel_indication)
+    {
+        // Define the sql stmt string
+        // show the last / youngest 10 entries -> to confirm that main use case "Register Product" works. 
+		$sql= "SELECT * FROM Client LIMIT 10"; 
+		
+		
+        // oci_parse prepares the Oracle stmt for execution
+        //$stmt = @oci_parse($this->conn, $sql); // oracle sql
+		//$stmt = $this->conn->prepare($sql); // mysqli
+
+        // Executes the stmt
+        //@oci_execute($stmt); // oracle sql
+		
+        //@oci_fetch_all($stmt, $result, 0, 0, OCI_FETCHstmt_BY_ROW); // oracle sql
+
+        //clean up;
+        //@oci_free_stmt($stmt); // oracle sql
+		
+		// query db --> newly added for mysqli 
+		$result = mysqli_query($this->conn, $sql);
+
+
+        return $result;
+    } 
+	
 
 
 
