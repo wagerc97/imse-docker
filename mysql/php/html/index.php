@@ -549,7 +549,6 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 
 
-<!--	<br /><b>Warning</b>:  Undefined variable $regionname in <b>/var/www/html/index.php</b> on line <b>539</b><br /> --> 
 
 
 

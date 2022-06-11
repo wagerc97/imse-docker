@@ -92,22 +92,20 @@
     <table class="table table-sm table-hover table-striped table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th>Employee ID</th>
+                <th>Region name</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
-                <th>Region ID</th>
-                <th>Region name</th>
+                <th>Employee ID</th>
             </tr>
             </thead>
                 <tbody>
                     <?php foreach ($gm_array as $gm) : ?>
                     <!-- HTML part --> 
                         <tr>
-                            <td><?php echo $gm['ID_employee']; ?>  </td>
+                            <td><?php echo $gm['Region_Name']; ?>  </td>
                             <td><?php echo $gm['Firstname']; ?>  </td>
                             <td><?php echo $gm['Lastname']; ?>  </td>
-                            <td><?php echo $gm['ID_region']; ?>  </td>
-                            <td><?php echo $gm['Region_Name']; ?>  </td>
+                            <td><?php echo $gm['ID_employee']; ?>  </td>
                         </tr>
                     <?php endforeach; ?> 
                 </tbody>
