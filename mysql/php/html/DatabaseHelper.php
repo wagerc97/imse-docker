@@ -54,7 +54,6 @@ class DatabaseHelper
 	
 
 
-//TODO
 //---------------------------------------------------
 //------------- MAIN USE CASE 1 ---------------------
 //---------------------------------------------------
@@ -93,7 +92,6 @@ class DatabaseHelper
 
 
 
-//TODO
 //---------------------------------------------------
 //------------- MAIN USE CASE 2 ---------------------
 //---------------------------------------------------
@@ -116,7 +114,6 @@ class DatabaseHelper
 		
 		return $success;
     }
-	
 
 
 	
@@ -126,13 +123,35 @@ class DatabaseHelper
     {
         // Define the sql stmt string
         // show the last / youngest 10 entries -> to confirm that main use case "Register Product" works. 
-		$sql= "SELECT * FROM Product LIMIT 10"; 
+		$sql= "SELECT * FROM Product ORDER BY ID_product DESC LIMIT 10"; 
 		
 		$result = mysqli_query($this->conn, $sql);
 
         return $result;
     } 
 	
+
+
+
+//TODO
+//---------------------------------------------------
+//------------- SMALL USE CASE 1 --------------------
+//---------------------------------------------------
+//----------- MOST RECENT ORDERS --------------------
+//---------------------------------------------------
+//SELECT... DISPLAY
+    // select last 5 rows of ORDERS table
+    public function selectFromOrders()
+    {
+        // Define the sql stmt string
+                // This SQL statement uses views that are stored in the CREATE file of the DB
+                //$sql= "SELECT * FROM ord_rev ORDER BY Order_Date DESC LIMIT 5"; 
+        $sql= "SELECT * FROM Orders order by Order_Date DESC LIMIT 5;"; 
+        
+        $result = mysqli_query($this->conn, $sql);
+
+        return $result;
+    } 
 
 
 

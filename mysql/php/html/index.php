@@ -195,6 +195,7 @@ $client_array = $database->selectFromClient ();	// confir that main use cas "Reg
 
 $product_array = $database->selectFromProduct(); // confirm that main use cas "Register Product" works
 
+$order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 
 
@@ -211,7 +212,6 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 
 //$markemp_array = $database->selectFromMarkEmp($markemp_date);
 
-//$order_array = $database->selectFromOrders();
 
 //$ads_array = $database->selectFromAdvertises();
 
@@ -477,6 +477,39 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 	 
 
 
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!--------------------------------- Small use case 1: the 5 most recent orders ------------------------------------------------>
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+	<!-- MOST RECENT ORDERS -->
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<h3>List of the most recent Orders:</h3>
+				<table class="table table-sm table-hover table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th>Order ID</th>
+							<th>Product ID</th>
+							<th>Client ID</th>
+							<th>Date</th>
+							<th>Quantity</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($order_array as $order) : ?>
+						<tr>
+							<td><?php echo $order['ID_Orders']; ?>  </td>
+							<td><?php echo $order['ID_Product']; ?>  </td>
+							<td><?php echo $order['ID_Client']; ?>  </td>
+							<td><?php echo $order['Order_Date']; ?>  </td>
+							<td><?php echo $order['Quantity']; ?>  </td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+	</div></div></div>
+	<br>
 
 	 	
 
