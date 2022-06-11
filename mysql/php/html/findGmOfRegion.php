@@ -110,9 +110,7 @@
                     <?php endforeach; ?> 
                 </tbody>
             </table>
-        <?php 
-
-            }
+        <?php }
             else { // result array empty ?>
                 <h3>Error can't find any results for this region!</h3>
         <?php } ?>
