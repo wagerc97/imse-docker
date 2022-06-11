@@ -381,7 +381,7 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 					<tr>
 						<td><?php echo $client['ID_client']; ?>  </td>
 						<td><?php echo $client['Client_Name']; ?>  </td>
-						<td><?php echo $client['Country_Name'].' €'; ?>  </td>
+						<td><?php echo $client['Country_Name']; ?>  </td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
@@ -492,7 +492,7 @@ $product_array = $database->selectFromProduct(); // confirm that main use cas "R
 
 
 
-
+	<hr><hr><hr><hr><hr><hr><hr>
 
 	
 		<!-- Delete CLIENT -->

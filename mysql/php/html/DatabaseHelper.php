@@ -67,7 +67,7 @@ class DatabaseHelper
 				VALUES ('{$client_client_name}', '{$client_country_name}')";
 		
         //$stmt = @oci_parse($this->conn, $sql);
-        $stmt = $conn->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
 
         //$success = @oci_execute($stmt) && @oci_commit($this->conn);
         $success = @mysqli_stmt_execute($stmt) && @mysqli_commit($this->conn);
@@ -91,7 +91,7 @@ class DatabaseHelper
 				VALUES ('{$id_product}', '{$product_name}', '{$price}', '{$indication}')";
 		
         //$stmt = @oci_parse($this->conn, $sql);
-		$stmt = $conn->prepare($sql); 
+		$stmt = $this->conn->prepare($sql); 
 
         //$success = @oci_execute($stmt) && @oci_commit($this->conn);
         $success = @mysqli_stmt_execute($stmt) && @mysqli_commit($this->conn);
@@ -133,7 +133,7 @@ class DatabaseHelper
         return $result;
     } 
 	
-    
+
 //SELECT... DISPLAY  ==> USED TO TEST ON MYSQL <== 
 	// selects the whole CLIENT table
     public function selectFromClient()//$sel_id_product, $sel_product_name, $sel_price, $sel_indication)
