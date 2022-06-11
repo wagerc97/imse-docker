@@ -113,10 +113,9 @@
         <?php 
 
             }
-            else { // result array empty 
-                echo "Error can't find any results for region '{$regionname}'!";
-            }
-        ?>
+            else { // result array empty ?>
+                <h3>Error can't find any results for this region!</h3>
+        <?php } ?>
 
     <!-- link back to index page-->
     <br>
