@@ -144,7 +144,14 @@ class DatabaseHelper
         // Define the sql stmt string
                 // This SQL statement uses views that are stored in the CREATE file of the DB
                 //$sql= "SELECT * FROM ord_rev ORDER BY Order_Date DESC LIMIT 5"; 
-        $sql= "SELECT * FROM Orders order by Order_Date DESC LIMIT 5;"; 
+        $sql= "SELECT  o.ID_Orders, p.Product_Name, o.Quantity , c.Client_Name, o.Order_Date
+                FROM Orders o
+                INNER JOIN Client c
+                    ON o.ID_Client = c.ID_client
+                INNER JOIN Product p
+                    ON o.ID_Product = p.ID_product
+                    order by Order_Date DESC 
+                    LIMIT 5;"; 
         
         $result = mysqli_query($this->conn, $sql);
 
