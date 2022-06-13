@@ -94,7 +94,7 @@
             $exp_ord_product_array = $database->selectExpensiveOrderedProducts($timeinterval);
 
             // Check result
-            //if(!empty($exp_ord_product_array)): ?>
+            if(!empty($exp_ord_product_array)): ?>
 
                 <table class="table table-sm table-hover table-striped table-bordered">
                     <thead class="thead-dark">
@@ -118,11 +118,11 @@
                         </tbody>
                 </table>
 
-            <?php ///else: //echo "Error can't find any results within the last {$timeinterval} month(s)!"; ?>
-
+            <?php else: //echo "Error can't find any results within the last {$timeinterval} month(s)!"; ?>
+                
                 <h3>Error cannot find any results within the given timespan!</h3>
 
-            <?php // endif ?>
+            <?php endif ?>
 
     <!-- link back to index page-->
     <br><br>
