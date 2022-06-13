@@ -494,20 +494,20 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 					<thead class="thead-dark">
 						<tr>
 							<th>Order ID</th>
-							<th>Product ID</th>
-							<th>Client ID</th>
-							<th>Date</th>
+							<th>Product</th>
 							<th>Quantity</th>
+							<th>Client</th>
+							<th>Order Date</th>
 						</tr>
 					</thead>
 					<tbody>
 					<?php foreach ($order_array as $order) : ?>
 						<tr>
 							<td><?php echo $order['ID_Orders']; ?>  </td>
-							<td><?php echo $order['ID_Product']; ?>  </td>
-							<td><?php echo $order['ID_Client']; ?>  </td>
-							<td><?php echo $order['Order_Date']; ?>  </td>
+							<td><?php echo $order['Product_Name']; ?>  </td>
 							<td><?php echo $order['Quantity']; ?>  </td>
+							<td><?php echo $order['Client_Name']; ?>  </td>
+							<td><?php echo $order['Order_Date']; ?>  </td>
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
@@ -555,7 +555,8 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
-			<h3>Report the 5 most expensive ordered products: </h3>
+			<h3>Report the 5 most expensive ordered products</h3>
+			<h4>[REPORT 1]</h4>
 <!-- opens confirmation page to let user know the INSERT was successul --> 
 				<form method="post" action="reportProducts.php">
 				<!-- Region name textbox -->
