@@ -119,10 +119,8 @@
                 </table>
             <?php endif ?>
             
-            <?php if(empty($exp_ord_product_array)):                 //echo "Error can't find any results within the last {$timeinterval} month(s)!"; ?>
-                <tbody>
-                  <h3>Error cannot find any results within the given timespan!</h3>
-                </tbody> 
+            <?php if($exp_ord_product_array == 0):                 //echo "Error can't find any results within the last {$timeinterval} month(s)!"; ?>
+                <p>Error cannot find any results within the given timespan!</p>
             <?php endif ?>
 
     <!-- link back to index page-->
