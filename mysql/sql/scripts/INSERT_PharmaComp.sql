@@ -62,15 +62,24 @@ INSERT INTO Client (Client_Name, Country_Name) VALUES ('Tesco',               'U
 
 
 -- PRODUCT
-INSERT INTO Product VALUES (1892, 'Docilla', 17.23, 'Neuroscience');
-INSERT INTO Product VALUES (2874, 'Greenwald', 12.63, 'Neuroscience');
-INSERT INTO Product VALUES (3746, 'Freddi', 43.55, 'Oncology');
-INSERT INTO Product VALUES (3459, 'Paine', 21.87, 'Cardiovascular / Metabolism'); 
-INSERT INTO Product VALUES (9693, 'Stanwood', 19.79, 'Infectious Diseases / Vaccines');
-INSERT INTO Product VALUES (4769, 'Lory', 9.44, 'Other');
-INSERT INTO Product VALUES (1455, 'Berl', 28.82, 'Immunology');
+-- INSERT INTO Product VALUES (1892, 'Docilla', 17.23, 'Neuroscience');
+-- INSERT INTO Product VALUES (2874, 'Greenwald', 12.63, 'Neuroscience');
+-- INSERT INTO Product VALUES (3746, 'Freddi', 43.55, 'Oncology');
+-- INSERT INTO Product VALUES (3459, 'Paine', 21.87, 'Cardiovascular / Metabolism');
+-- INSERT INTO Product VALUES (9693, 'Stanwood', 19.79, 'Infectious Diseases / Vaccines');
+-- INSERT INTO Product VALUES (4769, 'Lory', 9.44, 'Other');
+-- INSERT INTO Product VALUES (1455, 'Berl', 28.82, 'Immunology');
+
+INSERT INTO Product VALUES ('Docilla', 17.23, 'Neuroscience');
+INSERT INTO Product VALUES ('Greenwald', 12.63, 'Neuroscience');
+INSERT INTO Product VALUES ('Freddi', 43.55, 'Oncology');
+INSERT INTO Product VALUES ('Paine', 21.87, 'Cardiovascular / Metabolism');
+INSERT INTO Product VALUES ('Stanwood', 19.79, 'Infectious Diseases / Vaccines');
+INSERT INTO Product VALUES ('Lory', 9.44, 'Other');
+INSERT INTO Product VALUES ('Berl', 28.82, 'Immunology');
 -- test constraint unique name
 --    INSERT INTO Product VALUES (1455, 'Remicade', 28.82, 'Immunology');
+--    INSERT INTO Product VALUES ('Remicade', 28.82, 'Immunology');
 
 
 -- CAMPAIGN
