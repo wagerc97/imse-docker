@@ -192,9 +192,7 @@ class DatabaseHelper
     {
         // Define the sql stmt string
         // The Docker time is 2h behind CET
-        $sql = //SELECT '%{$regionname}%'
-        
-                "SELECT c.Client_Name, o.Order_Date, p.Price, p.Product_Name
+        $sql = "SELECT c.Client_Name, o.Order_Date, p.Price, p.Product_Name
                 FROM Orders o
                 INNER JOIN Client c
                     ON o.ID_Client = c.ID_client
@@ -213,7 +211,31 @@ class DatabaseHelper
 
 
 
+    
 
+//---------------------------------------------------
+//------------------- REPORT 2 ----------------------
+//---------------------------------------------------
+//------- 5 key clients in terms of revenue ---------
+//---------------------------------------------------
+public function selectKeyClients($region_name)
+{
+    // Define the sql stmt string
+    // This query uses helper views in the sql CREATE script
+    $sql = "SELECT c.Client_Name, o.Order_Date, p.Price, p.Product_Name
+            FROM Orders o
+            INNER JOIN Client c
+                ON o.ID_Client = c.ID_client
+            INNER JOIN Region r
+                ON c.ID_region = r.ID_region
+            WHERE r.Region_Name LIKE '%{$region_name}%' 
+            ORDER BY rev DESC
+            LIMIT 5 ;";
+
+    $result = mysqli_query($this->conn, $sql);
+
+    return $result;
+} 
 
 
 

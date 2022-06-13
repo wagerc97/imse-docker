@@ -65,7 +65,8 @@
 
 		<!-- header --> 
 		<h3>Result page</h3>
-        <h1>Reporting most expensive products ordered within the given time interval (up to 5)</h1>
+        <h1>Reporting the five key clients that generated the most revenue</h1>
+        <!-- Users can filter clients by the region they are located at --> 
 
         <?php 
 
@@ -75,15 +76,15 @@
             //instantiate DatabaseHelper class
             $database = new DatabaseHelper();
 
-            $timeinterval = '1'; // default value 1 MONTH
+            $region_name = ''; // default value 1 MONTH
 
             //Grab variables from POST request
-            if(isset($_POST['timeinterval'])){
-                $timeinterval = $_POST['timeinterval'];
+            if(isset($_POST['region_name'])){
+                $region_name = $_POST['region_name'];
             }
 
             // Call seach function in DatabaseHelper
-            $exp_ord_product_array = $database->selectExpensiveOrderedProducts($timeinterval);
+            $exp_ord_product_array = $database->selectKeyClients($region_name);
 
             // Check result
             if ($exp_ord_product_array){
@@ -93,9 +94,9 @@
         <thead class="thead-dark">
             <tr>
                 <th>Client</th>
-                <th>Date</th>
-                <th>Price</th>
-                <th>Product</th>
+                <th>Region</th>
+                <th>Sum of orders</th>
+                <th>Generated revenue</th>
             </tr>
             </thead>
                 <tbody>
