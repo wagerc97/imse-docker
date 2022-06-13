@@ -10,6 +10,7 @@ if ( javac *.java -verbose );
 then
    echo "Compilation successful!"
    ls
+   java HelloWorld
    java Main
 else
    echo "Compilation failed. Cannot run project"
