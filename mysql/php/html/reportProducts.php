@@ -110,13 +110,14 @@
                     <?php endforeach; ?> 
                 </tbody>
             </table>
-        <?php }
-            else { // result array empty ?>
-                <h3>Error can't find any results for this time interval!</h3>
-        <?php } ?>
+            <?php 
+            }
+            else { // result array empty
+                echo "Error can't find any results within the last {$timeinterval} month(s)!";
+            } ?>
 
     <!-- link back to index page-->
-    <br>
+    <br><br>
     <a href="index.php">
         go back
     </a>

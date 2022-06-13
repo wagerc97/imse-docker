@@ -66,23 +66,20 @@
 		<!-- header --> 
 		<h3>Result page</h3>
         <h1>Reporting the five key clients that generated the most revenue</h1>
-        <!-- Users can filter clients by the region they are located at --> 
-
-
-
-        
         <?php 
-            //include DatabaseHelper.php file
-            require_once('DatabaseHelper.php');
-
-            //instantiate DatabaseHelper class
-            $database = new DatabaseHelper();
-
+            // Users can filter clients by the region they are located at
             //Grab variables from POST request
             $region_param = '';
             if(isset($_POST['region_param'])){
                 $region_param = $_POST['region_param'];
             }
+            echo "Given region: {$region_param}"; 
+                    
+            //include DatabaseHelper.php file
+            require_once('DatabaseHelper.php');
+
+            //instantiate DatabaseHelper class
+            $database = new DatabaseHelper();
 
             // Call seach function in DatabaseHelper
             $keyClient_array = $database->selectKeyClients($region_param);
@@ -112,13 +109,14 @@
                     <?php endforeach; ?> 
                 </tbody>
             </table>
-        <?php }
-            else { // result array empty ?>
-                <h3>Error can't find any results for this time interval!</h3>
-        <?php } ?>
+            <?php
+            }
+            else { // result array empty 
+                echo "Error can't find any results for region '{$region_param}'!";
+            } ?>
 
     <!-- link back to index page-->
-    <br>
+    <br><br>
     <a href="index.php">
         go back
     </a>

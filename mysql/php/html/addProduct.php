@@ -114,7 +114,7 @@
             ?>
 
             <!-- link back to index page-->
-            <br>
+            <br><br>
             <a href="index.php">
                 go back
             </a>
