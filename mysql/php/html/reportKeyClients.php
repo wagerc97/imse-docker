@@ -76,15 +76,15 @@
             //instantiate DatabaseHelper class
             $database = new DatabaseHelper();
 
-            $region_name = ''; // default value 1 MONTH
+            $region_param = ''; // default value 1 MONTH
 
             //Grab variables from POST request
-            if(isset($_POST['region_name'])){
-                $region_name = $_POST['region_name'];
+            if(isset($_POST['region_param'])){
+                $region_param = $_POST['region_param'];
             }
 
             // Call seach function in DatabaseHelper
-            $exp_ord_product_array = $database->selectKeyClients($region_name);
+            $exp_ord_product_array = $database->selectKeyClients($region_param);
 
             // Check result
             if ($exp_ord_product_array){

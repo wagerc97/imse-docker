@@ -218,19 +218,34 @@ class DatabaseHelper
 //---------------------------------------------------
 //------- 5 key clients in terms of revenue ---------
 //---------------------------------------------------
-public function selectKeyClients($region_name)
+public function selectKeyClients($region_param)
 {
     // Define the sql stmt string
     // This query uses helper views in the sql CREATE script
-    $sql = "SELECT c.Client_Name, o.Order_Date, p.Price, p.Product_Name
-            FROM Orders o
-            INNER JOIN Client c
-                ON o.ID_Client = c.ID_client
-            INNER JOIN Region r
-                ON c.ID_region = r.ID_region
-            WHERE r.Region_Name LIKE '%{$region_name}%' 
-            ORDER BY rev DESC
-            LIMIT 5 ;";
+    $sql = "SELECT  c.Client_Name, y.Region_Name, -- #3 group rows with the same ID_Client
+                SUM(y.sum_of_orders) AS sum_of_orders_per_client, 
+                SUM(y.sum_of_revenue) AS sum_of_rev_per_client
+                FROM Client c 
+                INNER JOIN 
+                ( 
+                -- #2 filter clients per 'Region_Name' and add the revenue column
+                SELECT  c.ID_client, r.Region_Name, 
+                    SUM(x.revenue_per_order) AS sum_of_revenue, 
+                    SUM(x.ID_Orders) AS sum_of_orders
+                    FROM Client c -- get Client data
+                    NATURAL JOIN Country t NATURAL JOIN Region r -- get connection to Region for filter
+                    INNER JOIN -- get order revenues
+                    (
+                    SELECT  o.ID_client, o.ID_Orders, p.ID_Product, p.Price*o.Quantity revenue_per_order
+                        FROM Orders o
+                            INNER JOIN Product p ON p.ID_Product = o.ID_Product
+                    ) x ON c.ID_client = x.ID_client
+                    WHERE r.Region_Name LIKE '%{$region_param}%'
+                    GROUP BY c.ID_client, x.ID_Orders, r.Region_Name
+                ) y ON c.ID_client = y.ID_client
+                GROUP BY c.Client_Name, y.Region_Name
+                ORDER BY sum_of_rev_per_client DESC
+                LIMIT 5 ;";
 
     $result = mysqli_query($this->conn, $sql);
 
