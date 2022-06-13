@@ -85,7 +85,10 @@
             $keyClient_array = $database->selectKeyClients($region_param);
 
             // Check result
-            if ($keyClient_array){
+            if (empty($keyClient_array)){
+                echo "Error can't find any results for region '{$region_param}'!";
+            } else {
+
         ?>
 
         <table class="table table-sm table-hover table-striped table-bordered">
@@ -111,9 +114,7 @@
             </table>
             <?php
             }
-            else { // result array empty 
-                echo "Error can't find any results for region '{$region_param}'!";
-            } ?>
+            ?>
 
     <!-- link back to index page-->
     <br><br>
