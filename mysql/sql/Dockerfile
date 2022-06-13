@@ -7,4 +7,5 @@ ENV MYSQL_USER=devuser
 ENV MYSQL_PASSWORD=devpass
 ENV MYSQL_DATABASE PharmaComp
 
+WORKDIR .
 COPY scripts /docker-entrypoint-initdb.d
