@@ -65,7 +65,7 @@
 
 		<!-- header --> 
 		<h3>Result page</h3>
-        <h1>Who is GM of my region? </h1>
+        <h1>A report on the (up to) five most expensive products ordered within the given time interval</h1>
 
         <?php  /** Find the GM of given region **/
 
@@ -75,45 +75,44 @@
             //instantiate DatabaseHelper class
             $database = new DatabaseHelper();
 
+            $timeinterval = '1'; // default value 1 MONTH
+
             //Grab variables from POST request
-            $regionname = '';
-            if(isset($_POST['regionname'])){
-                $regionname = $_POST['regionname'];
+            if(isset($_POST['timeinterval'])){
+                $timeinterval = $_POST['timeinterval'];
             }
 
-
             // Call seach function in DatabaseHelper
-            $gm_array = $database->selectTheGM($regionname);
+            $exp_ord_product_array = $database->selectExpensiveOrderedProducts($timeinterval);
 
             // Check result
-            if ($gm_array){
-                //echo "The GM of region '{$regionname}' is '{$result}'!'";
+            if ($exp_ord_product_array){
         ?>
 
     <table class="table table-sm table-hover table-striped table-bordered">
         <thead class="thead-dark">
             <tr>
-                <th>Region name</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Employee ID</th>
+                <th>Client</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Product</th>
             </tr>
             </thead>
                 <tbody>
-                    <?php foreach ($gm_array as $gm) : ?>
+                    <?php foreach ($exp_ord_product_array as $eop) : ?>
                     <!-- HTML part --> 
                         <tr>
-                            <td><?php echo $gm['Region_Name']; ?>  </td>
-                            <td><?php echo $gm['Firstname']; ?>  </td>
-                            <td><?php echo $gm['Lastname']; ?>  </td>
-                            <td><?php echo $gm['ID_employee']; ?>  </td>
+                            <td><?php echo $eop['Client_Name']; ?>  </td>
+                            <td><?php echo $eop['Order_Date']; ?>  </td>
+                            <td><?php echo $eop['Price'].' €'; ?>  </td>
+                            <td><?php echo $eop['Product_Name']; ?>  </td>
                         </tr>
                     <?php endforeach; ?> 
                 </tbody>
             </table>
         <?php }
             else { // result array empty ?>
-                <h3>Error can't find any results for this region!</h3>
+                <h3>Error can't find any results for this time interval!</h3>
         <?php } ?>
 
     <!-- link back to index page-->

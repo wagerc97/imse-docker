@@ -548,6 +548,33 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 
 
+	<!----------------------------------------------------------------------------------------------------------------------------->
+	<!----- REPORT 1: The 5 most expensive products, which a client ordered in the given time interval? (default=last month)  ----->
+	<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<h3>Report the 5 most expensive ordered products: </h3>
+<!-- opens confirmation page to let user know the INSERT was successul --> 
+				<form method="post" action="reportProducts.php">
+				<!-- Region name textbox -->
+				<div>
+					<label for="timeinterval">Choose time interval:</label> 
+					<input id="timeinterval" name="timeinterval" type="text" placeholder='Month' max="9999">
+				</div>
+				<br>
+
+				<!-- Submit button sends request and leads to a result page -->
+				<div>
+				<button id='submit' type='submit'>
+						Submit report
+					</button>
+				</div>
+			</form>
+	</div></div></div>
+
+
 
 
 

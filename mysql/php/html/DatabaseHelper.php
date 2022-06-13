@@ -142,15 +142,13 @@ class DatabaseHelper
     public function selectFromOrders()
     {
         // Define the sql stmt string
-                // This SQL statement uses views that are stored in the CREATE file of the DB
-                //$sql= "SELECT * FROM ord_rev ORDER BY Order_Date DESC LIMIT 5"; 
         $sql= "SELECT  o.ID_Orders, p.Product_Name, o.Quantity , c.Client_Name, o.Order_Date
                 FROM Orders o
                 INNER JOIN Client c
                     ON o.ID_Client = c.ID_client
                 INNER JOIN Product p
                     ON o.ID_Product = p.ID_product
-                    order by Order_Date DESC 
+                    ORDER BY Order_Date DESC 
                     LIMIT 5;"; 
         
         $result = mysqli_query($this->conn, $sql);
@@ -169,8 +167,6 @@ class DatabaseHelper
     public function selectTheGM($regionname)
     {
         // Define the sql stmt string
-        // This SQL statement uses views that are stored in the CREATE file of the DB
-        //$sql= "SELECT * FROM ord_rev ORDER BY Order_Date DESC LIMIT 5"; 
         $sql = "SELECT r.Region_Name, e.Firstname, e.Lastname, e.ID_employee 
                 FROM Employee e
                 INNER JOIN General_Manager g
@@ -183,6 +179,40 @@ class DatabaseHelper
 
         return $result;
     } 
+
+
+
+
+//---------------------------------------------------
+//------------------- REPORT 1 ----------------------
+//---------------------------------------------------
+//-------- Most expensive products ordered ----------
+//---------------------------------------------------
+    public function selectExpensiveOrderedProducts($timeinterval)
+    {
+        // Define the sql stmt string
+        // The Docker time is 2h behind CET
+        $sql = //SELECT '%{$regionname}%'
+        
+                "SELECT c.Client_Name, o.Order_Date, p.Price, p.Product_Name
+                FROM Orders o
+                INNER JOIN Client c
+                    ON o.ID_Client = c.ID_client
+                INNER JOIN Product p
+                    ON o.ID_Product = p.ID_product  
+                WHERE 
+                    Order_Date <= (SELECT CURDATE() AS Today) AND
+                    Order_Date >= (SELECT CURDATE() AS Today) - INTERVAL '{$timeinterval}' MONTH
+                ORDER BY Price DESC
+                LIMIT 10 ;";
+
+        $result = mysqli_query($this->conn, $sql);
+
+        return $result;
+    } 
+
+
+
 
 
 
