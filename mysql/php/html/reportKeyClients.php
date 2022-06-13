@@ -68,14 +68,16 @@
         <h1>Reporting the five key clients that generated the most revenue</h1>
         <!-- Users can filter clients by the region they are located at --> 
 
-        <?php 
 
+
+        
+        <?php 
             //include DatabaseHelper.php file
             require_once('DatabaseHelper.php');
 
             //instantiate DatabaseHelper class
             $database = new DatabaseHelper();
-            
+
             //Grab variables from POST request
             $region_param = '';
             if(isset($_POST['region_param'])){
@@ -89,8 +91,8 @@
             if ($keyClient_array){
         ?>
 
-    <table class="table table-sm table-hover table-striped table-bordered">
-        <thead class="thead-dark">
+        <table class="table table-sm table-hover table-striped table-bordered">
+            <thead class="thead-dark">
             <tr>
                 <th>Client</th>
                 <th>Region</th>
@@ -102,10 +104,10 @@
                     <?php foreach ($keyClient_array as $kc) : ?>
                     <!-- HTML part --> 
                         <tr>
-                            <td><?php echo $kc['Client_Name']; ?>  </td>
-                            <td><?php echo $kc['Region_Name']; ?>  </td>
-                            <td><?php echo $kc['sum_of_orders_per_client']; ?>  </td>
-                            <td><?php echo $kc['sum_of_rev_per_client']; ?>  </td>
+                            <td><?php echo $kc['Client_Name']; ?> </td>
+                            <td><?php echo $kc['Region_Name']; ?> </td>
+                            <td><?php echo $kc['sum_of_orders_per_client']; ?> </td>
+                            <td><?php echo $kc['sum_of_rev_per_client']; ?> </td>
                         </tr>
                     <?php endforeach; ?> 
                 </tbody>
