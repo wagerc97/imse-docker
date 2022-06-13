@@ -16,7 +16,9 @@ public class TestConnection {
 
     // Database connection info
     private static final String USER = "devuser";
+    private static final String USERROOT = "root";
     private static final String PASS = "devpass";
+    private static final String PASSROOT = "imse4eva";
     private static final String PATH = "..\\resources\\";
     private static final String DBNAME = "PharmaComp";
     private static final String LOCALIP = "127.0.0.1"; //localhost
@@ -37,18 +39,20 @@ public class TestConnection {
 
     public static void main(String[] args) {
 
-        System.out.println("Connecting database...");
+        System.out.println("[INFO] Connecting to database (with root access) ...");
 
-        try (Connection connection = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASS)) {
-            System.out.println("Connection successful!");
+        try (Connection con = DriverManager.getConnection(DB_CONNECTION_URL, USERROOT, PASSROOT)) {
+            System.out.println("\n[SUCCESS] Connection successful!");
         } catch (SQLException e) {
-            throw new IllegalStateException("Connect to database failed!", e);
+            throw new IllegalStateException("\n[FAIL] Connect to database failed!", e);
         }
     }
     // Getter Methods
     public String getDatabase(){return DB_CONNECTION_URL;}
     public String getUser(){return USER;}
+    public String getUserRoot(){return USERROOT;}
     public String getPass(){return PASS;}
+    public String getPassRoot(){return PASSROOT;}
     public String getPath(){return PATH;}
 
     public void close()  {

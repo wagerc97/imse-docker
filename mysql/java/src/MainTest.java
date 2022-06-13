@@ -1,4 +1,4 @@
-package side; /**********************************************************************************
+/**********************************************************************************
  *  Adapted version from DBS which used the adapted version from moodle.
  * This is the main function that executes the functions from the DatabaseHelper.
  * Some .csv files were made using https://extendsclass.com/csv-generator.html
@@ -30,8 +30,8 @@ public class MainTest { // main class is just a class called main
 
       // Connection details for Test
       String testDatabase = testConn.getDatabase();
-      String testUser = testConn.getUser();
-      String testPass = testConn.getPass();
+      String testUser = testConn.getUserRoot();
+      String testPass = testConn.getPassRoot();
 
       // Establish a connection to the database
       //Connection con = DriverManager.getConnection(database, user, pass); //non test
