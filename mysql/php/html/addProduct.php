@@ -106,7 +106,7 @@
 
             // Check result
             if ($success){
-                echo "Product '{$product_name}' successfully added!'";
+                echo "Product '{$product_name}' successfully added!";
             }
             else{
                 echo "Error can't insert Product '{$product_name}'!";

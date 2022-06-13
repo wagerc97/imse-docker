@@ -68,7 +68,7 @@
         
 
 
-        
+
         <?php
 
         /** ADD CLIENT **/
@@ -97,7 +97,7 @@
 
         // Check result
         if ($success){
-            echo "Client '{$client_client_name}' successfully added!'";
+            echo "Client '{$client_client_name}' successfully added!";
         }
         else{
             echo "Error can't insert client '{$client_client_name}'!";
