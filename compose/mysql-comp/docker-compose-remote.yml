@@ -39,7 +39,8 @@ services:
     depends_on:
       - db
     volumes:
-      - ../../java/:/var/java/
+      - ../../mysql/java/:/var/java/
+    #stdin_open: true
     tty: true
     ports:
       - "8080:8080"

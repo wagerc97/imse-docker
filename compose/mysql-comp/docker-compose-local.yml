@@ -5,7 +5,7 @@ services:
     build:
       context: ../../mysql/sql
       dockerfile: Dockerfile
-    container_name: mysqlcont
+    container_name: mysql-cont
     # use native pw authentication
     #command: --default-authentication-plugin=imse4eva
     #restart when configurations/dependencies changes
@@ -22,7 +22,7 @@ services:
     build:
       context: ../../mysql/php
       dockerfile: Dockerfile
-    container_name: phpcont
+    container_name: php-cont
     restart: on-failure
     depends_on:
       - db
@@ -31,17 +31,17 @@ services:
     ports:
       - "8000:80"
 
-  #java:
-  #  build:
-  #    context: ../../mysql/java
-  #    dockerfile: Dockerfile_modular
-  #  container_name: javacont
-  #  #restart: on-failure #turn off during development
-  #  depends_on:
-  #    - db
-  #  volumes:
-  #    - ../../mysql/java/:/var/java/
-  #  stdin_open: true
-  #  tty: true
-  #  ports:
-  #    - "8080:8080"
+  java:
+    build:
+      context: ../../mysql/java
+      dockerfile: Dockerfile
+    container_name: java-cont
+    #restart: on-failure #turn off during development
+    depends_on:
+      - db
+    volumes:
+      - ../../mysql/java/:/var/java/
+    #stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
