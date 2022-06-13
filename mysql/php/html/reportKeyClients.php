@@ -75,19 +75,18 @@
 
             //instantiate DatabaseHelper class
             $database = new DatabaseHelper();
-
-            $region_param = ''; // default value 1 MONTH
-
+            
             //Grab variables from POST request
+            $region_param = '';
             if(isset($_POST['region_param'])){
                 $region_param = $_POST['region_param'];
             }
 
             // Call seach function in DatabaseHelper
-            $exp_ord_product_array = $database->selectKeyClients($region_param);
+            $keyClient_array = $database->selectKeyClients($region_param);
 
             // Check result
-            if ($exp_ord_product_array){
+            if ($keyClient_array){
         ?>
 
     <table class="table table-sm table-hover table-striped table-bordered">
@@ -100,13 +99,13 @@
             </tr>
             </thead>
                 <tbody>
-                    <?php foreach ($exp_ord_product_array as $eop) : ?>
+                    <?php foreach ($keyClient_array as $kc) : ?>
                     <!-- HTML part --> 
                         <tr>
-                            <td><?php echo $eop['Client_Name']; ?>  </td>
-                            <td><?php echo $eop['Order_Date']; ?>  </td>
-                            <td><?php echo $eop['Price'].' €'; ?>  </td>
-                            <td><?php echo $eop['Product_Name']; ?>  </td>
+                            <td><?php echo $kc['Client_Name']; ?>  </td>
+                            <td><?php echo $kc['Region_Name']; ?>  </td>
+                            <td><?php echo $kc['sum_of_orders_per_client']; ?>  </td>
+                            <td><?php echo $kc['sum_of_rev_per_client']; ?>  </td>
                         </tr>
                     <?php endforeach; ?> 
                 </tbody>

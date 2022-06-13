@@ -556,7 +556,7 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
-			<h3>Report the 5 most expensive ordered products</h3>
+			<h3>Report the 5 most expensive products ordered within a given time interval</h3>
 			<h4>[REPORT 1]</h4>
 <!-- opens confirmation page to let user know the INSERT was successul --> 
 				<form method="post" action="reportProducts.php">
@@ -579,8 +579,6 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 
 
-
-
 	<!----------------------------------------------------------------------------------------------------------------------------->
 	<!----- REPORT 2: Key clients in terms of generated revenue ----->
 	<!----------------------------------------------------------------------------------------------------------------------------->
@@ -593,8 +591,8 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 				<form method="post" action="reportKeyClients.php">
 				<!-- Region name textbox -->
 				<div>
-					<label for="region_name">Choose a region:</label> 
-					<input id="region_name" name="region_name" type="text" placeholder='Region name' maxlength="50">
+					<label for="region_param">Choose a region:</label> 
+					<input id="region_param" name="region_param" type="text" placeholder='Region name' maxlength="50">
 				</div>
 				<br>
 
@@ -625,6 +623,8 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 
 
+	<hr><hr><hr><hr><hr><hr><hr>
+	<hr><hr><hr><hr><hr><hr><hr>
 	<hr><hr><hr><hr><hr><hr><hr>
 
 
