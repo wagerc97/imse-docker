@@ -63,6 +63,9 @@
 	<div class="row "> 
 		<div class="col-lg-12"><div class="p-4 border-dark bg-light">
 
+
+
+
 		<!-- header --> 
 		<h3>Result page</h3>
         <h1>Reporting the five most expensive products ordered within the given time interval</h1>
@@ -72,12 +75,13 @@
             //Grab variables from POST request
             if(isset($_POST['timeinterval'])){
                 $timeinterval = $_POST['timeinterval'];
-            }
-            if($timeinterval > 1) {
-                echo "Searched through DB entries of the last {$timeinterval} months.";
-            }
-            if($timeinterval = 1) {
-                echo "Searched through DB entries of the last month (default = 1)";
+
+                if($timeinterval > 1) {
+                    echo "Searched through DB entries of the last {$timeinterval} months!";
+                }
+                else{ //} if($timeinterval = 1) {
+                    echo "Searched through DB entries of the last month! (default = 1)";
+                }
             }
 
             //include DatabaseHelper.php file
@@ -86,40 +90,39 @@
             //instantiate DatabaseHelper class
             $database = new DatabaseHelper();
 
-
             // Call seach function in DatabaseHelper
             $exp_ord_product_array = $database->selectExpensiveOrderedProducts($timeinterval);
 
             // Check result
-            if ($exp_ord_product_array){
-        ?>
+            //if(!empty($exp_ord_product_array)): ?>
 
-    <table class="table table-sm table-hover table-striped table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Date</th>
-                <th>Customer</th>
-            </tr>
-            </thead>
-                <tbody>
-                    <?php foreach ($exp_ord_product_array as $eop) : ?>
-                    <!-- HTML part --> 
+                <table class="table table-sm table-hover table-striped table-bordered">
+                    <thead class="thead-dark">
                         <tr>
-                            <td><?php echo $eop['Product_Name']; ?>  </td>
-                            <td><?php echo $eop['Price'].' €'; ?>  </td>
-                            <td><?php echo $eop['Order_Date']; ?>  </td>
-                            <td><?php echo $eop['Client_Name']; ?>  </td>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Customer</th>
                         </tr>
-                    <?php endforeach; ?> 
-                </tbody>
-            </table>
-            <?php 
-            }
-            else { // result array empty
-                echo "Error can't find any results within the last {$timeinterval} month(s)!";
-            } ?>
+                    </thead>
+                        <tbody>
+                            <?php foreach ($exp_ord_product_array as $eop) : ?>
+                            <!-- HTML part --> 
+                                <tr>
+                                    <td><?php echo $eop['Product_Name']; ?>  </td>
+                                    <td><?php echo $eop['Price'].' €'; ?>  </td>
+                                    <td><?php echo $eop['Order_Date']; ?>  </td>
+                                    <td><?php echo $eop['Client_Name']; ?>  </td>
+                                </tr>
+                            <?php endforeach; ?> 
+                        </tbody>
+                </table>
+
+            <?php ///else: //echo "Error can't find any results within the last {$timeinterval} month(s)!"; ?>
+
+                <h3>Error cannot find any results within the given timespan!</h3>
+
+            <?php // endif ?>
 
     <!-- link back to index page-->
     <br><br>

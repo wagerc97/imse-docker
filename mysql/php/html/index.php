@@ -513,7 +513,7 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h3>Find out who the GM of a given region is!</h3>
 			<h4>[SMALL USE CASE 2]</h4>
-<!-- opens confirmation page to let user know the INSERT was successul --> 
+				<!-- opens confirmation page to let user know the INSERT was successul --> 
 				<form method="post" action="findGmOfRegion.php">
 				<!-- Region name textbox -->
 				<div>
@@ -542,9 +542,9 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 
 	<div class="row"> 
 		<div class="col-lg-12"><div class="p-4 border bg-light">
-			<h3>Report the 5 most expensive products ordered within a given time interval</h3>
+			<h3>Report the five most expensive products ordered within a given time interval</h3>
 			<h4>[REPORT 1]</h4>
-<!-- opens confirmation page to let user know the INSERT was successul --> 
+				<!-- opens confirmation page to let user know the INSERT was successul --> 
 				<form method="post" action="reportProducts.php">
 				<!-- Region name textbox -->
 				<div>
@@ -573,7 +573,7 @@ $order_array = $database->selectFromOrders(); // list of the last 5 orders
 		<div class="col-lg-12"><div class="p-4 border bg-light">
 			<h3>Report the key clients in terms of revenue </h3>
 			<h4>[REPORT 2]</h4>
-<!-- opens confirmation page to let user know the INSERT was successul --> 
+				<!-- opens confirmation page to let user know the INSERT was successul --> 
 				<form method="post" action="reportKeyClients.php">
 				<!-- Region name textbox -->
 				<div>

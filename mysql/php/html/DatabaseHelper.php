@@ -236,6 +236,7 @@ public function selectKeyClients($region_param)
                     NATURAL JOIN Country t NATURAL JOIN Region r -- get connection to Region for filter
                     INNER JOIN -- get order revenues
                     (
+                    -- #1 get revenue per order and other order information 
                     SELECT  o.ID_client, o.ID_Orders, p.ID_Product, p.Price*o.Quantity revenue_per_order
                         FROM Orders o
                             INNER JOIN Product p ON p.ID_Product = o.ID_Product

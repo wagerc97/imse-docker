@@ -87,34 +87,30 @@
             // Check result
             if (empty($keyClient_array)){
                 echo "Error can't find any results for region '{$region_param}'!";
-            } else {
+            } else { ?>
 
-        ?>
-
-        <table class="table table-sm table-hover table-striped table-bordered">
-            <thead class="thead-dark">
-            <tr>
-                <th>Client</th>
-                <th>Region</th>
-                <th>Sum of orders</th>
-                <th>Generated revenue</th>
-            </tr>
-            </thead>
-                <tbody>
-                    <?php foreach ($keyClient_array as $kc) : ?>
-                    <!-- HTML part --> 
-                        <tr>
-                            <td><?php echo $kc['Client_Name']; ?> </td>
-                            <td><?php echo $kc['Region_Name']; ?> </td>
-                            <td><?php echo $kc['sum_of_orders_per_client']; ?> </td>
-                            <td><?php echo $kc['sum_of_rev_per_client'].' €'; ?> </td>
-                        </tr>
-                    <?php endforeach; ?> 
-                </tbody>
-            </table>
-            <?php
-            }
-            ?>
+                <table class="table table-sm table-hover table-striped table-bordered">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Client</th>
+                        <th>Region</th>
+                        <th>Sum of orders</th>
+                        <th>Generated revenue</th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                            <?php foreach ($keyClient_array as $kc) : ?>
+                            <!-- HTML part --> 
+                                <tr>
+                                    <td><?php echo $kc['Client_Name']; ?> </td>
+                                    <td><?php echo $kc['Region_Name']; ?> </td>
+                                    <td><?php echo $kc['sum_of_orders_per_client']; ?> </td>
+                                    <td><?php echo $kc['sum_of_rev_per_client'].' €'; ?> </td>
+                                </tr>
+                            <?php endforeach; ?> 
+                        </tbody>
+                    </table>
+            <?php } ?>
 
     <!-- link back to index page-->
     <br><br>
