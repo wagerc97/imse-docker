@@ -12,6 +12,8 @@ then
    ls
    echo "[INFO] Run HelloWorld..."
    java HelloWorld
+   echo "[INFO] Run TestConnection..."
+   java TestConnection
    echo "[INFO] Run Main..."
    java Main
 else
