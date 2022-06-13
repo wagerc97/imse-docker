@@ -65,7 +65,7 @@
 
 		<!-- header --> 
 		<h3>Result page</h3>
-        <h1>A report on the (up to) five most expensive products ordered within the given time interval</h1>
+        <h1>Reporting most expensive products ordered within the given time interval (up to 5)</h1>
 
         <?php  /** Find the GM of given region **/
 

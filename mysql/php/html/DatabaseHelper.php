@@ -204,7 +204,7 @@ class DatabaseHelper
                     Order_Date <= (SELECT CURDATE() AS Today) AND
                     Order_Date >= (SELECT CURDATE() AS Today) - INTERVAL '{$timeinterval}' MONTH
                 ORDER BY Price DESC
-                LIMIT 10 ;";
+                LIMIT 5 ;";
 
         $result = mysqli_query($this->conn, $sql);
 
