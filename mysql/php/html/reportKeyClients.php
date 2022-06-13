@@ -73,7 +73,7 @@
             if(isset($_POST['region_param'])){
                 $region_param = $_POST['region_param'];
             }
-            echo "Given region: {$region_param}"; 
+            echo "Region name submitted: '{$region_param}'"; 
                     
             //include DatabaseHelper.php file
             require_once('DatabaseHelper.php');
@@ -107,7 +107,7 @@
                             <td><?php echo $kc['Client_Name']; ?> </td>
                             <td><?php echo $kc['Region_Name']; ?> </td>
                             <td><?php echo $kc['sum_of_orders_per_client']; ?> </td>
-                            <td><?php echo $kc['sum_of_rev_per_client']; ?> </td>
+                            <td><?php echo $kc['sum_of_rev_per_client'].' €'; ?> </td>
                         </tr>
                     <?php endforeach; ?> 
                 </tbody>

@@ -192,7 +192,7 @@ class DatabaseHelper
     {
         // Define the sql stmt string
         // The Docker time is 2h behind CET
-        $sql = "SELECT c.Client_Name, o.Order_Date, p.Price, p.Product_Name
+        $sql = "SELECT p.Product_Name, p.Price, o.Order_Date, c.Client_Name
                 FROM Orders o
                 INNER JOIN Client c
                     ON o.ID_Client = c.ID_client
