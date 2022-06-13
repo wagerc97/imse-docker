@@ -1,6 +1,8 @@
 #FROM java:8
 FROM openjdk:8
-COPY ../java /var/java
+#COPY ../java /var/java
+COPY ./src /var/java
+COPY ./resources /var/java
 WORKDIR /var/java/src
 
 # installs driver to base directory in docker container

@@ -2,17 +2,19 @@
 #pwd
 #project_dir="/var/java/src"
 #cd $project_dir
-echo "=== run.sh start ==="
+echo "[INFO] === run.sh start ==="
 pwd
 ls
-echo "Compiling Test project..."
+echo "[INFO] Compiling Test project..."
 if ( javac *.java -verbose );
 then
-   echo "Compilation successful!"
+   echo "[SUCCESS] Compilation successful!"
    ls
+   echo "[INFO] Run HelloWorld..."
    java HelloWorld
+   echo "[INFO] Run Main..."
    java Main
 else
-   echo "Compilation failed. Cannot run project"
+   echo "[FAIL] Compilation failed. Cannot run project"
 fi
-echo "=== run.sh end ==="
+echo "[INFO] === run.sh end ==="

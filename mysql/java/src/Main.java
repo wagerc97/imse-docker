@@ -12,6 +12,7 @@ import java.sql.Statement;
 public class Main { // main class is just a class called main
 
   public static void main(String[] args) { // THE main method where the program starts
+      System.out.println(" ============> This is Main! <============");
     try {
       // load the the DatabaseHelper
       DatabaseHelper dbHelper = new DatabaseHelper();
