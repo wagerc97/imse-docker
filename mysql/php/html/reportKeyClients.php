@@ -85,9 +85,7 @@
             $keyClient_array = $database->selectKeyClients($region_param);
 
             // Check result
-            if (empty($keyClient_array)){
-                echo "Error can't find any results for region '{$region_param}'!";
-            } else { ?>
+            if($keyClient_array): ?>
 
                 <table class="table table-sm table-hover table-striped table-bordered">
                     <thead class="thead-dark">
@@ -109,8 +107,8 @@
                                 </tr>
                             <?php endforeach; ?> 
                         </tbody>
-                    </table>
-            <?php } ?>
+                </table>
+            <?php endif ?>
 
     <!-- link back to index page-->
     <br><br>
