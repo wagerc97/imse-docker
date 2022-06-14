@@ -41,7 +41,7 @@ public class TestConnection {
 
         System.out.println("[INFO] Connecting to database (with root access) ...");
 
-        try (Connection con = DriverManager.getConnection(DB_CONNECTION_URL, USERROOT, PASSROOT)) {
+        try (Connection con = DriverManager.getConnection(DB_CONNECTION_URL, USERROOT, PASSROOT)) { // login with root credentials
             System.out.println("\n[SUCCESS] Connection successful!");
         } catch (SQLException e) {
             throw new IllegalStateException("\n[FAIL] Connect to database failed!", e);
