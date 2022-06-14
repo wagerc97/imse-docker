@@ -18,7 +18,7 @@ class DatabaseHelper
 	const host = 'db';  //service name from docker-compose.yml
 	const user = 'devuser'; // use a + your matriculation number  
 	const password = 'devpass'; // use your oracle db password
-	const db = 'PharmaComp';  // database name
+	const db = 'imse_sql_db';  // database name
 	
 	
     // Since we need only one connection object, it can be stored in a member variable.

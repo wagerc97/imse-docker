@@ -58,4 +58,29 @@ PS C:\> docker network inspect mysql-comp_default
     }
 ]
 
+# You can add a container to a running docker network
+
+# Create a Dockerfile in the root of spring boot 
+FROM openjdk:11-jdk
+VOLUME /tmp
+COPY target/yourbuiltappname.jar yourbuiltappname.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/yourbuiltappname.jar"]
+
+
+# builde application 
+mvn clean install
+
+
+# build docker image 
+docker built . -t rms
+
+
+
+
+
+
+
+
+
 

@@ -316,16 +316,16 @@ CREATE OR REPLACE VIEW key_clients AS
 -- DELETE CLIENT WITH SP
 -- --------------------------
 -- SP to delete a Client from the database 
-DROP PROCEDURE IF EXISTS PharmaComp.p_delete_client; -- DB.procedure to be more precise
+DROP PROCEDURE IF EXISTS imse_sql_db.p_delete_client; -- DB.procedure to be more precise
 
 DELIMITER $$
-CREATE PROCEDURE PharmaComp.p_delete_client(
+CREATE PROCEDURE imse_sql_db.p_delete_client(
 	 IN ID_Client INTEGER -- ,      -- parameter 1
      -- OUT p_errorcode INTEGER    -- parameter 1
 	)
 BEGIN
 	-- Delete statement
-	DELETE FROM PharmaComp.Client
+	DELETE FROM imse_sql_db.Client
 	WHERE del_id_client = ID_Client;
     
 	/*** Define errorcode
@@ -342,17 +342,17 @@ DELIMITER ;
 -- UPDATE CLIENT WITH SP
 -- --------------------------
 -- SP to update a Client in the database 
-DROP PROCEDURE IF EXISTS PharmaComp.p_update_client; -- DB.procedure to be more precise
+DROP PROCEDURE IF EXISTS imse_sql_db.p_update_client; -- DB.procedure to be more precise
 
 DELIMITER $$
-CREATE PROCEDURE PharmaComp.p_update_client(
+CREATE PROCEDURE imse_sql_db.p_update_client(
     IN up_id_client INTEGER,      -- parameter 1
     IN up_client_name INTEGER,    -- parameter 2
     IN up_client_country INTEGER, -- parameter 3
     OUT p_errorcode INTEGER       -- parameter 4
     )
 BEGIN
-	UPDATE PharmaComp.Client
+	UPDATE imse_sql_db.Client
 	SET 
 		Client_Name = up_client_name,
 		Country_Name = up_client_country
@@ -364,15 +364,15 @@ DELIMITER ;
 -- DELETE EMPLOYEE WITH SP
 -- --------------------------
 -- SP to delete an Employee from the database 
-DROP PROCEDURE IF EXISTS PharmaComp.p_delete_employee; -- DB.procedure to be more precise
+DROP PROCEDURE IF EXISTS imse_sql_db.p_delete_employee; -- DB.procedure to be more precise
 
 DELIMITER $$
-CREATE PROCEDURE PharmaComp.p_delete_employee(
+CREATE PROCEDURE imse_sql_db.p_delete_employee(
 	 IN del_id_employee INTEGER -- ,      -- parameter 1
      -- OUT p_errorcode INTEGER    -- parameter 1
 	)
 BEGIN
-	DELETE FROM PharmaComp.Employee
+	DELETE FROM imse_sql_db.Employee
 	WHERE del_id_employee = id_employee;
 END $$
 DELIMITER ;
@@ -381,10 +381,10 @@ DELIMITER ;
 -- UPDATE EMPLOYEE WITH SP
 -- --------------------------
 -- SP to update an Employee in the database 
-DROP PROCEDURE IF EXISTS PharmaComp.p_update_employee; -- DB.procedure to be more precise
+DROP PROCEDURE IF EXISTS imse_sql_db.p_update_employee; -- DB.procedure to be more precise
 
 DELIMITER $$
-CREATE PROCEDURE PharmaComp.p_update_employee(
+CREATE PROCEDURE imse_sql_db.p_update_employee(
     IN up_id_employee INTEGER,   -- parameter 1
     IN up_firstname VARCHAR(25), -- parameter 2
     IN up_lastname VARCHAR(25),  -- parameter 3
@@ -393,7 +393,7 @@ CREATE PROCEDURE PharmaComp.p_update_employee(
     IN up_team_leader INTEGER    -- parameter 6
     )
 BEGIN
-	UPDATE PharmaComp.Employee
+	UPDATE imse_sql_db.Employee
 	SET 
 		Firstname = up_firstname, 
 		Lastname = up_lastname, 

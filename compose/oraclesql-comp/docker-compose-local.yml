@@ -13,7 +13,7 @@ services:
     #  ORACLE_ROOT_PASSWORD: imse4eva
     #  ORACLE_USER: devuser
     #  ORACLE_PASSWORD: devpass
-    #  ORACLE_DATABASE: PharmaComp
+    #  ORACLE_DATABASE: imse_sql_db
     ports:
       - "1521:1521"
     # Workaround to keep the container running

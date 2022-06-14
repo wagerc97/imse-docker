@@ -29,7 +29,7 @@ class DatabaseHelper {
     // Database connection info
     private static final String USER = "devuser";
     private static final String PASS = "devpass";
-    private static final String DBNAME = "PharmaComp";
+    private static final String DBNAME = "imse_sql_db";
 
     //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab'; // for almighty
     //private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:8000/" + DBNAME; // for mysql

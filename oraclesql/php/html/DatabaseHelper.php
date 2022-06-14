@@ -25,7 +25,7 @@ class DatabaseHelper
 		// to connect to oracle database + oracle username + oracle PW
     const username 	= 'devuser'; // use a + your matriculation number
     const password 	= 'devpass'; // use your oracle db password
-    const db = 'PharmaComp';     // name of database
+    const db = 'imse_sql_db';     // name of database
     //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';  //on almighty "lab" is sufficient
 
     // [//]host[:port][/service name]

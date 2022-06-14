@@ -17,12 +17,12 @@ public class TestConnection {
     private static final String PATH = "..\\resources\\";
     private static final String LOCALIP = "127.0.0.1"; //localhost
     private static final String DBPORT = "3306";
-    private static final String DBNAME = "PharmaComp";
+    private static final String DBNAME = "imse_sql_db";
 
     //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';
     private static final String DB_CONNECTION_URL = "jdbc:mysql://"+LOCALIP+":"+DBPORT+"/"+DBNAME;
-  //  private static final String DB_CONNECTION_URL = "jdbc:mysql://127.0.0.1:3306/PharmaComp";
-  //  private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/PharmaComp";
+  //  private static final String DB_CONNECTION_URL = "jdbc:mysql://127.0.0.1:3306/imse_sql_db";
+  //  private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/imse_sql_db";
 
 
     // The name of the class loaded from the ojdbc14.jar driver file

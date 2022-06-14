@@ -24,7 +24,7 @@ class DatabaseHelper
 		
 		// to connect to oracle database + oracle username + oracle PW
     const host = 'db';  //service name from docker-compose.yml
-	const db = 'PharmaComp';  // database name
+	const db = 'imse_sql_db';  // database name
 	const username 	= 'devuser'; // use a + your matriculation number  
     const password 	= 'devpass'; // use your oracle db password
 	const session_mode = 'OCI_SYSDBA';

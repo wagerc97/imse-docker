@@ -14,7 +14,7 @@ services:
       MYSQL_ROOT_PASSWORD: imse4eva
       MYSQL_USER: devuser
       MYSQL_PASSWORD: devpass
-      MYSQL_DATABASE: PharmaComp
+      MYSQL_DATABASE: imse_sql_db
     ports:
       - "1521:1521"
 

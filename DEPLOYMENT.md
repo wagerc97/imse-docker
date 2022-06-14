@@ -84,7 +84,7 @@ libclntsh.so.10.1  libclntsh.so.18.1  libclntshcore.so.19.1  libnnz19.so  liboci
 ***********************************************************************  
 
 >Fatal NI connect error 12545, connecting to:
-(DESCRIPTION=(ADDRESS=(PROTOCOL=beq)(PROGRAM=/u01/oracle/product/PharmaComp/bin/oracle)(ARGV0=oracleorcl)(ARGS='(DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))')(DETAC
+(DESCRIPTION=(ADDRESS=(PROTOCOL=beq)(PROGRAM=/u01/oracle/product/imse_sql_db/bin/oracle)(ARGV0=oracleorcl)(ARGS='(DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))')(DETAC
 H=NO))(CONNECT_DATA=(CID=(PROGRAM=sqlplus)(HOST=e4eb67d8fa54)(USER=root))))
 
 >VERSION INFORMATION:
@@ -153,6 +153,6 @@ directory.
 5. Some commands to look through the DBMS:
    If the tables are filled, the DB setup was successful!
    1. ``show databases``
-   2. ``use PharmaComp``
+   2. ``use imse_sql_db``
    3. ``show tables;``
    4. ``SELECT * FROM Product;``

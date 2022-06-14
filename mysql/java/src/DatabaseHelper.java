@@ -33,11 +33,11 @@ class DatabaseHelper {
     // Database connection info
     private static final String USER = "devuser";
     private static final String PASS = "devpass";
-    private static final String DBNAME = "PharmaComp";
+    private static final String DBNAME = "imse_sql_db";
     private static final String LOCALIP = "127.0.0.1"; //localhost
 
     //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';
-    //private static final String DB_CONNECTION_URL = "jdbc:mysql://mysql8:8000/PharmaComp";
+    //private static final String DB_CONNECTION_URL = "jdbc:mysql://mysql8:8000/imse_sql_db";
   //  private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:8000/" + DBNAME;
     private static final String DB_CONNECTION_URL = "jdbc:mysql://"+LOCALIP+":8000/"+DBNAME;
 
