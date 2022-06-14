@@ -1,8 +1,3 @@
-/**********************************************************************************************
- *  This Class shall test the connection to mysql service running on the same docker container
- **********************************************************************************************/
-
-
 // CONNECTIVITY
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,13 +15,14 @@ public class TestConnection {
     private static final String PASS = "devpass";
     private static final String PASSROOT = "imse4eva";
     private static final String PATH = "..\\resources\\";
-    private static final String DBNAME = "PharmaComp";
     private static final String LOCALIP = "127.0.0.1"; //localhost
+    private static final String DBPORT = "3306";
+    private static final String DBNAME = "PharmaComp";
 
     //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';
-    //private static final String DB_CONNECTION_URL = "jdbc:mysql://mysql8:8000/PharmaComp";
-    private static final String DB_CONNECTION_URL = "jdbc:mysql://"+LOCALIP+":8000/"+DBNAME;
-    //"jdbc:mysql://localhost/" + DBNAME + "?user=" + USER + "&password=" + PASS + "&useUnicode=true&characterEncoding=UTF-8"; // 10 years ago, i guess deprecated
+    private static final String DB_CONNECTION_URL = "jdbc:mysql://"+LOCALIP+":"+DBPORT+"/"+DBNAME;
+  //  private static final String DB_CONNECTION_URL = "jdbc:mysql://127.0.0.1:3306/PharmaComp";
+  //  private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/PharmaComp";
 
 
     // The name of the class loaded from the ojdbc14.jar driver file
@@ -34,17 +30,17 @@ public class TestConnection {
 
     // We need only one Connection and one Statement during the execution => class variable
     private static Statement stmt;
-    private static Connection con;
+    private static Connection connection;
 
 
     public static void main(String[] args) {
 
-        System.out.println("[INFO] Connecting to database (with root access) ...");
+        System.out.println("[INFO] Connecting to database ...");
 
-        try (Connection con = DriverManager.getConnection(DB_CONNECTION_URL, USERROOT, PASSROOT)) { // login with root credentials
+        try (Connection connection = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASS)) {
             System.out.println("\n[SUCCESS] Connection successful!");
         } catch (SQLException e) {
-            throw new IllegalStateException("\n[FAIL] Connect to database failed!", e);
+            throw new IllegalStateException("\n[FAIL] Cannot connect to database!", e);
         }
     }
     // Getter Methods
@@ -58,7 +54,7 @@ public class TestConnection {
     public void close()  {
         try {
             stmt.close(); //clean up
-            con.close();
+            connection.close();
         } catch (Exception ignored) {}
     }
 }

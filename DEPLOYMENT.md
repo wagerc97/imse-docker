@@ -144,14 +144,15 @@ directory.
 
 1. open terminal
 2. type ``docker ps`` to check which containers are running right now
-3. type either  
-   `` docker exec -it mysql8 bash``  
+3. type    
+   `` docker exec -it xxx bash``  where xxx is the name of the mysql container
    you are now in the db-docker (...sql8 is the container name)
 4. login into the database with   
-   ``mysql -uroot -pimse4eva``  
+   User: ``mysql -udevuser -pdevpass``  
+   Root: ``mysql -uroot -pimse4eva``   
 5. Some commands to look through the DBMS:
    If the tables are filled, the DB setup was successful!
    1. ``show databases``
-   2. ``use [database name]``
+   2. ``use PharmaComp``
    3. ``show tables;``
    4. ``SELECT * FROM Product;``
