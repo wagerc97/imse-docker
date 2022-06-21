@@ -28,82 +28,82 @@ import java.sql.SQLException;
 
 // The DatabaseHelper class encapsulates the communication with our database
 class DatabaseHelper {
-    //Source: https://www.vogella.com/tutorials/MySQLJava/article.html#:~:text=To%20connect%20to%20MySQL%20from,file%20which%20we%20require%20later.
 
     // Database connection info
     private static final String USER = "devuser";
     private static final String PASS = "devpass";
     private static final String DBNAME = "imse_sql_db";
-    private static final String LOCALIP = "127.0.0.1"; //localhost
-
-    //const con_string = 'oracle-lab.cs.univie.ac.at:1521/lab';
-    //private static final String DB_CONNECTION_URL = "jdbc:mysql://mysql8:8000/imse_sql_db";
-  //  private static final String DB_CONNECTION_URL = "jdbc:mysql://localhost:8000/" + DBNAME;
-    private static final String DB_CONNECTION_URL = "jdbc:mysql://"+LOCALIP+":8000/"+DBNAME;
-
-
     private static final String PATH = "..\\resources\\";
+    private static final String DB_CONNECTION_STRING = "jdbc:mysql://sql:3306/"+DBNAME;
 
     // The name of the class loaded from the ojdbc14.jar driver file
-    //public final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
-
-    // Getter Methods
-    public String getDatabase(){return DB_CONNECTION_URL;}
-    public String getUser(){return USER;}
-    public String getPass(){return PASS;}
-    public String getPath(){return PATH;}
-
-    // We need only one Connection and one Statement during the execution => class variable
+    // class attributes
+    private static DatabaseHelper instance;
     private static Statement stmt;
-    private static Connection con;
+    private static Connection connection;
 
-    //CREATE CONNECTION
-    //DatabaseHelper() {
-    void DatabaseHelperOld() {
+    // Konstruktor
+    DatabaseHelper() {
         try {
             //Loads the class into the memory
             //Class.forName(JDBC_DRIVER);
 
             // establish connection to database
-            con = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASS);
-            stmt = con.createStatement();
-
+            //connection = DriverManager.getConnection(DB_CONNECTION_STRING, USER, PASS);
+            connection = getDatabaseConnection();
+            stmt = connection.createStatement();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    // Getter Methods
+    public String getDatabase(){return DB_CONNECTION_STRING;}
+    public String getUser(){return USER;}
+    public String getPass(){return PASS;}
+    public String getPath(){return PATH;}
 
-    DatabaseHelper() {
-        // https://mkyong.com/jdbc/how-to-connect-to-mysql-with-jdbc-driver-java/
-        // Example:
-        //conn = DriverManager.getConnection("jdbc:mysql://hostname:port/dbname","username", "password");
-        try (Connection conn = DriverManager.getConnection(DB_CONNECTION_URL, USER, PASS)) {
-            if (conn != null) {
-                System.out.println("Connected to the database!");
+
+    public static synchronized DatabaseHelper getInstance() {
+        if (instance == null) {
+            return instance = new DatabaseHelper();
+        }
+        return instance;
+    }
+
+
+    public Connection getDatabaseConnection() {
+        try {
+            Class.forName(JDBC_DRIVER);
+            if (connection == null) {
+                return connection = DriverManager.getConnection(DB_CONNECTION_STRING, USER, PASS);
             } else {
-                System.out.println("Failed to make connection!");
+                return connection;
             }
-
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
+
 
     // load the RandomHelper class
     RandomHelper rdHelper = new RandomHelper();
 
 
-
     public void close()  {
         try {
             stmt.close(); //clean up
-            con.close();
+            connection.close();
         } catch (Exception ignored) {}
     }
+
+
+
+
+/************************** DB is create through SQL script upon docker setup *******************************/
 
 
 //************************************************************************************************************
