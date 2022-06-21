@@ -9,37 +9,26 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 
-public class Main { // main class is just a class called main
+public class Main { 
 
-  public static void main(String[] args) { // THE main method where the program starts
-      System.out.println(" ===> This is Main! <===");
+  public static void main(String[] args) { 
     try {
-      // load the the DatabaseHelper
+      // Instance of Helper
       DatabaseHelper dbHelper = new DatabaseHelper();
-      //TestConnection testConn = new TestConnection();
 
-      /* CONNECTION in the main is established only via the DatabaseHelper class for security. */
-
-      // Loads the class "oracle.jdbc.driver.OracleDriver" into the memory
       Class.forName(DatabaseHelper.JDBC_DRIVER);
-      //Class.forName(TestConnection.JDBC_DRIVER);
 
       // Connection details
       String database = dbHelper.getDatabase();
       String user = dbHelper.getUser();
       String pass = dbHelper.getPass();
 
-      // Connection details for Test
-      //String testDatabase = testConn.getDatabase();
-      //String testUser = testConn.getUser();
-      //String testPass = testConn.getPass();
 
       // Establish a connection to the database
-      Connection con = DriverManager.getConnection(database, user, pass); //non test
-      //Connection con = DriverManager.getConnection(testDatabase, testUser, testPass);
+      Connection con = DriverManager.getConnection(database, user, pass);
       Statement stmt = con.createStatement();
 
-      /*
+      
       // Calls functions to fill all tables with test data
       dbHelper.insertDataRegion(stmt);           // max. 10 tuples
       dbHelper.insertDataCountry(stmt);          // max. 100 tuples
@@ -51,16 +40,15 @@ public class Main { // main class is just a class called main
       dbHelper.insertDataAdvertises(stmt);       // 100 tuples
       dbHelper.insertDataGeneral_Manager(stmt);  // 100 tuples
       dbHelper.insertDataOrders(stmt);           // 1000 tuples
-      */
+      
 
       // Clean up connections
       dbHelper.close();
-      //testConn.close();
       stmt.close();
       con.close();
+
     } catch (Exception e) {
       System.err.println(e.toString());
     }
-
   }
 }

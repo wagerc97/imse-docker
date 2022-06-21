@@ -1,3 +1,4 @@
+package side;
 // CONNECTIVITY
 import java.sql.Connection;
 import java.sql.DriverManager;

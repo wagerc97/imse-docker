@@ -1,3 +1,4 @@
+package side;
 /**********************************************************************************
  *  Adapted version from DBS which used the adapted version from moodle.
  * This is the main function that executes the functions from the DatabaseHelper.

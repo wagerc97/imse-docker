@@ -40,7 +40,7 @@ class DatabaseHelper {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
     // class attributes
-    private static DatabaseHelper instance;
+    //private static DatabaseHelper instance;   //TODO delete line
     private static Statement stmt;
     private static Connection connection;
 
@@ -57,20 +57,6 @@ class DatabaseHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    
-    // Getter Methods
-    public String getDatabase(){return DB_CONNECTION_STRING;}
-    public String getUser(){return USER;}
-    public String getPass(){return PASS;}
-    public String getPath(){return PATH;}
-
-
-    public static synchronized DatabaseHelper getInstance() {
-        if (instance == null) {
-            return instance = new DatabaseHelper();
-        }
-        return instance;
     }
 
 
@@ -92,7 +78,25 @@ class DatabaseHelper {
     // load the RandomHelper class
     RandomHelper rdHelper = new RandomHelper();
 
+        
+    // Getter Methods
+    public String getDatabase(){return DB_CONNECTION_STRING;}
+    public String getUser(){return USER;}
+    public String getPass(){return PASS;}
+    public String getPath(){return PATH;}
 
+
+    /*
+    // Save method to get Instance of class object
+    public static synchronized DatabaseHelper getInstance() {
+        if (instance == null) {
+            return instance = new DatabaseHelper();
+        }
+        return instance;
+    } */
+
+
+    // Clean up
     public void close()  {
         try {
             stmt.close(); //clean up
@@ -556,4 +560,4 @@ class DatabaseHelper {
     }
 
 
-} // end of class
+}

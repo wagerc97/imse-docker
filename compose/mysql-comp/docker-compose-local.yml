@@ -31,6 +31,13 @@ services:
     ports:
       - "8000:80"
 
+  database_filling:
+    build: ../../mysql/db_filling
+    container_name: db_filling
+    depends_on:
+      - db
+    
+
   #java:
   #  build:
   #    context: ../../mysql/java
