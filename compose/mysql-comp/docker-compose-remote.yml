@@ -31,16 +31,16 @@ services:
     ports:
       - "8000:80"
 
-  java:
-    build:
-      context: https://github.com/wagerc97/imse-docker.git#master
-      dockerfile: ../../mysql/java/Dockerfile
-    container_name: java-cont
-    depends_on:
-      - db
-    volumes:
-      - ../../mysql/java/:/var/java/
-    #stdin_open: true
-    tty: true
-    ports:
-      - "8080:8080"
+  #java:
+  #  build:
+  #    context: https://github.com/wagerc97/imse-docker.git#master
+  #    dockerfile: ../../mysql/java/Dockerfile
+  #  container_name: java-cont
+  #  depends_on:
+  #    - db
+  #  volumes:
+  #    - ../../mysql/java/:/var/java/
+  #  #stdin_open: true
+  #  tty: true
+  #  ports:
+  #    - "8080:8080"

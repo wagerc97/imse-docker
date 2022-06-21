@@ -31,17 +31,17 @@ services:
     ports:
       - "8000:80"
 
-  java:
-    build:
-      context: ../../mysql/java
-      dockerfile: Dockerfile
-    container_name: javacont
-    #restart: on-failure #turn off during development
-    depends_on:
-      - db
-    volumes:
-      - ../../mysql/java/:/var/java/
-    #stdin_open: true
-    tty: true
-    ports:
-      - "8080:8080"
+  #java:
+  #  build:
+  #    context: ../../mysql/java
+  #    dockerfile: Dockerfile
+  #  container_name: javacont
+  #  #restart: on-failure #turn off during development
+  #  depends_on:
+  #    - db
+  #  volumes:
+  #    - ../../mysql/java/:/var/java/
+  #  #stdin_open: true
+  #  tty: true
+  #  ports:
+  #    - "8080:8080"
