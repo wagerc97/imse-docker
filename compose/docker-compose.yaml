@@ -4,6 +4,7 @@ services:
   db:
     # no Dockerfile needed
     image: mysql:latest
+    container_name: db
     environment:
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_DATABASE=imse_sql_db
@@ -14,12 +15,18 @@ services:
     restart: always
     expose:
     - "3306"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3306"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   db_import:
     build:
       # go to db_import directory to automatically find Dockerfile 
       context: ../python
       dockerfile: Dockerfile
+    container_name: db_import
     environment:
     - DB_URI=mysql://devuser:devpass@db:3306/imse_sql_db
     volumes:
@@ -28,14 +35,18 @@ services:
     networks:
     - default
     expose:
-    - 80
+    - "80"
+    restart: on-failure
     depends_on:
+    - db
+    links: 
     - db
     
   web:
     build:
       context: ../php
       dockerfile: Dockerfile
+    container_name: web
     restart: on-failure
     volumes:
       - ../php/html:/var/www/html/

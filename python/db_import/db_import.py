@@ -15,7 +15,7 @@ connection_string = os.environ.get('DB_URI', 'sqlite:////data/database.sqlite')
 
 
 # Wait for docker network to eventually setup 
-time.sleep(3) # wait for db to be up
+time.sleep(10) # wait for db to be up
               # could be fancier if we tried to connect to the databse via tcp
               # and kept retrying until the connection doesn't get dropped anymore.
 
@@ -47,13 +47,13 @@ tableClient = Table(
 
 tableRegion = Table(
     'Region', meta,
-    Column("ID_region",     Integer(),  primary_key=True),  # auto increment 
+    Column("ID_region",     Integer(),  primary_key=True),  # auto increment ?
     Column("Region_Name",   String(25), nullable=False)
 )
 
 tableCountry = Table(
     'Country', meta,
-    Column("Country_Name",  String(25),  primary_key=True),  # auto increment 
+    Column("Country_Name",  String(25),  primary_key=True),  # auto increment ?
     Column("ID_region",     Integer(), nullable=False)
 )
 
@@ -94,7 +94,7 @@ with open("/csv/test.csv") as file:
     with sqlengine.begin() as transaction:
         insert_stmt = sa.insert(table).values(content)
         ret = transaction.execute(insert_stmt)
-    logging.info(f'Inserted {ret.rowcount} rows into {table.name}')
+    logging.info(f'Inserted {ret.rowcount} rows into table {table.name}')
 
 
 ### INSERT ###
@@ -113,4 +113,4 @@ with open("/resources/.csv") as file:
     with sqlengine.begin() as transaction:
         insert_stmt = sa.insert(table).values(content)
         ret = transaction.execute(insert_stmt)
-    logging.info(f'Inserted {ret.rowcount} rows into {table.name}')
+    logging.info(f'Inserted {ret.rowcount} rows into table {table.name}')
