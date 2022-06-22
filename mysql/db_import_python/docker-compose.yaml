@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+
+  db_import:
+    build:
+      context: db_import
+    environment:
+    - DB_URI=mysql://my_user:my_password@db:3306/my_database
+    volumes:
+    - ./csv:/csv
+    networks:
+    - default
+    expose:
+    - 80
+    depends_on:
+    - db
+
+  db:
+    image: mysql:latest
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=my_database
+    - MYSQL_USER=my_user
+    - MYSQL_PASSWORD=my_password
+    networks:
+    - default
+    expose:
+    - "3306"
+    
+networks:
+  default:
+
