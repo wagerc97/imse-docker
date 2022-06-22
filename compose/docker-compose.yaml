@@ -2,7 +2,6 @@ version: '3.3'
 services:
 
   db:
-    # no Dockerfile needed
     image: mysql:latest
     container_name: db
     environment:
@@ -17,13 +16,12 @@ services:
     - "3306"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3306"]
-      interval: 30s
+      interval: 20s
       timeout: 10s
       retries: 5
 
   db_import:
     build:
-      # go to db_import directory to automatically find Dockerfile 
       context: ../python
       dockerfile: Dockerfile
     container_name: db_import

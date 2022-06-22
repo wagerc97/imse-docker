@@ -5,57 +5,17 @@ import time
 import csv
 import logging
 import http
-import sqlalchemy as sa
-from sqlalchemy import Column, Integer, String, Table
-
+#import sqlalchemy as sa
+from sqlalchemy import* # Column, Integer, String, Table, ForeignKey
 
 # Logging
 logging.basicConfig(level=logging.INFO)
-connection_string = os.environ.get('DB_URI', 'sqlite:////data/database.sqlite')
 
 
 # Wait for docker network to eventually setup 
 time.sleep(10) # wait for db to be up
               # could be fancier if we tried to connect to the databse via tcp
               # and kept retrying until the connection doesn't get dropped anymore.
-
-# ???
-# server = http.server.HTTPServer(('0.0.0.0', 80))
-
-
-#################
-# Create TABLES #
-#################
-
-meta = sa.MetaData() # holds all db information
-
-# Build tables
-tableT = Table(
-    'T', meta,
-    Column("id", sa.Text()),
-    Column("a",  sa.Text()),
-    Column("b",  sa.Text()),
-    Column("c",  sa.Text()),
-)
-
-tableClient = Table(
-    'Client', meta,
-    Column("ID_client",      Integer(),  primary_key=True), 
-    Column("Client_Name",    String(50), nullable=False), 
-    Column("Country_Name",   String(25), nullable=False) 
-)
-
-tableRegion = Table(
-    'Region', meta,
-    Column("ID_region",     Integer(),  primary_key=True),  # auto increment ?
-    Column("Region_Name",   String(25), nullable=False)
-)
-
-tableCountry = Table(
-    'Country', meta,
-    Column("Country_Name",  String(25),  primary_key=True),  # auto increment ?
-    Column("ID_region",     Integer(), nullable=False)
-)
 
 
 
@@ -64,13 +24,54 @@ tableCountry = Table(
 #######################
 
 # the database connection
-sqlengine = sa.create_engine(connection_string) 
+connection_string = os.environ.get('DB_URI', 'sqlite:////data/database.sqlite')
+
+sqlengine = create_engine(connection_string) 
+
+
+
+
+#################
+# Create TABLES #
+#################
+
+meta = MetaData(sqlengine) # holds all db information
+
+# Build tables
+tableT = Table( 'T', meta,
+    Column("id", Text()),
+    Column("a",  Text()),
+    Column("b",  Text()),
+    Column("c",  Text()),
+)
+
+tableClient = Table('Client', meta,
+    Column("ID_client",      Integer(),  primary_key=True), 
+    Column("Client_Name",    String(50), nullable=False), 
+    Column("Country_Name",   String(25), nullable=False) 
+)
+
+#tableClient.create(sqlengine)
+
+tableRegion = Table('Region', meta,
+    Column("ID_region",     Integer(),  primary_key=True),  # auto increment ?
+    Column("Region_Name",   String(25), nullable=False)
+)
+
+tableCountry = Table('Country', meta,
+    Column("Country_Name",  String(25), primary_key=True),  # auto increment ?
+    Column("ID_region",     Integer(),  ForeignKey("Region.ID_region"))
+)
+
+
 
 # create all tables
 meta.create_all(sqlengine) 
 
 # connect to database 
 db_connection = sqlengine.connect()
+
+# https://www.pythonsheets.com/notes/python-sqlalchemy.html 
 
 
 
@@ -92,7 +93,7 @@ with open("/csv/test.csv") as file:
     ]
 
     with sqlengine.begin() as transaction:
-        insert_stmt = sa.insert(table).values(content)
+        insert_stmt = insert(table).values(content)
         ret = transaction.execute(insert_stmt)
     logging.info(f'Inserted {ret.rowcount} rows into table {table.name}')
 
@@ -111,6 +112,6 @@ with open("/resources/.csv") as file:
     ]
 
     with sqlengine.begin() as transaction:
-        insert_stmt = sa.insert(table).values(content)
+        insert_stmt = insert(table).values(content)
         ret = transaction.execute(insert_stmt)
     logging.info(f'Inserted {ret.rowcount} rows into table {table.name}')
