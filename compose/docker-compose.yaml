@@ -18,11 +18,12 @@ services:
   db_import:
     build:
       # go to db_import directory to automatically find Dockerfile 
-      context: db_import
+      context: ../python
       dockerfile: Dockerfile
     environment:
     - DB_URI=mysql://devuser:devpass@db:3306/imse_sql_db
     volumes:
+    - ../python/db_import/csv:/csv
     - ../python/db_import/resources:/resources
     networks:
     - default

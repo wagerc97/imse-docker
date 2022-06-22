@@ -6,7 +6,7 @@ RUN apk --no-cache add \
   py3-sqlalchemy \
   py3-mysqlclient \
   && mkdir -p /opt/db_import
-COPY db_import.py /opt/db_import/db_import.py
+COPY db_import/db_import.py /opt/db_import/db_import.py
 
 # The following does the following (in order)
 # 1. expose port 80 of this container by default
