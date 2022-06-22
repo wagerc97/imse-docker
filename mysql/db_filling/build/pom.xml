@@ -71,13 +71,7 @@
             <artifactId>checkstyle-rules</artifactId>
             <version>4.8.0</version>
           </dependency>
-          <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc</artifactId>
-            <version>8</version>
-            <!-- <scope>system</scope> -->
-            <!-- <systemPath>\src\resources\ojdbc8.jar</systemPath> -->
-          </dependency>
+
         </dependencies>
         <configuration>
           <configLocation>com/github/ngeor/checkstyle.xml</configLocation>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.39">
+<file name="C:\Users\clemens\VSCodeProjects\imse-docker\mysql\db_filling\build\src\main\java\com\imse\DatabaseHelper.java">
+<error line="20" column="1" severity="error" message="Falsche Reihenfolge des Imports von &apos;java.sql.*&apos;." source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="20" column="1" severity="error" message="Zusätzliche Trennung in der Importgruppe vor &apos;java.sql.*&apos;" source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="20" column="16" severity="error" message="Stern-Importe der Form &apos;.*&apos; sollten vermieden werden - java.sql.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="32" column="1" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="44" column="5" severity="error" message="Fehlerhafte Deklarationsreihenfolge für diesen Scope." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="52" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="61" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="66" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="70" column="35" severity="error" message="Innere Zuweisungen sollten vermieden werden." source="com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck"/>
+<error line="74" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="81" column="5" severity="error" message="Die Instanz-Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="81" column="18" severity="error" message="Das Feld &apos;rdHelper&apos; muss als private deklariert werden und Zugriffsmethoden haben." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="111" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="115" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="119" severity="error" message="Der erste Satz sollte mit einem Punkt enden." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="130" column="5" severity="error" message="Die Instanz-Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="130" column="23" severity="error" message="Das Feld &apos;countryBuff&apos; muss als private deklariert werden und Zugriffsmethoden haben." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="132" column="5" severity="error" message="Die Instanz-Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="132" column="24" severity="error" message="Das Feld &apos;markBuff&apos; muss als private deklariert werden und Zugriffsmethoden haben." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="134" column="5" severity="error" message="Die Instanz-Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="134" column="24" severity="error" message="Das Feld &apos;regBuff&apos; muss als private deklariert werden und Zugriffsmethoden haben." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="136" column="5" severity="error" message="Die Instanz-Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="136" column="24" severity="error" message="Das Feld &apos;clientBuff&apos; muss als private deklariert werden und Zugriffsmethoden haben." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="138" column="5" severity="error" message="Die Instanz-Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="138" column="23" severity="error" message="Das Feld &apos;prodBuff&apos; muss als private deklariert werden und Zugriffsmethoden haben." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="141" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="141" column="44" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="155" column="72" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="164" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="175" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="181" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="181" column="45" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="193" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="197" column="84" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="203" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="214" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="220" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="220" column="44" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="224" column="13" severity="error" message="Der Bezeichner &apos;count_id&apos; entspricht nicht dem Muster &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+<error line="227" column="29" severity="error" message="Die magische Zahl &apos;1000&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="237" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="248" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="254" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="254" column="45" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="267" column="111" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="269" column="38" severity="error" message="Die magische Zahl &apos;3&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="274" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="286" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="292" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="292" column="46" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="304" column="69" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="305" column="71" severity="error" message="Der Kommentar hat eine unerwartete Einrückungstiefe von 70 (erwartet: 24) und sollte auf der gleichen Höhe liegen wie Zeile 306." source="com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck"/>
+<error line="306" column="80" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="307" column="77" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="308" column="50" severity="error" message="Die magische Zahl &apos;3&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="313" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="324" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="330" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="330" column="46" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="342" severity="error" message="Zeile ist 127 Zeichen lang (Obergrenze ist 120)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="344" column="106" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="345" column="42" severity="error" message="Die magische Zahl &apos;3&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="345" column="68" severity="error" message="Die magische Zahl &apos;4&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="345" column="102" severity="error" message="Die magische Zahl &apos;5&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="351" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="362" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="368" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="368" column="51" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="380" column="30" severity="error" message="Überflüssige Klammern um den Ausdruck." source="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"/>
+<error line="380" column="35" severity="error" message="Die magische Zahl &apos;20&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="381" column="99" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="382" column="37" severity="error" message="Die magische Zahl &apos;20&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="387" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="398" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="404" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="404" column="48" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="415" column="94" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="421" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="432" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="438" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="438" column="53" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="448" column="29" severity="error" message="Die magische Zahl &apos;5&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="450" column="100" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="456" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="467" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="473" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="473" column="44" severity="error" message="Die Variable &apos;stmt&apos; verbirgt ein Feld." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
+<error line="484" column="56" severity="error" message="Die magische Zahl &apos;9&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="485" column="56" severity="error" message="Die magische Zahl &apos;9&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="491" column="100" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="492" severity="error" message="Zeile ist 121 Zeichen lang (Obergrenze ist 120)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="492" column="112" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="494" severity="error" message="Zeile ist 124 Zeichen lang (Obergrenze ist 120)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="495" severity="error" message="Zeile ist 124 Zeichen lang (Obergrenze ist 120)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="495" column="114" severity="error" message="Der Kommentar hat eine unerwartete Einrückungstiefe von 113 (erwartet: 32) und sollte auf der gleichen Höhe liegen wie Zeile 496." source="com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck"/>
+<error line="496" severity="error" message="Zeile ist 125 Zeichen lang (Obergrenze ist 120)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="496" column="116" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="497" severity="error" message="Zeile ist 122 Zeichen lang (Obergrenze ist 120)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="498" severity="error" message="Zeile ist 127 Zeichen lang (Obergrenze ist 120)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+<error line="498" column="118" severity="error" message="Der Kommentar hat eine unerwartete Einrückungstiefe von 117 (erwartet: 32) und sollte auf der gleichen Höhe liegen wie Zeile 499." source="com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck"/>
+<error line="499" column="86" severity="error" message="&apos;+&apos; sollte in einer neuen Zeile stehen." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
+<error line="500" column="51" severity="error" message="Die magische Zahl &apos;1000&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="500" column="68" severity="error" message="Die magische Zahl &apos;100&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="500" column="76" severity="error" message="Die magische Zahl &apos;10&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="505" column="15" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="516" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="528" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="536" column="19" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="539" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="546" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="546" column="57" severity="error" message="Der Bezeichner &apos;DELIMITER&apos; entspricht nicht dem Muster &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"/>
+</file>
+<file name="C:\Users\clemens\VSCodeProjects\imse-docker\mysql\db_filling\build\src\main\java\com\imse\Main.java">
+<error line="14" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="14" column="1" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="14" column="1" severity="error" message="Hilfsklassen sollten keinen Standard-Konstruktur und keinen als public deklarierten Konstruktor haben." source="com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"/>
+<error line="14" column="1" severity="error" message="Vor &apos;CLASS_DEF&apos; steht mehr als eine leere Zeile." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
+<error line="16" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="16" column="3" severity="error" message="&apos;method def modifier&apos; hat eine unerwartete Einrückungstiefe von 2 (erwartet: 4)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="16" column="3" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="18" column="5" severity="error" message="&apos;try&apos; hat eine unerwartete Einrückungstiefe von 4 (erwartet: 8)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="21" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="23" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="26" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="27" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="28" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="31" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="32" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="33" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="35" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="36" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="37" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="38" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="39" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="40" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="41" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="42" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="43" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="44" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="45" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="48" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="49" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="50" column="7" severity="error" message="Das Unterelement von &apos;try&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="52" column="5" severity="error" message="&apos;try rcurly&apos; hat eine unerwartete Einrückungstiefe von 4 (erwartet: 8)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="52" column="7" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="53" column="7" severity="error" message="Das Unterelement von &apos;catch&apos; hat eine unerwartete Einrückungstiefe von 6 (erwartet: 12)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="54" column="5" severity="error" message="&apos;catch rcurly&apos; hat eine unerwartete Einrückungstiefe von 4 (erwartet: 8)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="55" column="3" severity="error" message="&apos;method def rcurly&apos; hat eine unerwartete Einrückungstiefe von 2 (erwartet: 4)." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+</file>
+<file name="C:\Users\clemens\VSCodeProjects\imse-docker\mysql\db_filling\build\src\main\java\com\imse\RandomHelper.java">
+<error line="1" severity="error" message="Datei endet nicht mit einem Zeilenumbruch." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="3" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="14" column="1" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+<error line="20" column="5" severity="error" message="Die statische Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="20" column="33" severity="error" message="Der Bezeichner &apos;firstNameFile&apos; entspricht nicht dem Muster &apos;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+<error line="21" column="5" severity="error" message="Die statische Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="21" column="33" severity="error" message="Der Bezeichner &apos;lastNameFile&apos; entspricht nicht dem Muster &apos;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+<error line="22" column="5" severity="error" message="Die statische Variable wird an der falschen Stelle deklariert." source="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"/>
+<error line="22" column="33" severity="error" message="Der Bezeichner &apos;coursesFile&apos; entspricht nicht dem Muster &apos;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+<error line="25" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="33" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="37" column="32" severity="error" message="Überflüssige Klammern um die rechte Seite der Zuweisung." source="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"/>
+<error line="59" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+<error line="61" column="29" severity="error" message="Die magische Zahl &apos;10&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="78" column="19" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="82" column="11" severity="error" message="Die Exception &apos;Exception&apos; darf nicht abgefangen werden." source="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"/>
+<error line="90" column="43" severity="error" message="Die magische Zahl &apos;128&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="91" column="9" severity="error" message="Das Konstrukt &apos;for&apos; muss geschweifte Klammern &apos;{}&apos; verwenden." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="91" column="22" severity="error" message="Die magische Zahl &apos;48&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="91" column="31" severity="error" message="Die magische Zahl &apos;57&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="92" column="9" severity="error" message="Das Konstrukt &apos;for&apos; muss geschweifte Klammern &apos;{}&apos; verwenden." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="92" column="22" severity="error" message="Die magische Zahl &apos;65&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="92" column="31" severity="error" message="Die magische Zahl &apos;90&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="93" column="9" severity="error" message="Das Konstrukt &apos;for&apos; muss geschweifte Klammern &apos;{}&apos; verwenden." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="93" column="22" severity="error" message="Die magische Zahl &apos;97&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="93" column="31" severity="error" message="Die magische Zahl &apos;122&apos; sollte als Konstante definiert werden." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="98" column="5" severity="error" message="Es fehlt ein Javadoc-Kommentar." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+<file name="C:\Users\clemens\VSCodeProjects\imse-docker\mysql\db_filling\build\src\test\java\com\imse\AppTest.java">
+</file>
+</checkstyle>

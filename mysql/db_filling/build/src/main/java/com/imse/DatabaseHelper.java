@@ -175,7 +175,7 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    }
 
     // insert 21 rows
     public void insertDataCountry(Statement stmt) {
