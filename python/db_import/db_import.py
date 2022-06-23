@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 # Wait for docker network to eventually setup 
-time.sleep(10) # wait for db to be up
+time.sleep(5) # wait for db to be up
               # could be fancier if we tried to connect to the databse via tcp
               # and kept retrying until the connection doesn't get dropped anymore.
 
@@ -27,15 +27,22 @@ time.sleep(10) # wait for db to be up
 
 # the database connection
 connection_string = os.environ.get('DB_URI_SERVER', 'sqlite:////data/database.sqlite')
-sqlengine = sa.create_engine(connection_string, echo=False) 
-meta = sa.MetaData() # holds all db information
+engine = sa.create_engine(connection_string, echo=False) 
+metadata = sa.MetaData() # holds all db information
 
 
 ###################
 # Drop all TABLES #
 ###################
+inspector = sa.inspect(engine)
+print("First Inspector\n", inspector)
 
-meta.drop_all(sqlengine, checkfirst=True)
+metadata.drop_all(engine, checkfirst=True)
+inspector = sa.inspect(engine)
+print("Second Inspector\n", inspector)
+
+
+
 
 #################
 # Create TABLES #
@@ -44,30 +51,36 @@ meta.drop_all(sqlengine, checkfirst=True)
 tablesToCreate = ["Region", "Country", "Client", "Product", "Campaign", "Employee", "Marketing_emp", "Advertises", "General_Manager", "Orders"]
 tableIdDictionary = {}
 
+#################################################################################################
+#                                                                                               #
+### write it like this: https://discuss.dizzycoding.com/how-to-delete-a-table-in-sqlalchemy/  ###
+#                                                                                               #
+#################################################################################################
+
 
 # Test tables
-tableT = sa.Table( 'T', meta,
+tableT = sa.Table( 'T', metadata,
     sa.Column("id", sa.Text()),
     sa.Column("a",  sa.Text()),
     sa.Column("b",  sa.Text()),
     sa.Column("c",  sa.Text()),
 )
 
-tableRegion = sa.Table('Region', meta,
+tableRegion = sa.Table('Region', metadata,
     sa.Column("ID_region",     sa.Integer(),  primary_key=True),  # auto increment
     sa.Column("Region_Name",   sa.String(25), nullable=False)
 )
 tableIdDictionary[tableRegion]=1
 
 
-tableCountry = sa.Table('Country', meta,
+tableCountry = sa.Table('Country', metadata,
     sa.Column("Country_Name",  sa.String(25), primary_key=True),  # auto increment
     sa.Column("ID_region",     sa.Integer(),  sa.ForeignKey("Region.ID_region"))
 )
 tableIdDictionary[tableCountry]=1
 
 
-tableClient = sa.Table('Client', meta,
+tableClient = sa.Table('Client', metadata,
     sa.Column("ID_client",      sa.Integer(),  primary_key=True), 
     sa.Column("Client_Name",    sa.String(50), nullable=False), 
     sa.Column("Country_Name",   sa.String(25), nullable=False) 
@@ -77,10 +90,10 @@ tableIdDictionary[tableClient]=1
 
 
 # create all tables
-meta.create_all(sqlengine, checkfirst=True)
+metadata.create_all(engine, checkfirst=True)
 
 # connect to database 
-db_connection = sqlengine.connect()
+db_connection = engine.connect()
 
 time.sleep(5)
 
@@ -122,54 +135,51 @@ random.seed(42)
 
 
 ### TEST ###
-try:
-    with open("/csv/test.csv") as file:
-        content = csv.reader(file)
-        content = [
-            {
-                'id': line[0],
-                'a':  line[1],
-                'b':  line[2],
-                'c':  line[3],
-            }
-            for line in content if line
-        ]
+with open("/csv/test.csv") as file:
+    content = csv.reader(file)
+    content = [
+        {
+            'id': line[0],
+            'a':  line[1],
+            'b':  line[2],
+            'c':  line[3],
+        }
+        for line in content if line
+    ]
 
-        with sqlengine.begin() as transaction:
-            insert_stmt = sa.insert(tableT).values(content)
-            #ret = transaction.execute(insert_stmt)
-        #logging.info(f'Inserted {ret.rowcount} rows into table {tableT.name}')
+    with engine.begin() as transaction:
+        insert_stmt = sa.insert(tableT).values(content)
+        ret = transaction.execute(insert_stmt)
+    logging.info(f'Inserted {ret.rowcount} rows into table {tableT.name}')
 
-except: 
+'''except: 
     print(f"Error while inserting into table {tableT.name}")
     logging.info(f'[LOG] Error: Could not insert into table {tableT.name}')
 
-
+'''
 
 ### INSERT ###
 
 csvList = ["regions", "countries", "client_names", "products", "campaigns", "marketing_occupations", "advertises", "general_managers_id", "order_dates"]
 
-try:
-    for table in tableIdDictionary.keys():
 
-        with open("/resources/regions.csv") as file:
-            content = csv.reader(file)
-            content = [
-                {
-                    'ID_region': autoIncrement(table),
-                    'Region_Name': line[0]
-                }
-                for line in content if line
-            ]
+with open("/resources/regions.csv") as file:
+    content = csv.reader(file)
+    content = [
+        {
+            'ID_region': autoIncrement(tableRegion),
+            'Region_Name': line[0]
+        }
+        for line in content if line
+    ]
 
-            with sqlengine.begin() as transaction:
-                insert_stmt = sa.insert( table ).values(content)
-                ret = transaction.execute(insert_stmt)
-            logging.info(f'Inserted {ret.rowcount} rows into table { table.name }')
-        break 
-    # db_import    | [parameters: (1, 'DACH Region', 2, 'British Isles', 3, 'BeNeLux states', 4, 'Nordic Region', 5, 'CEE
+    with engine.begin() as transaction:
+        insert_stmt = sa.insert( tableRegion ).values(content)
+        ret = transaction.execute(insert_stmt)
+    logging.info(f'Inserted {ret.rowcount} rows into table { tableRegion.name }')
 
-except:
+
+'''except:
     print(f"Error while inserting into table {tableT.name}")
     logging.info(f'[LOG] Error: Could not insert into table {tableT.name}')
+'''

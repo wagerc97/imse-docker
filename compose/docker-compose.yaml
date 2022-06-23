@@ -30,11 +30,7 @@ services:
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_DATABASE=imse_sql_db
     - MYSQL_USER=devuser
-    - MYSQL_PASSWORD=devpass    
-
-    # Online Server credentials
-
-
+    - MYSQL_PASSWORD=devpass 
     volumes:
     - ../python/db_import/csv:/csv
     - ../python/db_import/resources:/resources

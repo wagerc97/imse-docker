@@ -6,5 +6,5 @@
 dump
 /dump
 /dump/
-.vscode
-.env
+*.vscode
+*.env
