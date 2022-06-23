@@ -26,7 +26,23 @@ services:
       dockerfile: Dockerfile
     container_name: db_import
     environment:
-    - DB_URI=mysql://devuser:devpass@db:3306/imse_sql_db
+    # Docker
+    - DB_URI_DOCKER=mysql://devuser:devpass@db:3306/imse_sql_db
+    # Docker MySql credentials
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=imse_sql_db
+    - MYSQL_USER=devuser
+    - MYSQL_PASSWORD=devpass    
+
+    # Online Server
+    - DB_URI_SERVER=mysql://sql11501710:11IIzf3ue4@sql11.freemysqlhosting.net:3306/sql11501710
+    # Online Server credentials
+    - Server=sql11.freemysqlhosting.net
+    - Name=sql11501710
+    - Username=sql11501710
+    - Password=11IIzf3ue4
+    - Port=3306
+
     volumes:
     - ../python/db_import/csv:/csv
     - ../python/db_import/resources:/resources
@@ -34,11 +50,11 @@ services:
     - default
     expose:
     - "80"
-    restart: on-failure
-    depends_on:
-    - db
-    links: 
-    - db
+    #restart: on-failure
+    #depends_on:
+    #- db
+    #links: 
+    #- db
     
   web:
     build:

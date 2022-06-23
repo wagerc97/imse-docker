@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  db_import:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server_db_import
+    environment:
+   #- DB_URI=mysql://<username>:<password>@<dbserver>:<port>/<dbname>
+    - DB_URI=mysql://sql11501710:11IIzf3ue4@sql11.freemysqlhosting.net:3306/sql11501710
+    #Server: sql11.freemysqlhosting.net
+    #Name: sql11501710
+    #Username: sql11501710
+    #Password: 11IIzf3ue4
+    #Port number: 3306
+    volumes:
+    - ./db_import/csv:/csv
+    - ./db_import/resources:/resources
+    expose:
+    - "80"
+    

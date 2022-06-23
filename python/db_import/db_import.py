@@ -4,9 +4,11 @@ import os
 import time
 import csv
 import logging
-import http
-import sqlalchemy as sa
-#from sqlalchemy import sa.Column, sa.Integer, sa.String, Sa.Table, Sa.ForeignKey, sa.create_engine, sa.MetaData, sa.Text, sa.insert
+from regex import P
+#import http
+#from pyrsistent import T
+import sqlalchemy as sa  # ORM library
+import random
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -24,34 +26,26 @@ time.sleep(10) # wait for db to be up
 #######################
 
 # the database connection
-connection_string = os.environ.get('DB_URI', 'sqlite:////data/database.sqlite')
-sqlengine = sa.create_engine(connection_string) 
+connection_string = os.environ.get('DB_URI_SERVER', 'sqlite:////data/database.sqlite')
+sqlengine = sa.create_engine(connection_string, echo=True) 
 meta = sa.MetaData() # holds all db information
 
-autoIncrementScore = 1
 
+###################
+# Drop all TABLES #
+###################
+
+meta.drop_all(sqlengine, checkfirst=True)
 
 #################
 # Create TABLES #
 #################
 
 tablesToCreate = ["Region", "Country", "Client", "Product", "Campaign", "Employee", "Marketing_emp", "Advertises", "General_Manager", "Orders"]
-# https://stackoverflow.com/questions/33053241/sqlalchemy-if-table-does-not-exist
-#allTableCreations = [meta.tables.keys()]
-for t in meta.tables.keys():  # traverse over all tables in metaData
-    if not sqlengine.dialect.has_table(sqlengine, tablesToCreate[]):  # If table don't exist, Create.
-        meta = sa.MetaData(sqlengine)
-
-        # Create a table with the appropriate Columns
-        Table(Variable_tableName, metadata,
-            Column('Id', Integer, primary_key=True, nullable=False), 
-            Column('Date', Date), Column('Country', String),
-            Column('Brand', String), Column('Price', Float))
-        # Implement the creation
-meta.create_all()
+tableIdDictionary = {}
 
 
-# Build tables
+# Test tables
 tableT = sa.Table( 'T', meta,
     sa.Column("id", sa.Text()),
     sa.Column("a",  sa.Text()),
@@ -60,26 +54,30 @@ tableT = sa.Table( 'T', meta,
 )
 
 tableRegion = sa.Table('Region', meta,
-    sa.Column("ID_region",     sa.Integer(),  primary_key=True),  # auto increment ?
+    sa.Column("ID_region",     sa.Integer(),  primary_key=True),  # auto increment
     sa.Column("Region_Name",   sa.String(25), nullable=False)
 )
-#tables_dict.add(tableRegion:autoIncrementScore)
+tableIdDictionary[tableRegion]=1
+
 
 tableCountry = sa.Table('Country', meta,
-    sa.Column("Country_Name",  sa.String(25), primary_key=True),  # auto increment ?
+    sa.Column("Country_Name",  sa.String(25), primary_key=True),  # auto increment
     sa.Column("ID_region",     sa.Integer(),  sa.ForeignKey("Region.ID_region"))
 )
+tableIdDictionary[tableCountry]=1
+
 
 tableClient = sa.Table('Client', meta,
     sa.Column("ID_client",      sa.Integer(),  primary_key=True), 
     sa.Column("Client_Name",    sa.String(50), nullable=False), 
     sa.Column("Country_Name",   sa.String(25), nullable=False) 
 )
+tableIdDictionary[tableClient]=1
 
 
 
 # create all tables
-meta.create_all(sqlengine) 
+meta.create_all(sqlengine, checkfirst=True)
 
 # connect to database 
 db_connection = sqlengine.connect()
@@ -95,47 +93,33 @@ time.sleep(5)
 # Database HELPER functions  #
 ##############################
 
-# temporary --> define with tables above
-tables_ID_dict = { #key=table : value=autoIncrementScore
-    tableRegion : autoIncrementScore, 
-    tableCountry : autoIncrementScore,
-    tableClient : autoIncrementScore,
-    "Product" : autoIncrementScore,
-    "Campaign" : autoIncrementScore,
-    "Employee" : autoIncrementScore,
-    "Marketing_emp" : autoIncrementScore,
-    "Advertises" : autoIncrementScore,
-    "General_Manager" : autoIncrementScore,
-    "Orders" : autoIncrementScore
-    }
-
-
 
 def autoIncrement(tableName):
-    autoIncrementScore = tables_ID_dict[tableName] # store current value
-    tables_ID_dict[tableName] += 1
+    autoIncrementScore = tableIdDictionary[tableName] # store current value
+    tableIdDictionary[tableName] += 1  # increment
     return autoIncrementScore
     
-
-
+random.seed(42)
 
 
 ###############################
 # Database INSERT statements  #
 ###############################
-"""
-# order of insertion #
-Region
-Country
-Client
-Product
-Campaign
-Employee
-Marketing_emp
-Advertises
-General_Manager
-Orders
-"""
+
+''' # my insert notes
+
+    tableRegion :       all rows
+    tableCountry :      all rows
+    tableClient :         MAKE list of only names, random numbers from countries
+    "Product" :         all rows (no IDs?)
+    "Campaign" :        all rows (BUT prodcut id changed? datatime format?)
+    "Employee" :        all rows
+    "Marketing_emp" :     id_employee+20, occupations from csv
+    "Advertises" :      all rows (BUT id product changed?)
+    "General_Manager" : all rows 
+    "Orders" :            omg such complicated, need lots of buffers
+'''
+
 
 ### TEST ###
 try:
@@ -156,26 +140,36 @@ try:
             ret = transaction.execute(insert_stmt)
         logging.info(f'Inserted {ret.rowcount} rows into table {tableT.name}')
 
+except: 
+    print(f"Error while inserting into table {tableT.name}")
+    logging.info(f'[LOG] Error: Could not insert into table {tableT.name}')
 
-    ### INSERT ###
-    for tableName in tables_ID_dict.keys():
+
+
+### INSERT ###
+
+csvList = ["regions", "countries", "client_names", "products", "campaigns", "marketing_occupations", "advertises", "general_managers_id", "order_dates"]
+
+try:
+    for table in tableIdDictionary.keys():
 
         with open("/resources/regions.csv") as file:
             content = csv.reader(file)
             content = [
                 {
-                    'ID_region': autoIncrement(tableName),
+                    'ID_region': autoIncrement(table),
                     'Region_Name': line[0]
                 }
                 for line in content if line
             ]
 
             with sqlengine.begin() as transaction:
-                insert_stmt = sa.insert( tableName ).values(content)
+                insert_stmt = sa.insert( table ).values(content)
                 ret = transaction.execute(insert_stmt)
-            logging.info(f'Inserted {ret.rowcount} rows into table { tableName.name }')
+            logging.info(f'Inserted {ret.rowcount} rows into table { table.name }')
         break 
     # db_import    | [parameters: (1, 'DACH Region', 2, 'British Isles', 3, 'BeNeLux states', 4, 'Nordic Region', 5, 'CEE
 
 except:
-
+    print(f"Error while inserting into table {tableT.name}")
+    logging.info(f'[LOG] Error: Could not insert into table {tableT.name}')

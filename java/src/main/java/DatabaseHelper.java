@@ -185,6 +185,7 @@ class DatabaseHelper {
             } catch (Exception e) {
                 System.err.println("Error while adding countries to buffer: " + e.getMessage());
             }
+
             try {
                 String insertSql =
                     "INSERT INTO COUNTRY (COUNTRY_NAME,ID_REGION) " +
@@ -197,6 +198,7 @@ class DatabaseHelper {
                 System.err.println("Error while executing INSERT INTO statement: " + e.getMessage());
             }
         }
+
         try {
             ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM Country");
             if (rs.next()) {
@@ -207,7 +209,9 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    }
+
+
 
 
     // insert 100 rows
@@ -281,7 +285,9 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    }
+
+
 
 
     // insert 22 rows
@@ -321,7 +327,8 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    } 
+
 
 
     // insert 1000 rows
@@ -336,7 +343,7 @@ class DatabaseHelper {
 
 
         // first line is header
-        for (int i=1; i < set.size()-1; i++) { // TODO full EMPLOYEE size loop
+        for (int i=1; i < set.size()-1; i++) {
             try {
                 String insertSql =
                     "INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader, Hire_date) VALUES(" +
@@ -360,7 +367,8 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    } 
+
 
 
     // insert 100+ rows
@@ -375,7 +383,7 @@ class DatabaseHelper {
 
 
         // marketing jobs assigned to employees with ID >= 20
-        for (int i=0; i < set.size()-1; i++) { // TODO full MARKETING_EMP size loop
+        for (int i=0; i < set.size()-1; i++) { 
             try {
                 markBuff.add((i+20));
                 String insertSql =
@@ -399,7 +407,8 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    }
+
 
 
     // insert 200+ rows
@@ -436,7 +445,8 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    } 
+    
 
 
     // insert 5 rows (5, 6, 7, 8, 9)
@@ -474,7 +484,8 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    }
+    
 
 
     // insert 1000 rows
@@ -495,7 +506,6 @@ class DatabaseHelper {
 
             try {
                 String insertSql =
-             //       "INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) VALUES(" +
                     "INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) VALUES(" +
                     "'"+ prodBuff.get(rdHelper.getRandomInteger(0,   prodBuff.size()-1))+"' , " + // range of inserted products
                     "'"+ clientBuff.get(rdHelper.getRandomInteger(0, clientBuff.size()-1))+"' , " + // range of clients
@@ -519,7 +529,8 @@ class DatabaseHelper {
         } catch (Exception e) {
             System.err.println("Error ResultSet of INSERT INTO statement: " + e.getMessage());
         }
-    } // end of function
+    } 
+    
 
 
     //**************************************************************************************************\\
