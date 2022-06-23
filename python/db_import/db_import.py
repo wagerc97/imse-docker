@@ -4,7 +4,7 @@ import os
 import time
 import csv
 import logging
-from regex import P
+#from regex import P
 #import http
 #from pyrsistent import T
 import sqlalchemy as sa  # ORM library
@@ -27,7 +27,7 @@ time.sleep(10) # wait for db to be up
 
 # the database connection
 connection_string = os.environ.get('DB_URI_SERVER', 'sqlite:////data/database.sqlite')
-sqlengine = sa.create_engine(connection_string, echo=True) 
+sqlengine = sa.create_engine(connection_string, echo=False) 
 meta = sa.MetaData() # holds all db information
 
 
@@ -128,17 +128,17 @@ try:
         content = [
             {
                 'id': line[0],
-                'a': line[1],
-                'b': line[2],
-                'c': line[3],
+                'a':  line[1],
+                'b':  line[2],
+                'c':  line[3],
             }
             for line in content if line
         ]
 
         with sqlengine.begin() as transaction:
             insert_stmt = sa.insert(tableT).values(content)
-            ret = transaction.execute(insert_stmt)
-        logging.info(f'Inserted {ret.rowcount} rows into table {tableT.name}')
+            #ret = transaction.execute(insert_stmt)
+        #logging.info(f'Inserted {ret.rowcount} rows into table {tableT.name}')
 
 except: 
     print(f"Error while inserting into table {tableT.name}")
