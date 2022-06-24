@@ -9,5 +9,5 @@ dump
 *.vscode
 *.env
 /.venv
-/python_copy
+/python_claas
 /pythonOG
