@@ -1,0 +1,17 @@
+FROM alpine
+
+RUN apk --no-cache add \
+  python3 \
+  py3-pip \
+  py3-mysqlclient \
+  && mkdir -p /opt/db_import
+RUN pip install mysql-connector 
+
+COPY db_import/db_import.py /opt/db_import/
+# resources are copied via volume in compose file
+
+EXPOSE 80
+VOLUME [ "/data" ]
+WORKDIR /opt/db_import
+ENTRYPOINT [ "python3" ]
+CMD [ "db_import.py" ]

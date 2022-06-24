@@ -9,3 +9,5 @@ dump
 *.vscode
 *.env
 /.venv
+/python_copy
+/pythonOG

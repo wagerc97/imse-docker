@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  db_import:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: db_import
+    volumes:
+    - ./db_import/csv:/csv
+    - ./db_import/resources:/resources
+    networks:
+    - default
+    expose:
+    - "80"
+
+
