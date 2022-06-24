@@ -8,3 +8,4 @@ dump
 /dump/
 *.vscode
 *.env
+/.venv
