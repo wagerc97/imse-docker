@@ -1,36 +1,10 @@
 version: '3.3'
 services:
-
-  db:
-    image: mysql:latest
-    container_name: db
-    environment:
-    - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_DATABASE=imse_sql_db
-    - MYSQL_USER=devuser
-    - MYSQL_PASSWORD=devpass
-    networks:
-    - default
-    restart: always
-    expose:
-    - "3306"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3306"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   db_import:
     build:
-      context: ../python
+      context: ../python/
       dockerfile: Dockerfile
     container_name: db_import
-    environment:
-    # Docker MySql credentials
-    - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_DATABASE=imse_sql_db
-    - MYSQL_USER=devuser
-    - MYSQL_PASSWORD=devpass 
     volumes:
     - ../python/db_import/csv:/csv
     - ../python/db_import/resources:/resources
@@ -38,11 +12,7 @@ services:
     - default
     expose:
     - "80"
-    #restart: on-failure
-    #depends_on:
-    #- db
-    #links: 
-    #- db
+
     
   web:
     build:
@@ -56,8 +26,7 @@ services:
     - default
     ports:
       - "8000:80"
-    depends_on:
-      - db
+
 
 networks:
   default:

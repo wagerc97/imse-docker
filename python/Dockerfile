@@ -7,7 +7,7 @@ RUN apk --no-cache add \
   && mkdir -p /opt/db_import
 RUN pip install mysql-connector 
 
-COPY db_import/db_import.py /opt/db_import/
+COPY db_import/ /opt/db_import/
 # resources are copied via volume in compose file
 
 EXPOSE 80
