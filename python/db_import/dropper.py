@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import time
-import csv
 import logging
 import mysql.connector as connector
 from mysql.connector import errorcode
@@ -17,15 +15,14 @@ logging.basicConfig(level=logging.INFO)
 # time.sleep(5)
 
 
-# Establishing the connection
-sql11Server = "sql11.freemysqlhosting.net"
-sql11Name = "sql11501710"
-sql11Username = "sql11501710"
-sql11Password = "11IIzf3ue4"
-sql11Port = 3306
+USER = os.environ.get('SERVERUSER')
+PASSWORD = os.environ.get('SERVERPASSWORD')
+HOST = os.environ.get('SERVERHOST')
+DB_NAME = os.environ.get('SERVERDBNAME')
+PORT = os.environ.get('SERVERPORT')
 
 conn = connector.connect(
-    user=sql11Username, password=sql11Password, host=sql11Server, database=sql11Name, port=sql11Port
+    user=USER, password=PASSWORD, host=HOST, database=DB_NAME, port=PORT
 )
 
 # TODO check connection success?
@@ -66,6 +63,9 @@ def drop_all_tables():
               print(err.msg)
       else:
           print("[SUCCESS IN dropper.py]OK, table dropped.")
+
+
+
 
 # Clean Up but not part of function
 cursor.close()
