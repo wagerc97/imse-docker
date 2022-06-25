@@ -2,15 +2,24 @@ import os
 # pip install python-dotenv
 #from dotenv import load_dotenv
 from pathlib import Path
-
-#dotenv_path = Path('../.env')
-#load_dotenv(dotenv_path=dotenv_path)
-
-#SHIT = os.getenv('../.env','SERVERUSER')
-
-SHIT = os.environ.get('SERVERUSER')
-print(SHIT)
+from decouple import config
+import mysql.connector as connector
 
 
 
-#print(var.env.sql11Server)
+user = config('USER',default='')
+password = config('PASSWORD',default='')
+host = config('SERVER',default='')
+db_name = config('DB_NAME',default='')
+port = config('PORT',default='')
+
+
+#print(user, password, host, db_name, port)
+
+conn = connector.connect(
+    user=user, password=password, host=host, database=db_name, port=port
+)
+
+
+conn.close()
+

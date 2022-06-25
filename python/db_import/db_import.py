@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from asyncio.windows_events import NULL
 import os
 import time
 import csv
@@ -7,42 +8,48 @@ import logging
 import mysql.connector as connector
 from mysql.connector import errorcode
 from dropper import drop_all_tables
+from decouple import config
 
-
-# Logging
 logging.basicConfig(level=logging.INFO)
 
 
 # Wait for docker network to eventually setup
 # time.sleep(5)
 
+again = True; retry = 5; attempt = 0
+while( conn is None and attempt < retry):
+    attempt +=1 
+    try:
+        user = config('USER',default='')
+        password = config('PASSWORD',default='')
+        host = config('SERVER',default='')
+        db_name = config('DB_NAME',default='')
+        port = config('PORT',default='')
 
-# Establishing the connection
-#sql11Server = "sql11.freemysqlhosting.net"
-#sql11Name = "sql11501710"
-#sql11Username = "sql11501710"
-#sql11Password = "11IIzf3ue4"
-#sql11Port = 3306
+        conn = connector.connect( user=user, password=password, host=host, database=db_name, port=port )
 
-USER = os.environ.get('SERVERUSER')
-PASSWORD = os.environ.get('SERVERPASSWORD')
-HOST = os.environ.get('SERVERHOST')
-DB_NAME = os.environ.get('SERVERDBNAME')
-PORT = os.environ.get('SERVERPORT')
+    except: 
+        print("Connection failed!")
+        print(f"Let's try again [{attempt}]")
 
-conn = connector.connect(
-    user=USER, password=PASSWORD, host=HOST, database=DB_NAME, port=PORT
-)
+    finally: 
+        try: 
+            conn.close()
+        except:
+            pass
 
-#TODO check connection success?
+if conn:
+    again = False
+    print("Connection successful!")
+
 
 # Creating a cursor object using the cursor() method
 cursor = conn.cursor()
 
 
-################################
-#   CREATE OR REPlACE TABLES   #
-################################
+######################
+#   CREATE TABLES    #
+######################
 
 '''TABLES = {}
 TABLES['employees'] = (
@@ -78,9 +85,7 @@ cursor.execute(sql)
 
 
 
-again = True
-retry = 5
-attempt = 0
+again = True; retry = 5; attempt = 0
 while(again and attempt < retry):
     attempt +=1 
     try:

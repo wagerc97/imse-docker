@@ -4,25 +4,20 @@ import os
 import logging
 import mysql.connector as connector
 from mysql.connector import errorcode
+from decouple import config
 
-
-
-# Logging
 logging.basicConfig(level=logging.INFO)
 
 
-# Wait for docker network to eventually setup
-# time.sleep(5)
+user = config('USER',default='')
+password = config('PASSWORD',default='')
+host = config('SERVER',default='')
+db_name = config('DB_NAME',default='')
+port = config('PORT',default='')
 
-
-USER = os.environ.get('SERVERUSER')
-PASSWORD = os.environ.get('SERVERPASSWORD')
-HOST = os.environ.get('SERVERHOST')
-DB_NAME = os.environ.get('SERVERDBNAME')
-PORT = os.environ.get('SERVERPORT')
 
 conn = connector.connect(
-    user=USER, password=PASSWORD, host=HOST, database=DB_NAME, port=PORT
+    user=user, password=password, host=host, database=db_name, port=port
 )
 
 # TODO check connection success?
