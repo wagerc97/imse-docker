@@ -18,17 +18,23 @@ logging.basicConfig(level=logging.INFO)
 
 
 # Establishing the connection
-sql11Server = "sql11.freemysqlhosting.net"
-sql11Name = "sql11501710"
-sql11Username = "sql11501710"
-sql11Password = "11IIzf3ue4"
-sql11Port = 3306
+#sql11Server = "sql11.freemysqlhosting.net"
+#sql11Name = "sql11501710"
+#sql11Username = "sql11501710"
+#sql11Password = "11IIzf3ue4"
+#sql11Port = 3306
+
+USER = os.environ.get('SERVERUSER')
+PASSWORD = os.environ.get('SERVERPASSWORD')
+HOST = os.environ.get('SERVERHOST')
+DB_NAME = os.environ.get('SERVERDBNAME')
+PORT = os.environ.get('SERVERPORT')
 
 conn = connector.connect(
-    user=sql11Username, password=sql11Password, host=sql11Server, database=sql11Name, port=sql11Port
+    user=USER, password=PASSWORD, host=HOST, database=DB_NAME, port=PORT
 )
 
-# TODO check connection success?
+#TODO check connection success?
 
 # Creating a cursor object using the cursor() method
 cursor = conn.cursor()
@@ -53,7 +59,6 @@ TABLES['employees'] = (
 
 '''
 
-
 ####### Dropping table if already exists.
 #cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
 
@@ -70,6 +75,8 @@ cursor.execute(sql)
 """
 # Dropping table if already exists.
 #cursor.execute("DROP TABLE IF EXISTS Client")
+
+
 
 again = True
 retry = 5
@@ -245,25 +252,6 @@ while(again and attempt < retry):
         print(f"[FATAL ERROR]Tried {retry} times to create tables. End program.")
         conn.close()
         exit(69)
-
-
-
-
-
-
-'''for table_name in TABLES:
-table_description = TABLES[table_name]
-try:
-    print("Creating table {}: ".format(table_name), end='')
-    cursor.execute(table_description)
-except connector.Error as err:
-    if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-        print("already exists.")
-    else:
-        print(err.msg)
-else:
-    print("OK")'''
-
 
 
 

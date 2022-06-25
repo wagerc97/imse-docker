@@ -6,4 +6,4 @@ RUN apt-get update && apt-get upgrade -y
 RUN docker-php-ext-install mysqli
 
 #expose Port
-EXPOSE "80"
+#EXPOSE "80"

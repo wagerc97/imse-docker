@@ -16,9 +16,14 @@ class DatabaseHelper
 	// Since the connection details are constant, define them as const
 	// We can refer to constants like e.g. DatabaseHelper::username
 	const host = 'db';  //service name from docker-compose.yml
-	const user = 'devuser'; // use a + your matriculation number  
-	const password = 'devpass'; // use your oracle db password
+	const user = 'devuser'; 
+	const password = 'devpass'; 
 	const db = 'imse_sql_db';  // database name
+
+	const serverHost = 'sql11.freemysqlhosting.net';  //service name from docker-compose.yml
+	const serverUser = 'sql11501710'; 
+	const serverPassword = '11IIzf3ue4'; 
+	const serverDb = 'sql11501710';  // database name
 	
 	
     // Since we need only one connection object, it can be stored in a member variable.
@@ -29,10 +34,10 @@ class DatabaseHelper
     {
         try {
 			$this->conn = mysqli_connect(
-			DatabaseHelper::host, 
-			DatabaseHelper::user, 
-			DatabaseHelper::password, 
-			DatabaseHelper::db);		
+			DatabaseHelper::serverHost, 
+			DatabaseHelper::serverUser, 
+			DatabaseHelper::serverPassword, 
+			DatabaseHelper::serverDb);		
 
 			// Check if the connection failed 
 			if ($this->conn->connect_error) {

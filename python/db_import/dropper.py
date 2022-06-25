@@ -67,7 +67,7 @@ def drop_all_tables():
       else:
           print("[SUCCESS IN dropper.py]OK, table dropped.")
 
-
+# Clean Up but not part of function
 cursor.close()
 conn.close()
 

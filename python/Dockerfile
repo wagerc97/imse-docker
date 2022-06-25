@@ -6,6 +6,7 @@ RUN apk --no-cache add \
   py3-mysqlclient \
   && mkdir -p /opt/db_import
 RUN pip install mysql-connector 
+RUN pip install python-dotenv
 
 COPY db_import/ /opt/db_import/
 # resources are copied via volume in compose file
