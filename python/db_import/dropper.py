@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import logging
 import time
@@ -9,7 +7,7 @@ from decouple import config
 
 logging.basicConfig(level=logging.INFO)
 
-
+# SERVER CONNECTION
 user = config('USER',default='')
 password = config('PASSWORD',default='')
 host = config('SERVER',default='')
@@ -18,21 +16,24 @@ port = config('PORT',default='')
 
 
 conn = connector.connect(user=user, password=password, host=host, database=db_name, port=port)
-
+print("[INFO]dropper.py wurde gestartet...")
 
 # Creating a cursor object using the cursor() method
 cursor = conn.cursor()
 
-def drop_all_tables():
+def drop_all_tables(conn):
     #####################
     #   DELETE TABLES   #
     #####################
 
+    # Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    
     DROPS={}
 
 
     DROPS['Orders'] = ("DROP TABLE IF EXISTS Orders CASCADE;")
-    DROPS['Advertises'] = ("DROP TABLE IF EXISTS Advertises CASCADE;;")
+    DROPS['Advertises'] = ("DROP TABLE IF EXISTS Advertises CASCADE;")
     DROPS['Marketing_emp'] = ("DROP TABLE IF EXISTS Marketing_emp CASCADE;")
     DROPS['General_Manager'] = ("DROP TABLE IF EXISTS General_Manager CASCADE;")
     DROPS['Campaign'] = ("DROP TABLE IF EXISTS Campaign CASCADE;")
@@ -46,20 +47,20 @@ def drop_all_tables():
     for table_name in DROPS:
         table_description = DROPS[table_name]
         try:
-            print("[INFO]Dropping table {}: ".format(table_name), end='')
+            print("[dropper.py]Dropping table {}: ".format(table_name), end='')
             cursor.execute(table_description)
         except connector.Error as err:
             if err.errno == errorcode.ER_TABLESPACE_DISCARDED: # error of table does not exist anymore 
-                print("[Error in dropper.py]Table does not exists")
+                print("[dropper.py]Table does not exists")
             else:
                 print(err.msg)
         else:
-            print("OK, table dropped.")
+            print("[INFO]OK, table dropped.")
         finally: 
             pass
 
 try:
-    drop_all_tables()
+    drop_all_tables(conn)
 
 finally: 
     # Clean Up but not part of function

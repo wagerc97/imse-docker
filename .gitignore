@@ -13,4 +13,7 @@ dump
 /pythonOG
 /java
 #/sql  # actually only necessary if DB has to be hosted on Docker
-*./mysql-comp
+/compose
+/php/index-html
+/php/index-php
+*./srcdump

@@ -20,11 +20,14 @@ class DatabaseHelper
 	const password = 'devpass'; 
 	const db = 'imse_sql_db';  // database name
 
-	const serverHost = 'sql11.freemysqlhosting.net';  //service name from docker-compose.yml
-	const serverUser = 'sql11501710'; 
-	const serverPassword = '11IIzf3ue4'; 
-	const serverDb = 'sql11501710';  // database name
-	
+    
+    // GEHT EINFACH NICHT???
+	/*
+    const serverHost = $_ENV["SERVER"];
+	const serverUser = $_ENV["USER"]; 
+	const serverPassword = $_ENV["PASSWORD"]; 
+	const serverDb = $_ENV["DB_NAME"];
+	*/
 	
     // Since we need only one connection object, it can be stored in a member variable.
     // $conn is set in the constructor.
@@ -34,10 +37,10 @@ class DatabaseHelper
     {
         try {
 			$this->conn = mysqli_connect(
-			DatabaseHelper::serverHost, 
-			DatabaseHelper::serverUser, 
-			DatabaseHelper::serverPassword, 
-			DatabaseHelper::serverDb);		
+			DatabaseHelper::host, 
+			DatabaseHelper::user, 
+			DatabaseHelper::password, 
+			DatabaseHelper::db);		
 
 			// Check if the connection failed 
 			if ($this->conn->connect_error) {

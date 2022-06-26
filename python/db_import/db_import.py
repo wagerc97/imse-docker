@@ -24,18 +24,33 @@ again = True; retry = 5; attempt = 0
 while(again and attempt < retry):
     attempt +=1 
     try:
+
+        # TO CONNECT TO SERVER
+        #"""
         user = config('USER',default='')
         password = config('PASSWORD',default='')
         host = config('SERVER',default='')
         db_name = config('DB_NAME',default='')
         port = config('PORT',default='')
+        #"""
 
-        conn = connector.connect( user=user, password=password, host=host, database=db_name, port=port )
+        # TO CONNECT TO MYSQL DOCKER
+        """
+        user = config('DOCKER_USER',default='')
+        password = config('DOCKER_PASSWORD',default='')
+        host = config('DOCKER_SERVER',default='')
+        db_name = config('DOCKER_DB_NAME',default='')
+        port = config('DOCKER_PORT',default='')
+        """
+
+
+        conn = connector.connect( 
+            user=user, password=password, host=host, database=db_name, port=port )
         again = False
 
     except Error as e: 
         print(f"[ERROR]Connection failed! Let's try again [{attempt}] ->", e)
-        time.sleep(2)
+        time.sleep(5)
         again = True
 
 if attempt >= retry:
@@ -228,7 +243,7 @@ try:
         except Error as e:
             print("[ERROR]Create tables failed. Drop all tables and create new.", e)
             # if any error occured, all tables will be deleted and the process is repeated
-            drop_all_tables()
+            drop_all_tables(conn)
             time.sleep(1)
             # reapeat the while-loop
             again = True
@@ -380,7 +395,7 @@ try:
 
             if attempt >= retry-1: 
                 print("[ERROR]Last attempt to set FK constraints! Drop all tables. Create new tables.")
-                drop_all_tables()
+                drop_all_tables(conn)
                 create_tables()
                 time.sleep(3)
         

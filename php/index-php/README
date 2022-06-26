@@ -1,4 +1,0 @@
-I saved the index.php outside, because I cannot see it with the VS Code extension "Go Live". 
-For development I will work on the index.html file.
-
-TBD - I may have to use an updated version of the index file as .php for deployment on docker.
