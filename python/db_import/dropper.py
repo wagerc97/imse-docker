@@ -54,7 +54,7 @@ def drop_all_tables():
             else:
                 print(err.msg)
         else:
-            print(f"OK, table dropped.")
+            print("OK, table dropped.")
         finally: 
             pass
 

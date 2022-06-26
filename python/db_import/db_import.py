@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import random
 import time
 import csv
 import logging
@@ -10,6 +11,7 @@ from dropper import drop_all_tables
 from decouple import config
 import pandas as pd
 
+start_time = time.time()
 logging.basicConfig(level=logging.INFO)
 
 
@@ -412,25 +414,143 @@ try:
     Orders :            omg such complicated, need lots of buffers
     '''
 
-    
+    # Set directory of resource files 
     if "vscode" in os.getcwd().lower():
-        filepath = "C:/Users/clemens/VSCodeProjects/imse-docker/python/resources/regions.csv"
+        dir = "C:/Users/clemens/VSCodeProjects/imse-docker/python/resources/"
     else: 
-        filepath = "/opt/resources/regions.csv"
+        dir = "/opt/resources/"
+
+
+
+    # ------ INSERT REGIONS ------
+    regionBuffer = []
+
+    filepath = dir+"regions.csv"
+    print("----------------------------------------------------")
     with open(filepath) as file:
-        count = 0
-        content = csv.reader(file)
+        i = 0
+        content = csv.reader(file, delimiter=';')
         for line in content:
-            count +=1
-            print(line[0])
             cursor.execute(
-                #f"INSERT INTO Region (Region_Name) VALUES ('{line[0]}')"
-                "INSERT INTO Region (Region_Name) VALUES ('DACH region');"
+                f"INSERT INTO Region (Region_Name) VALUES ('{line[0]}')"
                 )
-            print(f"[INFO] {count} records inserted into table Regions {line}")
-            break
+            print(f"[INFO] {i} records inserted into table Regions {line}" )
+            regionBuffer.append(line[0])
+            i +=1
+            conn.commit()
 
 
+
+    # ------ INSERT COUNTRIES ------
+    countryBuffer = []
+
+    filepath = dir+"countries.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        content = csv.reader(file, delimiter=',')
+        for line in content:
+            cursor.execute(
+                f"INSERT INTO Country VALUES ('{line[0]}', '{line[1]}')"
+                )
+            print(f"[INFO] {i} records inserted into table Country {line}" )
+            countryBuffer.append(line[0])
+            i +=1
+            conn.commit()
+
+
+    # ------ INSERT CLIENT ------
+    clientBuffer = []
+
+    filepath = dir+"client_names.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            randIndex = random.randint(0, len(countryBuffer)) -1 
+            cursor.execute(
+                f"INSERT INTO Client (Client_Name, Country_Name) VALUES ('{line[0]}', '{countryBuffer[randIndex]}')"
+                )
+            print(f"[INFO] {i} records inserted into table Client [{line[0]}, {countryBuffer[randIndex]}]" )
+            clientBuffer.append(line[0])
+            i +=1
+            conn.commit()
+
+
+
+
+
+    # ------ INSERT PRODUCT ------
+    productBuffer = [] # store IDs
+
+    filepath = dir+"products.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            cursor.execute(
+                f"INSERT INTO Product (ID_product, Product_Name, Price, Indication) VALUES" +
+                f"('{line[0]}', '{line[1]}', '{line[2]}', '{line[3]}')"
+                )
+            print(f"[INFO] {i} records inserted into table Product {line}" )
+            productBuffer.append(line[0]) # store IDs
+            i +=1
+            conn.commit()
+
+
+
+
+
+
+    # ------ INSERT CAMPAIGN ------
+
+    filepath = dir+"campaigns.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            cursor.execute(
+                    f"INSERT INTO Campaign VALUES (" +                  
+                    f"'{line[0]}', '{line[1]}', " +   # ID_product, Campaign_Name
+                    f"STR_TO_DATE('{line[2]}', '%d-%m-%Y'), " + # Start_date
+                    f"STR_TO_DATE('{line[3]}', '%d-%m-%Y') )" # End_date
+
+                )
+            print(f"[INFO] {i} records inserted into table Campaign {line}" )
+            i +=1
+            conn.commit()
+
+
+
+
+    # ------ INSERT EMPLOYEE ------
+
+    filepath = dir+"employees.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        first = True
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            if first: 
+                first=False; continue
+            cursor.execute(
+                f"INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader, Hire_date)" + 
+                f"VALUES ('{line[0]}', '{line[1]}', '{line[2]}', '{line[3]}', '{line[4]}', "+
+                f"STR_TO_DATE('{line[5]}', '%Y-%m-%d'));"
+                )
+            print(f"[INFO] {i} records inserted into table Employee {line}" )
+            i +=1
+            conn.commit()
+
+
+
+
+except Error as e: 
+    print(e)
 
 
 
@@ -438,3 +558,7 @@ try:
 finally: 
     cursor.close()
     conn.close()
+
+stop_time = time.time()
+
+print(f"[INFO]=== db_import.py file took {stop_time-start_time} seconds to setup the DB ===")

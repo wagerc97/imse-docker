@@ -187,9 +187,25 @@ class DatabaseHelper {
             }
 
             try {
+              
+              
+              
+              
+              
                 String insertSql =
                     "INSERT INTO COUNTRY (COUNTRY_NAME,ID_REGION) " +
                     "VALUES ('" + set.get(i)[0] + "', '" + set.get(i)[1] + "')";
+
+
+
+
+
+
+
+
+
+
+
 
                 // print finishing output
                 int rowsAffected = stmt.executeUpdate(insertSql);
@@ -224,10 +240,17 @@ class DatabaseHelper {
         // client country is chosen random
         for (int i=0; i < 1000; i++) { // TODO full CLIENT size loop: 1000
             try {
+              
+              
+              
                 clientBuff.add(count_id++);
                 String insertSql =
                 "INSERT INTO Client (Client_Name, Country_Name) VALUES ('exampleClient" + (i+1) + "', '"
                 + countryBuff.get(rdHelper.getRandomInteger(0, countryBuff.size() - 1)) + "')";
+
+
+
+
 
                 // print finishing output
                 int rowsAffected = stmt.executeUpdate(insertSql);
