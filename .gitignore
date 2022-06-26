@@ -11,3 +11,6 @@ dump
 /.venv
 /python_claas
 /pythonOG
+/java
+#/sql  # actually only necessary if DB has to be hosted on Docker
+*./mysql-comp
