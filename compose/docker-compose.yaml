@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
     container_name: db_import
     volumes:
-    - ../python/db_import/csv:/csv
-    - ../python/db_import/resources:/resources
+    - ../python/db_import/resources:/var/resources
+    - ../python/db_import:/opt/db_import
     networks:
     - default
     expose:
