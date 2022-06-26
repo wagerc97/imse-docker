@@ -20,14 +20,6 @@ class DatabaseHelper
 	const password = 'devpass'; 
 	const db = 'imse_sql_db';  // database name
 
-    
-    // GEHT EINFACH NICHT???
-	/*
-    const serverHost = $_ENV["SERVER"];
-	const serverUser = $_ENV["USER"]; 
-	const serverPassword = $_ENV["PASSWORD"]; 
-	const serverDb = $_ENV["DB_NAME"];
-	*/
 	
     // Since we need only one connection object, it can be stored in a member variable.
     // $conn is set in the constructor.
@@ -37,10 +29,15 @@ class DatabaseHelper
     {
         try {
 			$this->conn = mysqli_connect(
-			DatabaseHelper::host, 
-			DatabaseHelper::user, 
-			DatabaseHelper::password, 
-			DatabaseHelper::db);		
+
+            // --- DOCKER connection
+			DatabaseHelper::host, DatabaseHelper::user, 
+			DatabaseHelper::password, DatabaseHelper::db
+
+            // --- SERVER connection
+            //getenv(SERVER), getenv(USER), 
+            //getenv(PASSWORD), getenv(DB_NAME)
+            );		
 
 			// Check if the connection failed 
 			if ($this->conn->connect_error) {
