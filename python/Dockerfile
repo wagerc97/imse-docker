@@ -10,8 +10,9 @@ RUN pip install mysql-connector
 RUN pip install python-dotenv
 RUN pip install python-decouple
 
+# lies next to the Dockerfile 
+COPY db_import /opt/db_import/
 
-#COPY db_import /opt/db_import/
 # resources are copied via volume in compose file
 
 EXPOSE 80
@@ -19,3 +20,7 @@ VOLUME [ "/data" ]
 WORKDIR /opt/db_import
 ENTRYPOINT [ "python3" ]
 CMD [ "db_import.py" ]
+
+# to look into the docker and prevent it from closing
+#ENTRYPOINT ["tail"]
+#CMD ["-f","/dev/null"]

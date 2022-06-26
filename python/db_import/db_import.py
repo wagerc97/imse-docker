@@ -395,70 +395,40 @@ try:
     #   INSERT INTO TABLES   #
     ##########################
 
-    '''def insert_data_into_db():
-        # Dropping table if already exists.
-        cursor.execute("DELETE FROM Region")
-        sqlList = [
-            ["INSERT INTO Region (Region_Name) VALUES ('DACH region');"],
-            ["INSERT INTO Region (Region_Name) VALUES ('British Isles');"],
-            ["INSERT INTO Region (Region_Name) VALUES ('Benelux states');"]
-            ["INSERT INTO Region (Region_Name) VALUES ('Nordic region');"],
-        ]
-        
-        for sql in sqlList:
-            cursor.execute(sql)
-    ### EOF
-        
-        
-    again = True; retry = 2; attempt = 0
-    while(again and attempt < retry):
-        attempt +=1 
-        try:
-
-            insert_data_into_db()
-            again = False
-
-        except Error as e:
-            print(f"[ERROR]INSERT data into DB failed! Let's try again [{attempt}]", e)
-            # reapeat the while-loop
-            again = True
-            time.sleep(1)
-
-            if attempt >= retry-1: 
-                print("[ERROR]Last attempt to INSERT data into DB! Drop all data from tables. Try INSERT once again.")
-                # drop all data 
-                create_tables()
-                time.sleep(2)
-        
-    if attempt >= retry:
-        print(f"[FATAL ERROR]Tried {retry} times to INSERT data. End program.")
-        cursor.close(); conn.close()
-        raise SystemExit
-
-    else: 
-        print("[INFO]Set FK constraints was successful!")
-
-    '''
-
-
-    
-    ### INSERT ###
-
     csvList = ["regions", "countries", "client_names", "products", "campaigns", "marketing_occupations", "advertises", "general_managers_id", "order_dates"]
     print("Current directory:", os.getcwd())
-    
 
-    file = "/var/resources/regions.csv"
-    with open(file):
+    ''' # my insert notes # 
+
+    Region :            all rows
+    Country :           all rows
+    Client :            MAKE list of only names, random numbers from countries
+    Product :           all rows (no IDs?)
+    Campaign :          all rows (BUT prodcut id changed? datatime format?)
+    Employee :          all rows
+    Marketing_emp :     id_employee+20, occupations from csv
+    Advertises :        all rows (BUT id product changed?)
+    General_Manager :   all rows 
+    Orders :            omg such complicated, need lots of buffers
+    '''
+
+    
+    if "vscode" in os.getcwd().lower():
+        filepath = "C:/Users/clemens/VSCodeProjects/imse-docker/python/resources/regions.csv"
+    else: 
+        filepath = "/opt/resources/regions.csv"
+    with open(filepath) as file:
         count = 0
         content = csv.reader(file)
         for line in content:
             count +=1
+            print(line[0])
             cursor.execute(
-                'INSERT INTO Regions(Region_Name)', 
-                'VALUES (%s)', line)
-        print(f"({count})Record inserted into table Regions")
-
+                #f"INSERT INTO Region (Region_Name) VALUES ('{line[0]}')"
+                "INSERT INTO Region (Region_Name) VALUES ('DACH region');"
+                )
+            print(f"[INFO] {count} records inserted into table Regions {line}")
+            break
 
 
 

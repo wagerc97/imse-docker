@@ -6,26 +6,27 @@ services:
       dockerfile: Dockerfile
     container_name: db_import
     volumes:
-    - ../python/db_import/resources:/var/resources
-    - ../python/db_import:/opt/db_import
+    - ../python/resources:/opt/resources
     networks:
     - default
     expose:
     - "80"
+    tty: true
+    stdin_open: true 
 
     
-  web:
-    build:
-      context: ../php
-      dockerfile: Dockerfile
-    container_name: web
-    restart: on-failure
-    volumes:
-      - ../php/html:/var/www/html/
-    networks:
-    - default
-    ports:
-      - "8000:80"
+  #web:
+  #  build:
+  #    context: ../php
+  #    dockerfile: Dockerfile
+  #  container_name: web
+  #  restart: on-failure
+  #  volumes:
+  #    - ../php/html:/var/www/html/
+  #  networks:
+  #  - default
+  #  ports:
+  #    - "8000:80"
 
 
 networks:
