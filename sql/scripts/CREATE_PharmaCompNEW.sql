@@ -161,7 +161,7 @@ ALTER TABLE General_Manager
 ;
 
 ALTER TABLE General_Manager                      
-    ADD CONSTRAINT FK_gm_prod FOREIGN KEY (ID_region)
+    ADD CONSTRAINT FK_gm_reg FOREIGN KEY (ID_region)
     REFERENCES Region (ID_region) ON DELETE CASCADE
 ;
 

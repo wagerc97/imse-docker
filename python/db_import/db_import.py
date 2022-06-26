@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from math import prod
 import os
 import random
 import time
@@ -9,10 +10,10 @@ import mysql.connector as connector
 from mysql.connector import Error
 from dropper import drop_all_tables
 from decouple import config
-import pandas as pd
 
 start_time = time.time()
 logging.basicConfig(level=logging.INFO)
+random.seed(42)
 
 
 #############################
@@ -148,7 +149,7 @@ try:
         sql = '''
             CREATE TABLE IF NOT EXISTS Marketing_emp(
                 ID_employee     INTEGER, -- FK
-                Occupation      VARCHAR(50),
+                Occupation      VARCHAR(80),
                 CONSTRAINT PK_mark PRIMARY KEY (ID_employee)
             );
             '''
@@ -345,7 +346,7 @@ try:
 
         sql = '''
         ALTER TABLE General_Manager                      
-            ADD CONSTRAINT FK_gm_prod FOREIGN KEY (ID_region)
+            ADD CONSTRAINT FK_gm_reg FOREIGN KEY (ID_region)
             REFERENCES Region (ID_region) ON DELETE CASCADE
         ;
         '''
@@ -423,8 +424,6 @@ try:
 
 
     # ------ INSERT REGIONS ------
-    regionBuffer = []
-
     filepath = dir+"regions.csv"
     print("----------------------------------------------------")
     with open(filepath) as file:
@@ -435,10 +434,10 @@ try:
                 f"INSERT INTO Region (Region_Name) VALUES ('{line[0]}')"
                 )
             print(f"[INFO] {i} records inserted into table Regions {line}" )
-            regionBuffer.append(line[0])
             i +=1
             conn.commit()
-
+    regionRows = i
+    print("[INFO] Rows affected:", regionRows)
 
 
     # ------ INSERT COUNTRIES ------
@@ -457,6 +456,9 @@ try:
             countryBuffer.append(line[0])
             i +=1
             conn.commit()
+    countryRows = i
+    print("[INFO] Rows affected:", countryRows)
+
 
 
     # ------ INSERT CLIENT ------
@@ -476,6 +478,8 @@ try:
             clientBuffer.append(line[0])
             i +=1
             conn.commit()
+    clientRows = i
+    print("[INFO] Rows affected:", clientRows)
 
 
 
@@ -498,6 +502,8 @@ try:
             productBuffer.append(line[0]) # store IDs
             i +=1
             conn.commit()
+    productRows = i
+    print("[INFO] Rows affected:", productRows)
 
 
 
@@ -522,12 +528,14 @@ try:
             print(f"[INFO] {i} records inserted into table Campaign {line}" )
             i +=1
             conn.commit()
-
+    campaignRows = i
+    print("[INFO] Rows affected:", campaignRows)
 
 
 
     # ------ INSERT EMPLOYEE ------
 
+    EMP_LIMIT = 300
     filepath = dir+"employees.csv"
     print("----------------------------------------------------")
     with open(filepath) as file:
@@ -537,6 +545,8 @@ try:
         for line in content:
             if first: 
                 first=False; continue
+            if i > EMP_LIMIT+1: 
+                break
             cursor.execute(
                 f"INSERT INTO Employee (Firstname, Lastname, Gender, Salary, team_leader, Hire_date)" + 
                 f"VALUES ('{line[0]}', '{line[1]}', '{line[2]}', '{line[3]}', '{line[4]}', "+
@@ -545,20 +555,142 @@ try:
             print(f"[INFO] {i} records inserted into table Employee {line}" )
             i +=1
             conn.commit()
+    print(f"[INFO]Limited to {EMP_LIMIT} rows")
+    employeenRows = i
+    print("[INFO] Rows affected:", employeenRows)
 
+
+
+    # ------ INSERT MARKETING EMPLOYEE ------
+
+    marketingEmpBuffer = []
+    MARKET_EMP_LIMIT = 99
+
+    filepath = dir+"marketing_occupations.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        oneRandomEmpIdList = random.sample(range(20, 300), MARKET_EMP_LIMIT)
+
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            if i >= MARKET_EMP_LIMIT:
+                break
+            oneRandomEmpId = oneRandomEmpIdList[i]
+            cursor.execute(
+                f"INSERT INTO Marketing_emp VALUES ('{oneRandomEmpId}', '{line[0]}');" 
+            )
+            print(f"[INFO] {i} records inserted into table Marketing_Employee {line}" )
+            i +=1
+            marketingEmpBuffer.append(oneRandomEmpId)
+            conn.commit()
+    markEmpRows = i
+    print("[INFO] Rows affected:", markEmpRows)
+
+
+
+
+    # ------ INSERT ADVERTISES ------
+
+    ADV_LIMIT = 300
+    filepath = dir+"advertises.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0; first=True
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            if first: 
+                first=False; continue
+            if i > ADV_LIMIT:
+                break
+            randi = random.randint(0,MARKET_EMP_LIMIT-2)
+            cursor.execute( 
+                f"INSERT INTO Advertises (ID_employee, ID_product) " + 
+                f"VALUES ('{marketingEmpBuffer[randi]}', '{line[1]}');" 
+            )
+            print(f"[INFO] {i} records inserted into table Advertises {line}" )
+            i +=1
+            conn.commit()
+    advertisesRows = i
+    print("[INFO] Rows affected:", advertisesRows)
+
+
+
+
+    # ------ INSERT General Manager ------
+
+    filepath = dir+"general_managers_id.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            cursor.execute( 
+                f"INSERT INTO General_Manager (ID_Employee, ID_region) "+
+                f"VALUES ('{line[0]}', '{line[1]}');" 
+            )
+            print(f"[INFO] {i} records inserted into table General_Manager {line})" )
+            i +=1
+            conn.commit()
+    gmRows = i
+    print("[INFO] Rows affected:", gmRows)
+
+
+
+
+
+
+    # ------ INSERT ORDES ------
+
+    ORDER_LIMIT=300
+    filepath = dir+"order_dates.csv"
+    print("----------------------------------------------------")
+    with open(filepath) as file:
+        i = 0
+        randC = random.randint(1, clientRows-1)
+
+        content = csv.reader(file, delimiter=';')
+        for line in content:
+            if i > ORDER_LIMIT: 
+                break 
+            randProd = random.randint(0, len(productBuffer)-1)
+
+            randMill = random.randint(1, 9)*1000
+            randHund = random.randint(1, 9)*100
+            randTens = random.randint(1, 9)*10
+            quantity = randMill + randHund + randTens
+
+            cursor.execute( 
+                f"INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) " + 
+                f"VALUES ('{productBuffer[randProd]}', " +  # Product_ID
+                f"'{randC}', " +  # Client_ID
+                f"STR_TO_DATE('{line[0]}', '%Y-%m-%d'), " +  # Date
+                f"'{quantity}');"  # Quantity (int)
+            )
+            print(f"[INFO] {i} records inserted into table Orders ({productBuffer[randProd]}, {randC}, {line[0]}, {quantity})" )
+            i +=1
+            conn.commit()
+    print(f"[INFO]Limited to {ORDER_LIMIT} rows")
+    ordersRows = i
+    print("[INFO] Rows affected:", ordersRows)
 
 
 
 except Error as e: 
-    print(e)
-
-
-
+    print("[ERROR]Exception caught:", e)
 
 finally: 
     cursor.close()
     conn.close()
 
-stop_time = time.time()
+    stop_time = time.time()
+    print(f"\n[INFO] === DB setup complete ===")
 
-print(f"[INFO]=== db_import.py file took {stop_time-start_time} seconds to setup the DB ===")
+    def elapsed_seconds_conversion(sec):
+        sec_value = sec % (24 * 3600)
+        hour_value = sec_value // 3600
+        sec_value %= 3600
+        min = sec_value // 60
+        sec_value = round((sec_value % 60), 0)
+        print(f"[INFO] Elapsed time in 'db_import.py': {hour_value} h / {min} min / {sec_value} sec")
+    elapsed_seconds_conversion(stop_time-start_time)

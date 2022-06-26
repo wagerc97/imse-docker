@@ -4,7 +4,6 @@ RUN apk --no-cache add \
   python3 \
   py3-pip \
   py3-mysqlclient \
-  py3-pandas\
   && mkdir -p /opt/db_import
 RUN pip install mysql-connector 
 RUN pip install python-dotenv
