@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from errno import errorcode
 from math import prod
 import os
 import random
@@ -8,7 +9,6 @@ import csv
 import logging
 import mysql.connector as connector
 from mysql.connector import Error
-from dropper import drop_all_tables
 from decouple import config
 
 start_time = time.time()
@@ -16,13 +16,21 @@ logging.basicConfig(level=logging.INFO)
 random.seed(42)
 
 
+
+
+
 #############################
 #   ESTABLISH CONNECTION    #
 #############################
 
-again = True; retry = 5; attempt = 0
-while(again and attempt < retry):
-    attempt +=1 
+#again = True; retry = 5; attempt = 0
+#while(again and attempt < retry):
+#    attempt +=1 
+#    try:
+
+attempt=0; retry = 3; again=True
+while attempt < retry and again: 
+    attempt +=1
     try:
 
         # TO CONNECT TO SERVER
@@ -42,25 +50,67 @@ while(again and attempt < retry):
         db_name = config('DOCKER_DB_NAME',default='')
         port = config('DOCKER_PORT',default='')
         """
-
-
-        conn = connector.connect( 
-            user=user, password=password, host=host, database=db_name, port=port )
-        again = False
+        conn = connector.connect(user=user, password=password, host=host, database=db_name, port=port)
 
     except Error as e: 
-        print(f"[ERROR]Connection failed! Let's try again [{attempt}] ->", e)
-        time.sleep(5)
-        again = True
+        if attempt <= retry: # try again 
+            print(f"[ERROR] Connection failed! Let's try again [{attempt}] ->", e)
+            time.sleep(5)
+        elif attempt > retry: # last chance gone
+            print(f"[FATAL ERROR] Tried {retry} times to establish connection to DB. End program.")
+            conn.close()
+            raise SystemExit
+    else: # success
+        again= False
+        print("[INFO] Connection to DB successful!")
 
-if attempt >= retry:
-    print(f"[FATAL ERROR]Tried {retry} times to establish connection to DB. End program.")
-    conn.close()
-    raise SystemExit
 
-else: 
-    again = False
-    print("[INFO]Connection to DB successful!")
+
+#####################################
+#   DELETE TABLES HELPER FUNCTION   #
+#####################################
+
+def drop_all_tables():
+
+    # Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    
+    DROPS={}
+
+
+    DROPS['Orders'] = ("DROP TABLE IF EXISTS Orders CASCADE;")
+    DROPS['Advertises'] = ("DROP TABLE IF EXISTS Advertises CASCADE;")
+    DROPS['Marketing_emp'] = ("DROP TABLE IF EXISTS Marketing_emp CASCADE;")
+    DROPS['General_Manager'] = ("DROP TABLE IF EXISTS General_Manager CASCADE;")
+    DROPS['Campaign'] = ("DROP TABLE IF EXISTS Campaign CASCADE;")
+    DROPS['Product'] = ("DROP TABLE IF EXISTS Product CASCADE;")
+    DROPS['Employee'] = ("DROP TABLE IF EXISTS Employee CASCADE;")
+    DROPS['Client'] = ("DROP TABLE IF EXISTS Client CASCADE;")
+    DROPS['Country'] = ("DROP TABLE IF EXISTS Country CASCADE;")
+    DROPS['Region'] = ("DROP TABLE IF EXISTS Region CASCADE;")
+
+
+    for table_name in DROPS:
+        table_description = DROPS[table_name]
+        try:
+            print("[INFO] Dropping table {}: ".format(table_name), end='')
+            cursor.execute(table_description)
+        except connector.Error as err:
+            if err.errno == errorcode.ER_TABLESPACE_DISCARDED: # error of table does not exist anymore 
+                print("[CAUTION] Table does not exists")
+            else:
+                print(err.msg)
+        else:
+            print("[INFO] OK, table dropped.")
+        finally: 
+            pass
+
+
+
+
+
+
+
 
 
 
@@ -243,7 +293,7 @@ try:
         except Error as e:
             print("[ERROR]Create tables failed. Drop all tables and create new.", e)
             # if any error occured, all tables will be deleted and the process is repeated
-            drop_all_tables(conn)
+            drop_all_tables()
             time.sleep(1)
             # reapeat the while-loop
             again = True
@@ -388,24 +438,24 @@ try:
             again = False
 
         except Error as e:
-            print(f"[ERROR]Set FK constraints failed! Let's try again [{attempt}]", e)
+            print(f"[ERROR] Set FK constraints failed! Let's try again [{attempt}]", e)
             # reapeat the while-loop
             again = True
             time.sleep(1)
 
             if attempt >= retry-1: 
-                print("[ERROR]Last attempt to set FK constraints! Drop all tables. Create new tables.")
-                drop_all_tables(conn)
+                print("[ERROR] Last attempt to set FK constraints! Drop all tables. Create new tables.")
+                drop_all_tables()
                 create_tables()
                 time.sleep(3)
         
     if attempt >= retry:
-        print(f"[FATAL ERROR]Tried {retry} times to set FK constraints. End program.")
+        print(f"[FATAL ERROR] Tried {retry} times to set FK constraints. End program.")
         cursor.close(); conn.close()
         raise SystemExit
 
     else: 
-        print("[INFO]Set FK constraints was successful!")
+        print("[INFO] Set FK constraints was successful!")
 
 
 
@@ -674,6 +724,8 @@ try:
             randHund = random.randint(1, 9)*100
             randTens = random.randint(1, 9)*10
             quantity = randMill + randHund + randTens
+
+            randC = random.randint(1, clientRows-1)
 
             cursor.execute( 
                 f"INSERT INTO Orders (ID_product, ID_client, Order_date, Quantity) " + 

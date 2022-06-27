@@ -1,0 +1,68 @@
+# Set up a virtual environment
+python -m venv .venv
+
+# Allow usage of venv
+Set-ExecutionPolicy Unrestricted -Scope Process
+
+# Activate venv as interpreter
+.venv\scripts\activate
+
+
+----------------------
+1. Use the first (existing) venv
+
+2. Delete any other venv
+
+3. activate it with the two commands above
+  >  Set-ExecutionPolicy Unrestricted -Scope Process
+  >  .venv\scripts\activate
+
+4. Install the following requirements: 
+  > pip install pymongo[srv]
+  (Source: Compile told me to)
+
+  > ==2.0.3 
+  > pip install Jinja2==3.1.1
+  (Source: https://exerror.com/importerror-cannot-import-name-markup-from-jinja2/)
+
+  > pip install dnspython pymongo certifi (already satisfied)
+
+5. add the following lines to the python script:
+  > from jinja2.utils import markupsafe 
+  > markupsafe.Markup()
+  > Markup('')
+
+
+
+
+
+
+
+
+Exception has occurred: ServerSelectionTimeoutError
+
+ac-mwagvfa-shard-00-01.zcf70nr.mongodb.net:27017: [SSL: CERTIFICATE_VERIFY_FAILED] 
+certificate verify failed: certificate has expired (_ssl.c:1131), 
+ac-mwagvfa-shard-00-02.zcf70nr.mongodb.net:27017: [SSL: CERTIFICATE_VERIFY_FAILED] 
+certificate verify failed: certificate has expired (_ssl.c:1131), 
+ac-mwagvfa-shard-00-00.zcf70nr.mongodb.net:27017: [SSL: CERTIFICATE_VERIFY_FAILED] 
+certificate verify failed: certificate has expired (_ssl.c:1131), 
+
+Timeout: 30s, 
+Topology Description: <TopologyDescription id: 62b9cda75be39a407c9b9e0f, 
+topology_type: ReplicaSetNoPrimary, 
+servers: [<ServerDescription ('ac-mwagvfa-shard-00-00.zcf70nr.mongodb.net', 27017) 
+server_type: Unknown, 
+rtt: None, 
+error=AutoReconnect('ac-mwagvfa-shard-00-00.zcf70nr.mongodb.net:27017: [SSL: CERTIFICATE_VERIFY_FAILED] 
+certificate verify failed: certificate has expired (_ssl.c:1131)')>, 
+<ServerDescription ('ac-mwagvfa-shard-00-01.zcf70nr.mongodb.net', 27017) 
+server_type: Unknown, 
+rtt: None, 
+error=AutoReconnect('ac-mwagvfa-shard-00-01.zcf70nr.mongodb.net:27017: [SSL: CERTIFICATE_VERIFY_FAILED] 
+certificate verify failed: certificate has expired (_ssl.c:1131)')>, <ServerDescription ('ac-mwagvfa-shard-00-02.zcf70nr.mongodb.net', 27017) 
+server_type: Unknown, rtt: None, error=AutoReconnect('ac-mwagvfa-shard-00-02.zcf70nr.mongodb.net:27017: [SSL: CERTIFICATE_VERIFY_FAILED] 
+certificate verify failed: certificate has expired (_ssl.c:1131)')>]>
+
+File "C:\Users\clemens\VSCodeProjects\imse-docker\flask\ToDo-List-using-Flask-and-MongoDB-master\app.py", line 115, in <module>
+clientCollection.delete_many({})

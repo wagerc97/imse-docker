@@ -15,10 +15,15 @@ class DatabaseHelper
 {
 	// Since the connection details are constant, define them as const
 	// We can refer to constants like e.g. DatabaseHelper::username
-	const host = 'db';  //service name from docker-compose.yml
-	const user = 'devuser'; 
-	const password = 'devpass'; 
-	const db = 'imse_sql_db';  // database name
+	//const host = 'db';          //service name from docker-compose.yml
+	//const user = 'devuser'; 
+	//const password = 'devpass'; 
+	//const db = 'imse_sql_db';   // database name
+
+	const host = 'sql11.freemysqlhosting.net';          //service name from docker-compose.yml
+	const user = 'sql11501710'; 
+	const password = '11IIzf3ue4'; 
+	const db = 'sql11501710';   // database name
 
 	
     // Since we need only one connection object, it can be stored in a member variable.
