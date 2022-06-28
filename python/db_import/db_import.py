@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+##!/usr/bin/env python3
 
 from errno import errorcode
 from math import prod
@@ -34,13 +34,19 @@ while attempt < retry and again:
     try:
 
         # TO CONNECT TO SERVER
-        #"""
-        user = config('USER',default='')
-        password = config('PASSWORD',default='')
-        host = config('SERVER',default='')
-        db_name = config('DB_NAME',default='')
-        port = config('PORT',default='')
-        #"""
+        """
+        user = config('USER2',default='')
+        password = config('PASSWORD2',default='')
+        host = config('SERVER2"',default='')
+        db_name = config('DB_NAME2',default='')
+        port = config('PORT2',default='')
+        """
+
+        user = "sql11502641"
+        password = "DxUGZARlt7"
+        host = "sql11.freemysqlhosting.net"
+        db_name = "sql11502641"
+        port = 3306
 
         # TO CONNECT TO MYSQL DOCKER
         """
