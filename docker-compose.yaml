@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  flaskapp:
+    volumes: 
+      - ./flask/resources:/opt/resources
+    build: 
+      context: ./flask
+    image: my-flaskapp
+    ports:
+      - 5000:5000
+    container_name: flask-app
+    
+  sql_interface: 
+    build:
+      context: ./sql_interface
+      dockerfile: Dockerfile
+    container_name: sql_interface
+    volumes:
+      - ./sql_interface/php/html:/var/www/html/
+    ports:
+      - "8000:80"
+

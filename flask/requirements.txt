@@ -1,0 +1,4 @@
+FLASK==2.0.0
+PYMONGO
+mysql-connector-python
+pymongo[srv]

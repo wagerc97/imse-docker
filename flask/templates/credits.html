@@ -1,0 +1,317 @@
+<html lang="en">
+  <head>  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+	<!-- Mobile device format support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!--  name of the page --> 
+    <title>NoSQL Interface</title>
+	
+	<!-- from moodle wiki III -->
+    <link rel="stylesheet" type="text/css" href="ExampleCss.css">
+
+	
+	<!-- BOOTSTRAP CDN -->	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<div class="pad_menu"></div>
+	<!-- CSS -->
+	<style>
+		<!-- TABLES --> 
+		table, th, td {
+		  border: 1px solid black;
+		  border-collapse: collapse;
+		}
+		td { <!-- table entries -->
+		  padding: 5px;
+		  text-align:center;	
+		}	
+		th { <!-- table headers -->
+		  padding: 5px;
+		  text-align:center;	
+		}
+		
+		<!-- BACKGROUND --> 
+		.pad_menu {
+			padding: 100px;
+			background-color: #a5b8d4;
+		}
+		body {
+			background: #a5b8d4 !important;
+		}
+		
+		<!-- CUSTOM ROW -->
+		.my-custom-row {
+			background-color: bisque; 
+			height: 400px; 
+			justify-content-center;
+		}
+	</style>
+
+</head>
+<body>
+	
+<!-- Top text block -->
+<div class="container"> <!-- Centering-->
+
+	<br>
+	<div class="row "> 
+		<div class="col-lg-12"><div class="p-4 border-dark bg-success">
+
+		<!-- header --> 
+		<h1>
+			Web Interface for NoSQL Database
+		</h1>
+		<h4>
+			Welcome to our IMSE Web Application of IMSErgo Ltd. - <br>
+			Pharmacutical Company and Project Realisation
+		</h4>
+		<h4>
+			by Claas Fillies (A12047732) 
+			and Clemens Wager (A01635477)<br>
+			for 052400-1 VU Information Management and Systems Engineering (SS2022)<br>
+		</h4>
+		<br>
+		<h3>Switch to SQL Interface</h3>
+			<a href="http://127.0.0.1:8000/">
+				<button>Switch</button>
+			</a>
+			<br>
+		<h3>Switch to Landing Page</h3>
+			<a href="http://127.0.0.1:5000/">
+				<button>Back to LP</button>
+			</a> 
+		</div></div>
+	</div>
+	<br>
+
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<div span="right">
+				<h4>1.1) To Register an new Product you can add Campaigns an Marketing Employees </h4>
+				<form action="/campaignAdd"	method="GET" >
+					<table class="none" id="close">
+						<tr>
+							<td><input type="text" name="CampaignName" placeholder="enter Campaign Name" size="25" /></td>
+							<td><input type="date" name="dateStart" placeholder="Date" /></td>
+							<td><input type="date" name="dateEnd" placeholder="Date" /></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td><button type="submit">Add Campaign</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			{{ results["campaignLenInfo"]  }}
+			<hr>
+
+			<div span="right">
+				<form action="/MaketingEmpAbb"	method="GET" >
+					<table class="none" id="close">
+						<tr>
+							<td><input type="text" name="occupation" placeholder="enter Occupation" size="25" /></td>
+							<td><select name="refer" required>
+								{% for employee in results["employeeList"] %}
+								<option value={{employee}}>{{employee}}</option>
+								{% endfor %}
+							</select></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						<td><button type="submit">Add Marketing Emp</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+			{{  results["marketingEmpLenInfo"] }}
+
+			<hr>
+
+			<div span="right">
+				<h4>1.2) To complete the registration of a Product enter name, indication and price</h4>
+				<form action="/Af1"	method="GET" >
+					<table class="none" id="close">
+						<tr>
+							<td><input type="text" name="name" placeholder="enter Product Name" size="25" /></td>
+							<td><input type="text" name="indication" placeholder="enter Indication" size="25" /></td>
+							<td><input type="text" name="price" placeholder="enter Price" size="25" /></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td><button type="submit">Register</button></td>
+						</tr>
+						</table>
+				</form>
+			</div>
+			{{  results["Af1Info"] }}
+			{{  results["res1"] }}
+		</div>
+		<br>
+
+			<!--<td><button type="submit">Register</button></td>-->
+
+		<div class="row"> 
+			<div class="col-lg-12"><div class="p-4 border bg-light">
+				<div span="right">
+					<h4>2) To register a client enter a Name and a country (which is surplied by the company)</h4>
+					<form action="/Af2"	method="GET" >
+						<table class="none" id="close">
+							<tr>
+								<td><input type="text" name="name" placeholder="enter Client Name" size="25" /></td>
+								<td><input type="text" name="country" placeholder="enter Client Country" size="25" /></td>
+								<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+								<td><button type="submit">Register</button></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				{{  results["res2"] }}
+			</div>
+
+			<br>
+
+		<div class="row"> 
+			<div class="col-lg-12"><div class="p-4 border bg-light">
+				<div span="right">
+					<h4>3) Enter e region to get its GM</h4>
+
+					<form action="/Af3"	method="GET" >
+						<table class="none" id="close">
+						<tr>
+						<td><input type="text" name="key" placeholder="enter Region" size="15" /></td>
+						<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						<td><button type="submit">Search</button></td>
+						</tr>
+						</table>
+					</form>
+				</div>
+				{{  results["res3"] }}
+			</div>
+		<br>
+
+
+		<div class="row"> 
+			<div class="col-lg-12"><div class="p-4 border bg-light">
+				<div span="right">
+					<h4>4) Get the 5 most recent Orders</h4>
+
+					<form action="/Af4"	method="GET" >
+						<table class="none" id="close">
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							<td><button type="submit">Show the 5 most recent orders</button></td>
+						</tr>
+						</table>
+					</form>
+				</div>
+				{%if results["res4"] %}
+
+				<table class="table table-sm table-hover table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr id="row">
+							<th class="status">Order ID</th>
+							<th class="name">date</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for res in results["res4"] %}
+						<tr class="datas">
+							<td class="name">{{  res[0] }}</td>
+							<td class="name">{{  res[1] }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+					</table>
+				{%endif%}
+				</div>
+				<br>
+
+
+		<div class="row"> 
+			<div class="col-lg-12"><div class="p-4 border bg-light">
+				<div span="right">
+					<h4>5) Get the most expensive Products for your budget</h4>
+					<form action="/Rep1"	method="GET" > 
+						<table class="none" id="close">
+							<tr>
+								<td><input type="text" name="limit" placeholder="limit in $" size="15" /></td>
+								<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+								<td><button type="submit">search</button></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				{{  results["Rep1Info"] }}
+				{%if results["resRp1Done"] %}
+				<table class="table table-sm table-hover table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr id="row">
+							<th class="status">Name</th>
+							<th class="name">Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for eachOrder in results["resRp1"] %}
+							<tr class="datas">
+								<td class="name">{{  eachOrder[0] }}</td>
+								<td class="name">{{  eachOrder[1] }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{%endif%}
+			</div>
+			<br>
+			
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border bg-light">
+			<div span="right">
+				<h4>6) Get the clients residing in the given country</h4>
+				<form action="/Rep2"	method="GET" >
+					<table class="none" id="close">
+						<tr>
+							<td><td><input type="text" name="country" placeholder="enter country" size="15" /></td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+							</td><td><button type="submit">search</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			{{  results["Rep2Info"] }}
+			{%if results["resRp2Done"] %}
+
+				<table class="table table-sm table-hover table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr id="row">
+							<th class="name">Client Name</th>
+						</tr>
+					</thead>
+					<tbody>
+							{% for eachEmp in results["resRp2"] %}
+						<tr class="datas">
+							<td class="name">{{  eachEmp[0] }}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			{%endif%}
+			</div>
+			<br>
+
+
+	<div class="row"> 
+		<div class="col-lg-12"><div class="p-4 border-dark bg-danger">
+			<form action="/clearSession"	method="GET" >
+				<h4>Clear all results from page?</h4>
+				<table class="none" id="close">
+				<tb>
+				<td><button type="submit">ClearSession </button></td>
+				</tb>
+				</table>
+			</form>
+			</div>
+
+
+	<br><br><br><br>
+</body>
+</html>
