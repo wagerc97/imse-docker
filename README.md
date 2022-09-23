@@ -4,7 +4,7 @@
 ---
 
 ## Introduction
-The web application centers around a company and enables not only registration of products and clients but also gives insight on the company's business. For detailed information on the domain see the submitted PDF file “M1_FILLIES_WAGER_IMSE_SS22_corrected.pdf”.
+The web application centers around a company and enables not only registration of products and clients but also gives insight on the company's business. For detailed information on the domain see the submitted PDF file “M1_FILLIES_WAGER_IMSE_SS22_corrected.pdf”. This project was realized by my partner and me as a final submission in a university course.
 
 ---
 
